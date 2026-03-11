@@ -39,7 +39,7 @@ def combine():
 
     print("Loading datasets")
 
-    enron = load_csv("enron.csv", "enron")
+    enron = load_csv("enron_data_fraud_labeled.csv", "enron")
     nazario = load_csv("nazario.csv", "nazario")
     github = load_json("github_phishing_emails.json", "github")
 

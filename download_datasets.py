@@ -63,7 +63,7 @@ if __name__ == "__main__":
     )
 
     download_kaggle_dataset(
-        "wcukierski/enron-email-dataset"
+        "advaithsrao/enron-fraud-email-dataset"
     )
 
     rename_file(
