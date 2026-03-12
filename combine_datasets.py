@@ -42,10 +42,12 @@ def combine():
     enron = load_csv("enron_data_fraud_labeled.csv", "enron")
     nazario = load_csv("nazario.csv", "nazario")
     github = load_json("github_phishing_emails.json", "github")
+    meajor = load_csv("meajor.csv", "meajor")
+    #TODO: add meajor
 
 
     combined = pd.concat(
-        [enron, nazario, github],
+        [enron, nazario, github, meajor],
         ignore_index=True,
         sort=False
     )

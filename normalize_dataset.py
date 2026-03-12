@@ -39,6 +39,16 @@ def contains_ip_url(urls):
             return 1
     return 0
 
+def extract_url_features(urls):
+    lengths = [len(url) for url in urls]
+    subdoms = [url.count(".") for url in urls]
+    return {
+        "url_length_max": max(lengths) if lengths else 0,
+        "url_length_avg": sum(lengths)/len(lengths) if lengths else 0,
+        "url_subdom_max": max(subdoms) if subdoms else 0,
+        "url_subdom_avg": sum(subdoms)/len(subdoms) if subdoms else 0
+    }
+
 def normalize_label(row):
     if "type" in row.index and pd.notna(row["type"]):
         t = str(row["type"]).strip().lower()
@@ -51,7 +61,7 @@ def normalize_label(row):
 
     if "label" in row.index and pd.notna(row["label"]):
         try:
-            l = int(row["label"])
+            l = int(float(row["label"]))
             if l == 1:
                 return "phishing"
             elif l == 0:
@@ -66,7 +76,10 @@ def normalize():
     df = pd.read_csv(INPUT_FILE, low_memory=False)
 
     # Clean column names
+    # Lowercase columns and remove any duplicates
     df.columns = df.columns.str.strip()
+    df.columns = df.columns.str.lower()
+    df = df.loc[:, ~df.columns.duplicated()]
 
     # Merge duplicate columns 
     def merge_columns(df, primary, secondary):
@@ -75,17 +88,14 @@ def normalize():
             df = df.drop(columns=[secondary])
         return df
 
-    df = merge_columns(df, "subject", "Subject")
-    df = merge_columns(df, "body", "Body")
-    df = merge_columns(df, "sender", "Sender")
-    df = merge_columns(df, "file", "File")
-    df = merge_columns(df, "source", "Source")
-    df = merge_columns(df, "urls", "URL(s)")
+    # df = merge_columns(df, "subject", "Subject")
+    # df = merge_columns(df, "body", "Body")
+    # df = merge_columns(df, "sender", "Sender")
+    # df = merge_columns(df, "file", "File")
+    # df = merge_columns(df, "source", "Source")
+    df = merge_columns(df, "urls", "url(s)")
     df = merge_columns(df, "year", "Year")
-
-    # Lowercase columns and remove any duplicates
-    df.columns = df.columns.str.lower()
-    df = df.loc[:, ~df.columns.duplicated()]
+    df = merge_columns(df, "num_urls", "url_count")
 
     # Create unified email_text column
     if "body" in df.columns and "message" in df.columns:
@@ -95,27 +105,51 @@ def normalize():
     elif "message" in df.columns:
         df["email_text"] = df["message"]
     else:
-        df["email_text"] = ""
+        df["email_text"] = ""    
 
     # Fill missing text columns with empty string
     text_cols = ["subject", "sender", "receiver", "email_text", "motivation",
-                 "human evaluated emotion", "llm detected emotion", "file", "source"]
+                 "human evaluated emotion", "llm detected emotion", "file", "source", "content_types", "language"]
     for col in text_cols:
         if col in df.columns:
             df[col] = df[col].fillna("")
 
     # Fill numeric columns with 0
     numeric_cols = ["year", "num_urls", "email_length", "num_exclamation_marks",
-                    "num_links_in_body", "has_ip_url", "is_html_email"]
+                    "num_links_in_body", "has_ip_url", "is_html_email"] 
     for col in numeric_cols:
         if col in df.columns:
             df[col] = df[col].fillna(0)
 
-    df["sender_domain"] = df["sender"].apply(extract_domain)
+    # not currently processing attachment features found in meajor: attachment_count, has_attachments, attachment_types
+
+    if "sender_domain" not in df.columns:
+        df["sender_domain"] = df["sender"].apply(extract_domain)
+
+    if "receiver_domain" not in df.columns:
+        df["receiver_domain"] = df["receiver"].apply(extract_domain)
+
     df["extracted_urls"] = df["email_text"].apply(extract_urls)
-    df["url_domains"] = df["extracted_urls"].apply(get_domains_from_urls)
-    df["num_urls"] = df["extracted_urls"].apply(len)
-    df["has_ip_url"] = df["extracted_urls"].apply(contains_ip_url)
+    if "urls" in df.columns:
+        df["urls"] = df["urls"].apply(lambda x: x if isinstance(x, list) else extract_urls(str(x)))
+        df["urls"] = df.apply(
+            lambda row: list(set(row["extracted_urls"] + row["urls"])),
+            axis=1
+        )
+    else:
+        df["urls"] = df["extracted_urls"]
+
+    df["url_domains"] = df["urls"].apply(get_domains_from_urls)
+    df["num_urls"] = df["urls"].apply(len)
+    
+    if "url_length_max" not in df.columns:
+        url_series = df["urls"]
+        url_features = url_series.apply(extract_url_features)
+        url_features_df = pd.DataFrame(url_features.tolist(), index=df.index)
+        for col in ["url_length_max", "url_length_avg", "url_subdom_max", "url_subdom_avg"]:
+            df[col] = url_features_df[col]
+    
+    df["has_ip_url"] = df["urls"].apply(contains_ip_url)
     df["email_length"] = df["email_text"].astype(str).apply(len)
     df["num_exclamation_marks"] = df["email_text"].astype(str).str.count("!")
     df["num_links_in_body"] = df["email_text"].astype(str).str.count("http")
@@ -134,12 +168,14 @@ def normalize():
     df["label_id"] = df["label_id"].fillna(0)
 
     final_columns = [
-        "email_text", "subject", "sender", "sender_domain", "receiver", "date",
-        "normalized_label", "label_id", "source", "year",
-        "num_urls", "has_ip_url", "email_length", "num_exclamation_marks",
-        "num_links_in_body", "is_html_email",
-        "url_domains",
-        "human evaluated emotion", "llm detected emotion", "motivation"
+    "email_text", "subject", "sender", "sender_domain", "receiver", "receiver_domain", "date",
+    "normalized_label", "label_id", "source", "year",
+    "num_urls", "has_ip_url", "email_length", "num_exclamation_marks",
+    "num_links_in_body", "is_html_email", "url_domains",
+    "url_length_max", "url_length_avg", "url_subdom_max", "url_subdom_avg",
+    "attachment_count", "has_attachments", "attachment_types",
+    "content_types", "language",
+    "human evaluated emotion", "llm detected emotion", "motivation"
     ]
 
     final_columns = [c for c in final_columns if c in df.columns]

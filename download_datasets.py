@@ -38,6 +38,18 @@ def download_github_file(url, filename):
     with open(filepath, "wb") as f:
         f.write(response.content)
 
+def download_zenodo_dataset(url, filename):
+
+    print(f"Downloading {filename} from Zenodo...")
+
+    response = requests.get(url)
+    response.raise_for_status()
+
+    filepath = os.path.join(RAW_DIR, filename)
+
+    with open(filepath, "wb") as f:
+        f.write(response.content)
+
 
 def rename_file(original, new_name):
 
@@ -80,6 +92,15 @@ if __name__ == "__main__":
         "github_phishing_emails.json"
     )
 
+    zenodo_url = (
+        "https://zenodo.org/records/18471483/files/meajor_cleaned_preprocessed.csv"
+    )
+
+    download_zenodo_dataset(
+        zenodo_url,
+        "meajor.csv"
+    )
+
     extra_file = os.path.join(RAW_DIR, "email_text.csv")
 
     if os.path.exists(extra_file):
@@ -87,3 +108,5 @@ if __name__ == "__main__":
 
 
     print("\nAll datasets downloaded successfully.")
+
+    #TODO: add meajor corpus
