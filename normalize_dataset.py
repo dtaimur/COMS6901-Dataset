@@ -168,18 +168,42 @@ def normalize():
     df["label_id"] = df["label_id"].fillna(0)
 
     final_columns = [
-    "email_text", "subject", "sender", "sender_domain", "receiver", "receiver_domain", "date",
-    "normalized_label", "label_id", "source", "year",
-    "num_urls", "has_ip_url", "email_length", "num_exclamation_marks",
-    "num_links_in_body", "is_html_email", "url_domains",
-    "url_length_max", "url_length_avg", "url_subdom_max", "url_subdom_avg",
-    "attachment_count", "has_attachments", "attachment_types",
-    "content_types", "language",
-    "human evaluated emotion", "llm detected emotion", "motivation"
+        "email_text", "subject", "sender", "sender_domain", "receiver", "date",
+        "normalized_label", "label_id", "source", "year",
+        "num_urls", "has_ip_url", "email_length", "num_exclamation_marks",
+        "num_links_in_body", "is_html_email",
+        "url_domains", "file",
+        "human evaluated emotion", "llm detected emotion", "motivation"
     ]
 
     final_columns = [c for c in final_columns if c in df.columns]
     df = df[final_columns]
+
+#    cols = [
+#    "subject",
+#    "sender",
+#    "sender_domain",
+#    "normalized_label",
+#    "label_id",
+#   "num_urls",
+#   "has_ip_url",
+#   "email_length",
+#   "num_exclamation_marks",
+# ]
+
+    # Sample one legitimate email
+    #legit_example = df[df["normalized_label"] == "legitimate"][cols].sample(1)
+
+    # Sample one phishing email
+    #phishing_example = df[df["normalized_label"] == "phishing"][cols].sample(1)
+
+    #print(df.columns)
+
+    #print("\nLEGITIMATE EMAIL EXAMPLE:\n")
+    #print(legit_example.to_string(index=False))
+
+    #print("\nPHISHING EMAIL EXAMPLE:\n")
+    #print(phishing_example.to_string(index=False))
     
     print("Final dataset size:", len(df))
     df.to_csv(OUTPUT_FILE, index=False)
