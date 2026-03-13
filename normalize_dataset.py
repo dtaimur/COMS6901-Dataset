@@ -9,6 +9,14 @@ OUTPUT_FILE = "data/processed/normalized_dataset.csv"
 
 os.makedirs("data/processed", exist_ok=True)
 
+def extract_year(date_val):
+    if pd.isna(date_val) or date_val == "":
+        return 0
+    try:
+        return pd.to_datetime(str(date_val), utc=True).year
+    except:
+        return 0
+    
 def extract_domain(email):
     if pd.isna(email) or email == "":
         return ""
@@ -39,7 +47,7 @@ def contains_ip_url(urls):
             return 1
     return 0
 
-def attachment_features(files):
+def extract_attachment_features(files):
     if pd.isna(files) or files == "":
         return 0, 0
     if isinstance(files, list):
@@ -89,10 +97,7 @@ def normalize():
     df = pd.read_csv(INPUT_FILE, low_memory=False)
 
     # Clean column names
-    # Lowercase columns and remove any duplicates
     df.columns = df.columns.str.strip()
-    df.columns = df.columns.str.lower()
-    df = df.loc[:, ~df.columns.duplicated()]
 
     # Merge duplicate columns 
     def merge_columns(df, primary, secondary):
@@ -101,7 +106,13 @@ def normalize():
             df = df.drop(columns=[secondary])
         return df
 
-    df = merge_columns(df, "urls", "url(s)")
+    df = merge_columns(df, "subject", "Subject")
+    df = merge_columns(df, "body", "Body")
+    df = merge_columns(df, "sender", "Sender")
+    df = merge_columns(df, "file", "File")
+    df = merge_columns(df, "source", "Source")
+    df = merge_columns(df, "urls", "URL(s)")
+    df = merge_columns(df, "year", "Year")
     df = merge_columns(df, "num_urls", "url_count")
 
     # Create unified email_text column
@@ -112,7 +123,11 @@ def normalize():
     elif "message" in df.columns:
         df["email_text"] = df["message"]
     else:
-        df["email_text"] = ""    
+        df["email_text"] = ""   
+
+    # Lowercase column names, drop remaining duplicate columns
+    df.columns = df.columns.str.lower()
+    df = df.loc[:, ~df.columns.duplicated()] 
 
     # Fill missing text columns with empty string
     text_cols = ["subject", "sender", "receiver", "sender_domain", "receiver_domain", "email_text", "motivation",
@@ -142,7 +157,7 @@ def normalize():
     #Extracts year from date if year not present but date column is populated
     mask = df["year"] == 0
     if mask.any() and "date" in df.columns:
-        df.loc[mask, "year"] = pd.to_datetime(df.loc[mask, "date"], errors="coerce").dt.year.fillna(0).astype(int)
+        df.loc[mask, "year"] = df.loc[mask, "date"].apply(extract_year)
 
     # Extract URLs from email text and combine with existing URL column
     df["extracted_urls"] = df["email_text"].apply(extract_urls)
@@ -169,7 +184,7 @@ def normalize():
     # Processes file field to extract attachment features if not already present in source dataset
     mask = df["attachment_count"] == 0
     if mask.any():
-        results = df.loc[mask, "file"].apply(attachment_features)
+        results = df.loc[mask, "file"].apply(extract_attachment_features)
         df.loc[mask, "attachment_count"] = results.apply(lambda x: x[0])
         df.loc[mask, "has_attachments"] = results.apply(lambda x: float(x[1]))
     
@@ -179,7 +194,7 @@ def normalize():
             df[col] = df[col].fillna("")
 
     df["normalized_label"] = df.apply(normalize_label, axis=1)
-    df["label_id"] = df["normalized_label"].map({"legitimate":0, "spam":1, "phishing":2})
+    df["label_id"] = df["normalized_label"].map({"legitimate":0, "spam":1, "phishing":2, 0.0: 0, 1.0: 1})
 
     # Ensure no NaNs in label columns
     df["normalized_label"] = df["normalized_label"].fillna("legitimate")
@@ -199,31 +214,31 @@ def normalize():
     final_columns = [c for c in final_columns if c in df.columns]
     df = df[final_columns]
 
-#    cols = [
-#    "subject",
-#    "sender",
-#    "sender_domain",
-#    "normalized_label",
-#    "label_id",
-#   "num_urls",
-#   "has_ip_url",
-#   "email_length",
-#   "num_exclamation_marks",
-# ]
+    cols = [
+        "subject",
+        "sender",
+        "sender_domain",
+        "normalized_label",
+        "label_id",
+        "num_urls",
+        "has_ip_url",
+        "email_length",
+        "num_exclamation_marks",
+    ]
 
     # Sample one legitimate email
-    #legit_example = df[df["normalized_label"] == "legitimate"][cols].sample(1)
+    legit_example = df[df["normalized_label"] == "legitimate"][cols].sample(1)
 
     # Sample one phishing email
-    #phishing_example = df[df["normalized_label"] == "phishing"][cols].sample(1)
+    phishing_example = df[df["normalized_label"] == "phishing"][cols].sample(1)
 
-    #print(df.columns)
+    print(df.columns)
 
-    #print("\nLEGITIMATE EMAIL EXAMPLE:\n")
-    #print(legit_example.to_string(index=False))
+    print("\nLEGITIMATE EMAIL EXAMPLE:\n")
+    print(legit_example.to_string(index=False))
 
-    #print("\nPHISHING EMAIL EXAMPLE:\n")
-    #print(phishing_example.to_string(index=False))
+    print("\nPHISHING EMAIL EXAMPLE:\n")
+    print(phishing_example.to_string(index=False))
     
     print("Final dataset size:", len(df))
     df.to_csv(OUTPUT_FILE, index=False)
