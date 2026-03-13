@@ -39,6 +39,19 @@ def contains_ip_url(urls):
             return 1
     return 0
 
+def attachment_features(files):
+    if pd.isna(files) or files == "":
+        return 0, 0
+    if isinstance(files, list):
+        pass
+    else:
+        files = [f.strip().strip("'\"") for f in str(files).strip("[]").split(",") if f.strip()]
+    count = len(files)
+    if count > 0:
+        return count, 1.0
+    return count, 0.0
+
+
 def extract_url_features(urls):
     lengths = [len(url) for url in urls]
     subdoms = [url.count(".") for url in urls]
@@ -88,13 +101,7 @@ def normalize():
             df = df.drop(columns=[secondary])
         return df
 
-    # df = merge_columns(df, "subject", "Subject")
-    # df = merge_columns(df, "body", "Body")
-    # df = merge_columns(df, "sender", "Sender")
-    # df = merge_columns(df, "file", "File")
-    # df = merge_columns(df, "source", "Source")
     df = merge_columns(df, "urls", "url(s)")
-    df = merge_columns(df, "year", "Year")
     df = merge_columns(df, "num_urls", "url_count")
 
     # Create unified email_text column
@@ -108,7 +115,7 @@ def normalize():
         df["email_text"] = ""    
 
     # Fill missing text columns with empty string
-    text_cols = ["subject", "sender", "receiver", "email_text", "motivation",
+    text_cols = ["subject", "sender", "receiver", "sender_domain", "receiver_domain", "email_text", "motivation",
                  "human evaluated emotion", "llm detected emotion", "file", "source", "content_types", "language"]
     for col in text_cols:
         if col in df.columns:
@@ -116,38 +123,42 @@ def normalize():
 
     # Fill numeric columns with 0
     numeric_cols = ["year", "num_urls", "email_length", "num_exclamation_marks",
-                    "num_links_in_body", "has_ip_url", "is_html_email"] 
+                    "num_links_in_body", "has_ip_url", "is_html_email", "url_length_max", 
+                    "url_length_avg", "url_subdom_max", "url_subdom_avg", "has_attachments", "attachment_count"] 
     for col in numeric_cols:
         if col in df.columns:
             df[col] = df[col].fillna(0)
 
-    # not currently processing attachment features found in meajor: attachment_count, has_attachments, attachment_types
+    df["sender_domain"] = df.apply(
+        lambda row: extract_domain(row["sender"]) if row.get("sender_domain", "") == "" else row["sender_domain"],
+        axis=1
+    )
 
-    if "sender_domain" not in df.columns:
-        df["sender_domain"] = df["sender"].apply(extract_domain)
+    df["receiver_domain"] = df.apply(
+        lambda row: extract_domain(row["receiver"]) if row.get("receiver_domain", "") == "" else row["receiver_domain"],
+        axis=1
+    )
 
-    if "receiver_domain" not in df.columns:
-        df["receiver_domain"] = df["receiver"].apply(extract_domain)
+    #Extracts year from date if year not present but date column is populated
+    mask = df["year"] == 0
+    if mask.any() and "date" in df.columns:
+        df.loc[mask, "year"] = pd.to_datetime(df.loc[mask, "date"], errors="coerce").dt.year.fillna(0).astype(int)
 
+    # Extract URLs from email text and combine with existing URL column
     df["extracted_urls"] = df["email_text"].apply(extract_urls)
-    if "urls" in df.columns:
-        df["urls"] = df["urls"].apply(lambda x: x if isinstance(x, list) else extract_urls(str(x)))
-        df["urls"] = df.apply(
-            lambda row: list(set(row["extracted_urls"] + row["urls"])),
-            axis=1
-        )
-    else:
-        df["urls"] = df["extracted_urls"]
+    df["urls"] = df["urls"].apply(lambda x: x if isinstance(x, list) else extract_urls(str(x)))
+    df["urls"] = df.apply(lambda row: list(set(row["extracted_urls"] + row["urls"])), axis=1)
 
+    # Extract features from URLs if not already present in source dataset
     df["url_domains"] = df["urls"].apply(get_domains_from_urls)
     df["num_urls"] = df["urls"].apply(len)
-    
-    if "url_length_max" not in df.columns:
-        url_series = df["urls"]
-        url_features = url_series.apply(extract_url_features)
-        url_features_df = pd.DataFrame(url_features.tolist(), index=df.index)
+
+    mask = df["url_length_max"] == 0
+    if mask.any():
+        url_features = df.loc[mask, "urls"].apply(extract_url_features)
+        url_features_df = pd.DataFrame(url_features.tolist(), index=df.loc[mask].index)
         for col in ["url_length_max", "url_length_avg", "url_subdom_max", "url_subdom_avg"]:
-            df[col] = url_features_df[col]
+            df.loc[mask, col] = url_features_df[col]
     
     df["has_ip_url"] = df["urls"].apply(contains_ip_url)
     df["email_length"] = df["email_text"].astype(str).apply(len)
@@ -155,6 +166,13 @@ def normalize():
     df["num_links_in_body"] = df["email_text"].astype(str).str.count("http")
     df["is_html_email"] = df["email_text"].astype(str).str.contains("<html|<body|<a", case=False).astype(int)
 
+    # Processes file field to extract attachment features if not already present in source dataset
+    mask = df["attachment_count"] == 0
+    if mask.any():
+        results = df.loc[mask, "file"].apply(attachment_features)
+        df.loc[mask, "attachment_count"] = results.apply(lambda x: x[0])
+        df.loc[mask, "has_attachments"] = results.apply(lambda x: float(x[1]))
+    
     # Fill annotation columns with empty string if missing
     for col in ["human evaluated emotion", "llm detected emotion", "motivation"]:
         if col in df.columns:
@@ -173,7 +191,7 @@ def normalize():
     "num_urls", "has_ip_url", "email_length", "num_exclamation_marks",
     "num_links_in_body", "is_html_email", "url_domains",
     "url_length_max", "url_length_avg", "url_subdom_max", "url_subdom_avg",
-    "attachment_count", "has_attachments", "attachment_types",
+    "attachment_count", "has_attachments",
     "content_types", "language",
     "human evaluated emotion", "llm detected emotion", "motivation"
     ]

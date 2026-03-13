@@ -43,7 +43,6 @@ def combine():
     nazario = load_csv("nazario.csv", "nazario")
     github = load_json("github_phishing_emails.json", "github")
     meajor = load_csv("meajor.csv", "meajor")
-    #TODO: add meajor
 
 
     combined = pd.concat(
