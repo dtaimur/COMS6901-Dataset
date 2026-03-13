@@ -1,5 +1,5 @@
 # Overview
-This repository contains scripts for downloading, combining, and normalizing email data from four repositories:
+This repository contains scripts for downloading, combining, and normalizing email data from four datasets:
 -  [Phishing and Spam Email Dataset](https://github.com/HarmJ0y/PhishingSpamDataSet/tree/main)
 -  [Meajor Corpus](https://zenodo.org/records/18471483?)
 -  [Enron Fraud Email Dataset](https://www.kaggle.com/datasets/advaithsrao/enron-fraud-email-dataset)
