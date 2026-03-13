@@ -198,6 +198,32 @@ def normalize():
 
     final_columns = [c for c in final_columns if c in df.columns]
     df = df[final_columns]
+
+#    cols = [
+#    "subject",
+#    "sender",
+#    "sender_domain",
+#    "normalized_label",
+#    "label_id",
+#   "num_urls",
+#   "has_ip_url",
+#   "email_length",
+#   "num_exclamation_marks",
+# ]
+
+    # Sample one legitimate email
+    #legit_example = df[df["normalized_label"] == "legitimate"][cols].sample(1)
+
+    # Sample one phishing email
+    #phishing_example = df[df["normalized_label"] == "phishing"][cols].sample(1)
+
+    #print(df.columns)
+
+    #print("\nLEGITIMATE EMAIL EXAMPLE:\n")
+    #print(legit_example.to_string(index=False))
+
+    #print("\nPHISHING EMAIL EXAMPLE:\n")
+    #print(phishing_example.to_string(index=False))
     
     print("Final dataset size:", len(df))
     df.to_csv(OUTPUT_FILE, index=False)
