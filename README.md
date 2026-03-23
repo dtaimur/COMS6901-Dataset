@@ -5,8 +5,20 @@ This repository contains scripts for downloading, combining, and normalizing ema
 -  [Enron Fraud Email Dataset](https://www.kaggle.com/datasets/advaithsrao/enron-fraud-email-dataset)
 -  [Nazario-5/TREC-07](https://www.kaggle.com/datasets/rohansood98/phishing-email-dataset-nazario-5-and-trec07)
 
+# Running Project
+Make sure you have a Kaggle API key set up (see steps below if needed). To create the dateset run the run_project.sh script. It will output a normalized_dataset.csv located in the data/processed folder.
+
+# Kaggle Setup (if needed)
+1. Create a Kaggle account: https://www.kaggle.com
+2. Go to Account → API → Create New Token (This downloads kaggle.json)
+3. Move it to: 
+    mkdir -p ~/.kaggle
+    mv kaggle.json ~/.kaggle/
+    chmod 600 ~/.kaggle/kaggle.json
+4. Install Kaggle CLI: pip install kaggle
+
 ## Outputs
-It ouputs a combined_raw_dataset.csv and normalized_dataset.csv; the latter has the following features:
+It ouputs a combined_raw_dataset.csv and normalized_dataset.csv; the latter has the following features (see presentation for further details: https://docs.google.com/presentation/d/1g9X00uMSGMQ-xaXw32FAZFgBlX_ioDF34XfvUkO8uT0/edit?usp=sharing):
 - "email_text",
 - "subject",
 - "sender",
