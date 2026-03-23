@@ -108,5 +108,3 @@ if __name__ == "__main__":
 
 
     print("\nAll datasets downloaded successfully.")
-
-    #TODO: add meajor corpus
