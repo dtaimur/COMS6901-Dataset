@@ -79,7 +79,7 @@ if __name__ == "__main__":
     )
 
     rename_file(
-        "emails.csv",
+        "email_text.csv",
         "enron.csv"
     )
 

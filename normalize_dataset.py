@@ -92,6 +92,42 @@ def normalize_label(row):
 
     return "legitimate"
 
+def compute_urgency(text, subject=""):
+    if pd.isna(text):
+        text = ""
+    if pd.isna(subject):
+        subject = ""
+
+    text = str(text).lower()
+    subject = str(subject).lower()
+    combined = text + " " + subject
+
+    urgent_keywords = [
+        "urgent", "immediately", "asap", "action required", "verify", "suspend",
+        "suspended", "click now", "last chance", "important", "attention",
+        "password expires", "confirm", "update now", "limited time",
+        "security alert", "unusual activity", "act now", "final notice"
+    ]
+
+    keyword_count = sum(1 for word in urgent_keywords if word in combined)
+    exclam_count = combined.count("!")
+    length = len(combined)
+
+    # Simple scoring system
+    score = 0
+    score += keyword_count * 2
+    score += exclam_count * 1
+
+    if length < 200 and keyword_count > 0:
+        score += 2
+
+    if score >= 6:
+        return "very urgent"
+    elif score >= 3:
+        return "somewhat urgent"
+    else:
+        return "not urgent"
+
 def normalize():
     print("Loading dataset...")
     df = pd.read_csv(INPUT_FILE, low_memory=False)
@@ -181,6 +217,9 @@ def normalize():
     df["num_links_in_body"] = df["email_text"].astype(str).str.count("http")
     df["is_html_email"] = df["email_text"].astype(str).str.contains("<html|<body|<a", case=False).astype(int)
 
+    # Compute urgency level
+    df["urgency_level"] = df.apply(lambda row: compute_urgency(row["email_text"], row.get("subject", "")), axis=1)
+
     # Processes file field to extract attachment features if not already present in source dataset
     mask = df["attachment_count"] == 0
     if mask.any():
@@ -208,7 +247,8 @@ def normalize():
     "url_length_max", "url_length_avg", "url_subdom_max", "url_subdom_avg",
     "attachment_count", "has_attachments",
     "content_types", "language",
-    "human evaluated emotion", "llm detected emotion", "motivation"
+    "human evaluated emotion", "llm detected emotion", "motivation", 
+    "urgency_level"
     ]
 
     final_columns = [c for c in final_columns if c in df.columns]
@@ -224,6 +264,7 @@ def normalize():
         "has_ip_url",
         "email_length",
         "num_exclamation_marks",
+        "urgency_level"
     ]
 
     # Sample one legitimate email
