@@ -239,6 +239,9 @@ def normalize():
     df["normalized_label"] = df["normalized_label"].fillna("legitimate")
     df["label_id"] = df["label_id"].fillna(0)
 
+    # Drop duplicate rows
+    df = df.drop_duplicates(subset=["email_text", "subject", "sender", "year"])
+
     final_columns = [
     "email_text", "subject", "sender", "sender_domain", "receiver", "receiver_domain", "date",
     "normalized_label", "label_id", "source", "year",
