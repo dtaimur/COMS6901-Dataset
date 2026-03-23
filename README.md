@@ -12,9 +12,9 @@ Make sure you have a Kaggle API key set up (see steps below if needed). To creat
 1. Create a Kaggle account: https://www.kaggle.com
 2. Go to Account → API → Create New Token (This downloads kaggle.json)
 3. Move it to: 
-    mkdir -p ~/.kaggle
-    mv kaggle.json ~/.kaggle/
-    chmod 600 ~/.kaggle/kaggle.json
+   - mkdir -p ~/.kaggle
+   - mv kaggle.json ~/.kaggle/
+   - chmod 600 ~/.kaggle/kaggle.json
 4. Install Kaggle CLI: pip install kaggle
 
 ## Outputs
