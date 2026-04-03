@@ -300,7 +300,7 @@ def normalize():
 
     df.to_csv(OUTPUT_FILE, index=False)
     print("Saved normalized dataset:", OUTPUT_FILE)
-   # print(df.groupby("source")["normalized_label"].value_counts())
+    print(df.groupby("source")["normalized_label"].value_counts())
 
 if __name__ == "__main__":
     normalize()
