@@ -1,0 +1,867 @@
+Delivered-To: daniyah.taimur@gmail.com
+Received: by 2002:a05:7022:222:b0:12a:7275:101a with SMTP id 34csp308878dll;
+        Sun, 22 Mar 2026 05:01:53 -0700 (PDT)
+X-Received: by 2002:a53:b689:0:b0:64c:975b:ecac with SMTP id 956f58d0204a3-64eaa856a31mr6835178d50.74.1774180912860;
+        Sun, 22 Mar 2026 05:01:52 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1774180912; cv=none;
+        d=google.com; s=arc-20240605;
+        b=GVg1PhpnTVW0Njii9qtv8+hisfcoHrxNNPy/g+bFhSDR+Y/sxmh9XIyTi9MID8mzwy
+         lq5rguG2CgwwoE5a7A5MRLjeblkzDZSaVmEDf4jgFL/WJexLl0vTwD4YR405PuaJoK9V
+         maLq6zLOjmAbyyVtJk5b7dhf5qTqSxlbhDpyurWr+VD0LKC5APHfS1V2JFiIMz9nLrSf
+         hIFFHlvDJ+dfMXIyg58FB0LrOMRgGW8ujvK9gLlVGrJvlxvlCLhl6glfvgfug+7b0lZg
+         YELHGhPZ7LQqPYUSU+A/n2Uy3m6AF80XtOloCILvzftcmQtyD8p3QbEt2fIn0KWWX35m
+         M72A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=feedback-id:list-unsubscribe-post:precedence:mime-version:subject
+         :message-id:to:reply-to:from:date:list-unsubscribe:dkim-signature
+         :dkim-signature;
+        bh=UfzC0ha0vn/WicaffM9gqJxBFPgbxldbvVuEOM9vfiM=;
+        fh=hn7lGI/jN0jDx/bZDIcuXgesffVekZbSuTPK5vOu6ug=;
+        b=BZMCKRxf/guVa8l2Wk1qUdcUQZ/c8ipJJySPWTxIRo6udYhxy0ixX2RggCJv/+6xIc
+         6t2Udw5P+7M1tmq8A6TQVjtd50PsZtPmPXwQvf8pPvHu3Zlz4nx3D5SxrMQxYwSWxmrH
+         6T2uE5wAg3/NNWpqrVA5XxFgsTjEQWLsW5r8IDjbWaTGhKsYjqByVX62oKU90a24zNrN
+         IIMwp7EQXCcZ0q5WuKjYIm/FlgBQv/N5MCi/X0jV4HRG9lxa25zB0xu1AYsyR+cEw7Di
+         g0qxDsRrRXgWJ2jJTt2giMHrjTHsL+DvcJfZ5pRMZy513nTiahuxEoFLK1LlERCtdkvp
+         auxQ==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@bf51x.hubspotemail.net header.s=hs1 header.b=vYbyoRg1;
+       dkim=pass header.i=@nscs.org header.s=hs1-8525801 header.b=F1ZseIoC;
+       spf=pass (google.com: domain of 1axcltycagnc8czhlje4yvnxrf9hwh3pksy1qq@bf51x.hubspotemail.net designates 143.244.89.231 as permitted sender) smtp.mailfrom=1axcltycagnc8czhlje4yvnxrf9hwh3pksy1qq@bf51x.hubspotemail.net;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=nscs.org
+Return-Path: <1axcltycagnc8czhlje4yvnxrf9hwh3pksy1qq@bf51x.hubspotemail.net>
+Received: from bd77gb9.bf51x.hubspotemail.net (bd77gb9.bf51x.hubspotemail.net. [143.244.89.231])
+        by mx.google.com with ESMTPS id 6a1803df08f44-89c85385e13si104888426d6.612.2026.03.22.05.01.52
+        for <daniyah.taimur@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Sun, 22 Mar 2026 05:01:52 -0700 (PDT)
+Received-SPF: pass (google.com: domain of 1axcltycagnc8czhlje4yvnxrf9hwh3pksy1qq@bf51x.hubspotemail.net designates 143.244.89.231 as permitted sender) client-ip=143.244.89.231;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@bf51x.hubspotemail.net header.s=hs1 header.b=vYbyoRg1;
+       dkim=pass header.i=@nscs.org header.s=hs1-8525801 header.b=F1ZseIoC;
+       spf=pass (google.com: domain of 1axcltycagnc8czhlje4yvnxrf9hwh3pksy1qq@bf51x.hubspotemail.net designates 143.244.89.231 as permitted sender) smtp.mailfrom=1axcltycagnc8czhlje4yvnxrf9hwh3pksy1qq@bf51x.hubspotemail.net;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=nscs.org
+Received: by 172.16.139.55 with SMTP id a0b9znrox27ui236bzbmmykpt5yzy5txsnnvfzlqq4b;
+        Sun, 22 Mar 2026 12:01:52 GMT
+DKIM-Signature: v=1; s=hs1; d=bf51x.hubspotemail.net; 
+        i=@bf51x.hubspotemail.net; 
+        h=sender:from:from:reply-to:to:to:cc:cc:subject:subject:list-unsubscribe:form-sub:feedback-id:list-unsubscribe-post; 
+        a=rsa-sha256; c=relaxed/relaxed; 
+        bh=UfzC0ha0vn/WicaffM9gqJxBFPgbxldbvVuEOM9vfiM=; 
+        b=vYbyoRg1sgz/tSgVi0tYwWPYLx8/GBEdzC70tNNRShiHb5vFUM5ed6FtHbJA9s
+         WU3KY8xy62HiV8cWDrIfdsNCUE9WzaBvMIHLA6OOARYUWuALp7YiLEV1daZr1r0
+         8G2IIDXComgBoG2JeeL+QVv4BqFUnDeFuRpgXk70UvQ/6qNdGgmIoIvEJnT5aiV
+         UhYQWK8I+nC7AT8oVnkzuRin/bwMApTcQ/mMMPvRrIlwMvzqXsu4uD35iODq9IB
+         yuVNCwbsdIiU1Y/1ciZ5dq1Hg5E43MwPBZx9UZ757mFBSbar0x/s86+8FSfgXJQ
+         0OQIUVujRGoaqnbZItlxdQbYiJIQ==; q=dns/txt; t=1774180912; 
+        x=1774443712;
+DKIM-Signature: v=1; s=hs1-8525801; d=nscs.org; i=@nscs.org; 
+        h=sender:from:from:reply-to:to:to:cc:cc:subject:subject:list-unsubscribe:form-sub:feedback-id:list-unsubscribe-post; 
+        a=rsa-sha256; c=relaxed/relaxed; 
+        bh=UfzC0ha0vn/WicaffM9gqJxBFPgbxldbvVuEOM9vfiM=; 
+        b=F1ZseIoCTkj2FCNXZHS59POiG8ND8S814L6GjouuZw5IUgk8tD4BC7FWaKWPbB
+         TxcOI3yzf6mxQqAAkwz7xFOaGRwERfHJOLOB7r5hnzTb5eKqCsAlhQtBI8kb4lj
+         GWZoGtMdByd3vS24fjGrwlaEkW0Oz/X5K3kGhgpUnlzvZlEHWyOwQo4ktJ1W3Y6
+         47r2EPGvhjZ+VPLdo/mTFMhWSpMFrL4TEMmZF8SFNjc2sxZYYX5gxfJ+HkKAvJV
+         XPAtd4ECiyJLY7sWwTZwhVi2jNKj6AMlmlJSCIfRFLYpEeNT3CS2k/YZb6Hvwl1
+         pUNqYfmHLoqXFLpKzlKUZ7lwbrqQ==; q=dns/txt; t=1774180912; 
+        x=1774443712;
+Return-Path: <1axcltycagnc8czhlje4yvnxrf9hwh3pksy1qq@bf51x.hubspotemail.net>
+X-HS-Cid: 1axfsj3gxyl9d0d0474bq5pobn40wbwudkkxoy
+List-Unsubscribe: <mailto:1axdh30p3mmkgytoetn083i25u1de9ku7oeaaa@bf51x.hubspotemail.net?subject=unsubscribe>, <https://email.nscs.org/hs/subscription-preferences/v2/unsubscribe-all?data=W2nXS-N30h-zKW1VgZTS41TM4CW49J_b147KGgPW3b8My_1ZwTzfW3B-9qN1SxsL4W308x6W2s_DgMW3NDc_Y2WpchFW2sVlf93GTQ8qW45QSgq2RRX81W49jq182FYsQ_W1N61XW2Ft_RfW2-nl_Y1_vmT8W3JX1CM3hXdPKW2FDX1H2PCck1W32CX4h1X7dXsW2CHy3Y2YG9HfW2nSMMR2H-mVvW1BmwNK3h-3-CW4cyys51S1pZfW2MvBMv4p9k0BW2t1l4W32xfb_W1Zd61H4kkJ8yW3j0C7z4cgxTDW3_TBLV43xKgSW3Y3pSn4fM_6PW2YpNtf41CChkW2MyVD73g8g9rW2KRcTD2z-bZ7W3VSsM-2RwVZzW1_l3Ts1Z5PlTW32Dg343M2nkHW49SzLy4cvFpfW43N9_k4kl6k6W3j5G5r1Sb7RMW3BWQ0t3M4PwxW23ryZN3g94-fW2xMN-r43xhytW36BFSM2TkbFvW38kbKZ1Xh9TYW2q_1f81ZkrWpW3H382n2HqRQmW1BnRlN2qV8vmW3JSkbc3LSw9ZW2zW1HZ43nKwZW2THR0338hDs_W1Bhnkn2qTPzyW3F1jYj3N_fS7W1BLyxJ3ZK2MvW3jpsPy236RYpW21pFzn3GHnNWW47FvJT43NzD0W41LJSH47DjbqW3_sXvJ2Yct3GW3C89r63M5fWcW3T1kX_3VY-_hW34fxN33bhlDr0>
+Date: Sun, 22 Mar 2026 08:01:52 -0400
+From: NSCS <nscs@nscs.org>
+Reply-To: nscs@nscs.org
+To: daniyah.taimur@gmail.com
+Message-ID: <1774180912303.fe96a535-7dfe-4ffd-8f08-1970b25f157f@bf51x.hubspotemail.net>
+Subject: Happy Anniversary from NSCS, Daniyah!
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_5507073_1362007675.1774180912399"
+Precedence: bulk
+X-Report-Abuse-To: abuse@hubspot.com (see
+ https://policy.hubspot.com/abuse-complaints)
+List-Unsubscribe-Post: List-Unsubscribe=One-Click
+Feedback-ID: aefc0t3:aid1l09b:aib1s:HubSpot
+
+------=_Part_5507073_1362007675.1774180912399
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Today's a special day in your NSCS history - do you remember?
+
+Happy Anniversary (https://email.nscs.org/e3t/Ctc/W2+113/d107Qc04/VXk3Ty1Zy=
+pl7W9ghMZh46mrcBW4FBnYy5LYJwKN6pj1Wv3l5QzW69sMD-6lZ3msN8N004BzCyPGW8W5Hnl5t=
+RwkpW4Nbyq11cQyRSW8T50cb7Brc12W7Wqxb_5N3Qk9W1jw8xb162p2RW27ScsL6tGkM6W5ZzyW=
+b60jxRtW2X7B9N39j2vSW6yykct7DVbxvW7cgNh01X2hBdW2Gb5Zn3rwgRVW5KgXXV4B_0nqN41=
+Wfj8XnQR0Vy5B1g3RNm4gW8zGZb47BTlBXW7hwmK37NS3LXW1rkB-j4RPVvKW5xxPHY6dtR9GW6=
+mdcQy1tRNGDf6YPhfq04 )
+
+Daniyah,
+
+Today is a very special day! On this day, 4 years ago, you became a member =
+of The National Society of Collegiate Scholars at  University of Maryland.
+
+Qualifying for membership with NSCS means that you excelled academically. J=
+oining NSCS means that you valued scholarship, leadership, and service. Her=
+e are some ways that you can stay involved as an NSCS Alumnus:
+
+- Please follow NSCS on LinkedIn (https://email.nscs.org/e3t/Ctc/W2+113/d10=
+7Qc04/VXk3Ty1Zypl7W9ghMZh46mrcBW4FBnYy5LYJwKN6pj1Xn3l5QzW7Y8-PT6lZ3p2W9lggk=
+9448S0QW4sRzT349T702W4VZbWV7m9YHjW6K8XTM2MWnkMW3yHnvh1Qn_RpW8mytQW2WyqGmW4V=
+4hHz8l9LBNW6Tr4JW1YLPl1W3FVMxM48F6gXVnWppW5L_58DW5tnFWr8zn0pcW17K2QC1RSz5SW=
+2G1XC64fsq7WW1n31-Z1lfXHLW2qfLSP7pwHXGW1b_WpY6fnBySW2bJctK1_LJ-HW8tvBDs4_Wd=
+13W1wD33678Kjh4W7XzJ_Y6fSRHsW1Xs95R1Lls6rW4PH13z7Gkx95W7r25dy2SbjYsW2_QC-C6=
+hft4HW6Qf2ys4QjCqzW8_xyPR7MLM5wf28DfpK04 ) and share your milestone with yo=
+ur network!
+
+- We also invite you to join our exclusive LinkedIn NSCS Member Community (=
+https://email.nscs.org/e3t/Ctc/W2+113/d107Qc04/VXk3Ty1Zypl7W9ghMZh46mrcBW4F=
+BnYy5LYJwKN6pj1WP3l5QzW6N1vHY6lZ3mwW8R-dB43klhs6W64hB9d5nY3XNW844zJL8NgGBwW=
+25fB8s4pLTFcW5X5Wsr5vKGkdVbClhq8YYkhxW1JBkLv8YjpwxW6XZWBx44Y54RW1-ZNxv1HWhY=
+lW1tBld299s2K3VnRQcP81jvkfW831m6X1HDmvnW2pWVyH1qnvxjW5GZyDh2Hp89DVRR-Nk76CS=
+JrN5ZpwsD49vn8W4V966_7f4jThW3zNvX218tDFSW4Q-svQ8Ptly0W4gc7lN1pFR2SW85T0Br49=
+xwxRW7qbGL789mlD1d9TRV604 )  where you can share perspectives with current =
+students and alumni, as well as find out about benefits and opportunities t=
+hat are exclusively available to NSCS members.
+
+- As an anniversary gift, take an extra 15% off on the NSCS Store (https://=
+email.nscs.org/e3t/Ctc/W2+113/d107Qc04/VXk3Ty1Zypl7W9ghMZh46mrcBW4FBnYy5LYJ=
+wKN6pj1Wv3l5QzW69sMD-6lZ3mTW85F-Bb2mGl5RW36rVF73hXLpGVn43_q7npNZKN6Fd1sJXl-=
+bfW80CvG_389dvjW4VZTYx5KWpFkW33WdbL93gLJcW6hTy8z7y2Qt7W5gFk_H2443t1W6pN1477=
+2S7k6W6-pft45QY9vNW3l8m5082BHT3W18q-mR2B3FHVW41fsVr4lN5jHW4dCbsH2Wdh3wW5c81=
+6Y97t0wlW1dMfjv69tFg1W7M9VCk6h_0G7W78tHr99hC6f_W6WpzBh8HZvwZf3J48Dv04 ) usi=
+ng discount code NSCSMilestone.
+
+- Look out for updates about signing up to be an NSCS Mentor (https://email=
+.nscs.org/e3t/Ctc/W2+113/d107Qc04/VXk3Ty1Zypl7W9ghMZh46mrcBW4FBnYy5LYJwKN6p=
+j1WP3l5QzW6N1vHY6lZ3mlW3ShB8R1qP8hsW3J_0hr2m3Xn_N7z9Nbrt3QJ6W2jWn801GQQ1bVF=
+DQdv3HP1fYW6dP1f05gH5CSTRws95TZWt1W2s6gM245LJW7W5P9H5Q4N9wkhW65kHgN8SVdS4V9=
+Tb2k216J-bW90D9kZ6sf8wCW4Jfq7G8w4Q1SN1H1vf5MS2s8VFhG5R9j4D7RW1JHBSr6pMWgrW5=
+93kzH3XtkB4Tm6L04NbRsfW1yKvnW6Wm77TW15lB6y26NzdBW19FFJ77DKlx6W2F7-Hb6bt3-kf=
+1-Y_rF04 ) ! Our program kicks off twice a year in the summer and winter. Y=
+ou'll be paired with a current student NSCS member and you can help offer t=
+hem some great perspectives as a graduated and professional NSCS lifetime m=
+ember. We'll be sure to send an update your way when it's open for sign-ups=
+.
+
+Thank you again for being a lifetime member of The National Society of Coll=
+egiate Scholars since 3/22/22!
+
+To many more years together,
+
+The NSCS Team
+
+Facebook (https://email.nscs.org/e3t/Ctc/W2+113/d107Qc04/VXk3Ty1Zypl7W9ghMZ=
+h46mrcBW4FBnYy5LYJwKN6pj1Wv3l5QzW69sMD-6lZ3nDW5DGbwv7R0GQ_N4rm3p2q2sfBW2kQm=
+VJ1RZgMZW45vdHt37343VW7ZC1s19fry1nW700RdY4lRjxQW60MHFb1wk7tJW1Y7Nhf6KMDHQW3=
+1L6M41zrNVVW1DhlW62mM7m-W8bnlq31pDs-yN3V9xnntmt2HN7W7K5V2tbBnW6Mjp_J1swlFlV=
+BSlfv3Xlv4JW3qY8ZV3xln2GW9bdNYL2RYmfXW7f4rMp8TVJmVW4cLG7R6wq17xN68pWv9-rhsy=
+f1K0vxW04 )
+
+LinkedIn (https://email.nscs.org/e3t/Ctc/W2+113/d107Qc04/VXk3Ty1Zypl7W9ghMZ=
+h46mrcBW4FBnYy5LYJwKN6pj1Xn3l5QzW7Y8-PT6lZ3p2W9lggk9448S0QW4sRzT349T702W4VZ=
+bWV7m9YHjW6K8XTM2MWnkMW3yHnvh1Qn_RpW8mytQW2WyqGmW4V4hHz8l9LBNW6Tr4JW1YLPl1W=
+3FVMxM48F6gXVnWppW5L_58DW5tnFWr8zn0pcW17K2QC1RSz5SW2G1XC64fsq7WW1n31-Z1lfXH=
+LW2qfLSP7pwHXGW1b_WpY6fnBySW2bJctK1_LJ-HW8tvBDs4_Wd13W1wD33678Kjh4W7XzJ_Y6f=
+SRHsW1Xs95R1Lls6rW4PH13z7Gkx95W7r25dy2SbjYsW2_QC-C6hft4HW6Qf2ys4QjCqzW8_xyP=
+R7MLM5wf28DfpK04 )
+
+X (https://email.nscs.org/e3t/Ctc/W2+113/d107Qc04/VXk3Ty1Zypl7W9ghMZh46mrcB=
+W4FBnYy5LYJwKN6pj1Wv3l5QzW69sMD-6lZ3lvW5NrlSN1_7kmjW7XKjzP1dzVD7W6lZ-fF8cC9=
+QgW5w_fWB5nrtx5W7cDbnG8hw6S1W588d1p4S-_zhW1QTpcF1v4pQvW49wlwb1DLrTJW66Lfcc5=
+L8XncW3rR33W4ct02dN1F7DNzh9r0NW4fdSww6QPPzkW8VKHn21qWp2yW4yYMW97h6xFCW88RjQ=
+Q8lRlZHW1vYq2d6tYc_TW2dDmKg4vfKwqW50shTQ5ZsWFvN83pKnHGK5w3W19qLzk6nqn8gf4m5=
+rJg04 )
+
+Instagram (https://email.nscs.org/e3t/Ctc/W2+113/d107Qc04/VXk3Ty1Zypl7W9ghM=
+Zh46mrcBW4FBnYy5LYJwKN6pj1Wv3l5QzW69sMD-6lZ3mGW4ylqDQ90cDZxW22lcCZ4hLJMgW1j=
+6BKf41sTyqVYBtSN8z1hWqW1xj8TH7Ms-BYN3SsxMYMMGKXW49C7ld3_DqR-W8q_HTr8NMKfdN9=
+k4S3TqKK24W74yJB570WfWlN51gChZL1_jqW5lWjhy1Qtv_4W4S7jJh94SdRsVkmv8P8lJxDvF6=
+_k9DrmHF9W3g91qy8fhCzfW1g3Wf53BY5rDW3R46Hx1kNWsnW3S3snN6CkvPrW3hNCmJ3YxYbqf=
+6k3FQg04 )
+
+The National Society of Collegiate Scholars, 1701 Pennsylvania Avenue, NW, =
+Suite 200, Washington, DC 20006, United States, (202) 265-9000
+
+Unsubscribe (https://email.nscs.org/hs/preferences-center/en/direct?data=3D=
+W2nXS-N30h-GyW30twX83VXhlqW1BKbSy3JJl_tW3SMN2V3hYT8kW2-br2B30qFD0W1Vy3m-3R7=
+mQRW4hLyPB49RFBYW3VBR0f1VxdHzW34BTgW2TQrHPW47m4xC21m7VvW3LTLF51SdfCGW3hX7VN=
+4mm_Q7W23r7Bk3H37-vW4tvpqc1ZnPhXW2KY7Bt1Sjs_SW3z98F71Z75xSW366GBQ21lP23W23h=
+cNQ1Z4wNkW4cP2c_43Zb5dW4fFfSC3dyn4fW4pj2b-4hFVcKW1LkTrw2PK1xvW34FlT62YxYG6W=
+4mDj242CYJMfW2RRtPJ2-KKqMW43Vp963XZ7dTW49NRxX34GwhgW45pldc1BDGsZW1_r-5D3Vt-=
+HxW2PLgZZ4fwD6ZW3jnyb61Q3l8FW2-MnV04tf_cQW3VGwWS3gdVC5W1_3xRG3LHkfFW4cH6jP1=
+LzRzFW2p8ndC3M423fW2-CTX749MC4SW383YCK3gtrrLW2sFxlF2545CGW3T50Px2HFxhjW2sZ7=
+MZ2nGm7wW4tgk1-2w3zZ-W49KRtx3GY4fdW3SKcMb2nRvV2W4pc1-C45CgsBW43PpjX3BLgsKW2=
+HzjsL2-mwlXW2Rs3G83SzPsgW38sHzb4pGyCfW43P0YT2sDbD-W38tCxr2KTl4bW2xH-hf2MH73=
+SW2RKdtR3GY5_CW3h_RPz3XyZtwW2sN8mX3XF6d9W2CJs3n32KhHX0&_hsenc=3Dp2ANqtz-9B1=
+iQOwGOxNYyBJykqX5LvMkmQ7aRXH7Hok2EFQLn3CpupH3B3Xda04VeXKIX-OS0jPLV1A-NwNvdn=
+anG-uQErnhutCA&_hsmi=3D227296333 )
+Manage preferences (https://email.nscs.org/hs/preferences-center/en/page?da=
+ta=3DW2nXS-N30h-GyW30twX83VXhlqW1BKbSy3JJl_tW3SMN2V3hYT8kW2-br2B30qFD0W1Vy3=
+m-3R7mQRW4hLyPB49RFBYW3VBR0f1VxdHzW34BTgW2TQrHPW47m4xC21m7VvW3LTLF51SdfCGW3=
+hX7VN4mm_Q7W23r7Bk3H37-vW4tvpqc1ZnPhXW2KY7Bt1Sjs_SW3z98F71Z75xSW366GBQ21lP2=
+3W23hcNQ1Z4wNkW4cP2c_43Zb5dW4fFfSC3dyn4fW4pj2b-4hFVcKW1LkTrw2PK1xvW34FlT62Y=
+xYG6W4mDj242CYJMfW2RRtPJ2-KKqMW43Vp963XZ7dTW49NRxX34GwhgW45pldc1BDGsZW1_r-5=
+D3Vt-HxW2PLgZZ4fwD6ZW3jnyb61Q3l8FW2-MnV04tf_cQW3VGwWS3gdVC5W1_3xRG3LHkfFW4c=
+H6jP1LzRzFW2p8ndC3M423fW2-CTX749MC4SW383YCK3gtrrLW2sFxlF2545CGW3T50Px2HFxhj=
+W2sZ7MZ2nGm7wW4tgk1-2w3zZ-W49KRtx3GY4fdW3SKcMb2nRvV2W4pc1-C45CgsBW43PpjX3BL=
+gsKW2HzjsL2-mwlXW2Rs3G83SzPsgW38sHzb4pGyCfW43P0YT2sDbD-W38tCxr2KTl4bW2xH-hf=
+2MH73SW2RKdtR3GY5_CW3h_RPz3XyZtwW2sN8mX3XF6d9W2CJs3n32KhHX0&_hsenc=3Dp2ANqt=
+z-9B1iQOwGOxNYyBJykqX5LvMkmQ7aRXH7Hok2EFQLn3CpupH3B3Xda04VeXKIX-OS0jPLV1A-N=
+wNvdnanG-uQErnhutCA&_hsmi=3D227296333 )
+------=_Part_5507073_1362007675.1774180912399
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www=
+.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns=3D"http://www.w3=
+.org/1999/xhtml" xmlns:o=3D"urn:schemas-microsoft-com:office:office" xmlns:=
+v=3D"urn:schemas-microsoft-com:vml" lang=3D"en"><head>
+    <title>Happy Anniversary from NSCS, Daniyah!</title>
+    <meta property=3D"og:title" content=3D"Happy Anniversary from NSCS, Dan=
+iyah!">
+    <meta name=3D"twitter:title" content=3D"Happy Anniversary from NSCS, Da=
+niyah!">
+   =20
+   =20
+   =20
+<meta name=3D"x-apple-disable-message-reformatting">
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-8">
+<meta http-equiv=3D"X-UA-Compatible" content=3D"IE=3Dedge">
+<meta name=3D"viewport" content=3D"width=3Ddevice-width, initial-scale=3D1.=
+0">
+    <!--[if gte mso 9]>
+  <xml>
+    <o:OfficeDocumentSettings>
+      <o:AllowPNG/>
+      <o:PixelsPerInch>96</o:PixelsPerInch>
+    </o:OfficeDocumentSettings>
+    <w:WordDocument xmlns:w=3D"urn:schemas-microsoft-com:office:word">
+      <w:DontUseAdvancedTypographyReadingMail/>
+    </w:WordDocument>
+  </xml>
+ =20
+  <style>
+    ul > li {
+      text-indent: -1em;
+    }
+  </style>
+<![endif]-->
+<!--[if mso]>
+<style type=3D"text/css">
+ body, td {font-family: Arial, Helvetica, sans-serif;}
+ .hse-body-wrapper-table {background-color: #ffffff;}
+</style>
+<![endif]-->
+<!--[if mso | IE]>
+  <style type=3D"text/css">
+    .hse-column-container { border: none !important; padding: 0 !important;=
+ }
+  </style>
+<![endif]-->
+   =20
+     =20
+ =20
+ =20
+   =20
+  <meta name=3D"generator" content=3D"HubSpot"><meta property=3D"og:url" co=
+ntent=3D"https://email.nscs.org/-temporary-slug-500f0f3c-62a5-48c4-88cb-56e=
+d8c4a81fa"><meta name=3D"robots" content=3D"noindex,follow"><!--[if !((mso)=
+|(IE))]><!-- --><style type=3D"text/css">@media only screen and (max-width:=
+639px){img.stretch-on-mobile,.hs_rss_email_entries_table img,.hs-stretch-ct=
+a .hs-cta-img{height:auto !important;width:100% !important}
+.display_block_on_small_screens{display:block}.hs_padded{padding-left:20px =
+!important;padding-right:20px !important}
+.hs-hm,table.hs-hm{display:none}.hs-hd{display:block !important}table.hs-hd=
+{display:table !important}
+}@media only screen and (max-width:639px){.hse-border-m{border-left:1px sol=
+id #ccc !important;border-right:1px solid #ccc !important;box-sizing:border=
+-box}
+.hse-border-bottom-m{border-bottom:1px solid #ccc !important}.hse-border-to=
+p-m{border-top:1px solid #ccc !important}
+.hse-border-top-hm{border-top:none !important}.hse-border-bottom-hm{border-=
+bottom:none !important}
+}.moz-text-html .hse-column-container{max-width:600px !important;width:600p=
+x !important}
+.moz-text-html .hse-column{display:table-cell;vertical-align:top}.moz-text-=
+html .hse-section .hse-size-12{max-width:600px !important;width:600px !impo=
+rtant}
+@media only screen and (min-width:640px){.hse-column-container{max-width:60=
+0px !important;width:600px !important}
+.hse-column{display:table-cell;vertical-align:top}.hse-section .hse-size-12=
+{max-width:600px !important;width:600px !important}
+}@media only screen and (max-width:639px){.hse-body-wrapper-td{padding-top:=
+20px !important}
+#section-0 .hse-column-container{background-color:#fff !important} }@media =
+screen and (max-width:639px){.social-network-cell{display:inline-block}
+}@media only screen and (max-width:639px){.hse-body-wrapper-td{padding-bott=
+om:20px !important}
+#section-3 .hse-column-container{background-color:#e6e6e6 !important} }</st=
+yle><!--<![endif]--><style type=3D"text/css">#hs_body #hs_cos_wrapper_main =
+a[x-apple-data-detectors]{color:inherit !important;text-decoration:none !im=
+portant;font-size:inherit !important;font-family:inherit !important;font-we=
+ight:inherit !important;line-height:inherit !important}
+a{text-decoration:underline}p{margin:0}body{-ms-text-size-adjust:100%;-webk=
+it-text-size-adjust:100%;-webkit-font-smoothing:antialiased;moz-osx-font-sm=
+oothing:grayscale}
+table{border-spacing:0;mso-table-lspace:0;mso-table-rspace:0}table,td{borde=
+r-collapse:collapse}
+img{-ms-interpolation-mode:bicubic}p,a,li,td,blockquote{mso-line-height-rul=
+e:exactly}
+.ShadowHTML p,.sh-modified-inline p{margin:0}</style></head>
+  <body id=3D"hs_body" bgcolor=3D"#ffffff" style=3D"margin:0 !important; pa=
+dding:0 !important; font-family:Arial, sans-serif; font-size:13px; color:#2=
+3496d; word-break:break-word">
+    <div id=3D"preview_text" style=3D"display:none;font-size:1px;color:#fff=
+fff;line-height:1px;max-height:0px;max-width:0px;opacity:0;overflow:hidden;=
+" lang=3D"en">Today's a special day in your NSCS history - do you remember?=
+</div>
+   =20
+<!--[if gte mso 9]>
+<v:background xmlns:v=3D"urn:schemas-microsoft-com:vml" fill=3D"t">
+    <v:fill type=3D"tile" size=3D"100%,100%" color=3D"#ffffff"/>
+</v:background>
+<![endif]-->
+    <div class=3D"hse-body-background" lang=3D"en" style=3D"background-colo=
+r:#ffffff" bgcolor=3D"#ffffff">
+      <table role=3D"presentation" class=3D"hse-body-wrapper-table" cellpad=
+ding=3D"0" cellspacing=3D"0" style=3D"margin:0; padding:0; width:100% !impo=
+rtant; min-width:320px !important; height:100% !important" width=3D"100%" h=
+eight=3D"100%">
+        <tbody><tr>
+          <td class=3D"hse-body-wrapper-td" valign=3D"top" style=3D"font-fa=
+mily:Arial, sans-serif; font-size:13px; color:#23496d; word-break:break-wor=
+d; padding-top:20px; padding-bottom:20px">
+            <div id=3D"hs_cos_wrapper_main" class=3D"hs_cos_wrapper hs_cos_=
+wrapper_widget hs_cos_wrapper_type_dnd_area" style=3D"color: inherit; font-=
+size: inherit; line-height: inherit;" data-hs-cos-general-type=3D"widget" d=
+ata-hs-cos-type=3D"dnd_area">  <div id=3D"section-0" class=3D"hse-section h=
+se-section-first" style=3D"padding-left:10px; padding-right:10px">
+   =20
+   =20
+      <div class=3D"hse-column-container" style=3D"min-width:280px; max-wid=
+th:600px; margin:0 auto; background-color:#ffffff" bgcolor=3D"#ffffff">
+   =20
+    <!--[if (mso)|(IE)]>
+      <table align=3D"center" style=3D"width:600px;" cellpadding=3D"0" cell=
+spacing=3D"0" role=3D"presentation" width=3D"600" bgcolor=3D"#ffffff">
+      <tr style=3D"background-color:#ffffff;">
+    <![endif]-->
+    <!--[if (mso)|(IE)]>
+  <td valign=3D"top" style=3D"width:600px;">
+<![endif]-->
+<!--[if gte mso 9]>
+  <table role=3D"presentation" width=3D"600" cellpadding=3D"0" cellspacing=
+=3D"0" style=3D"width:600px">
+<![endif]-->
+<div id=3D"column-0-0" class=3D"hse-column hse-size-12">
+  <div id=3D"hs_cos_wrapper_module-0-0-1" class=3D"hs_cos_wrapper hs_cos_wr=
+apper_widget hs_cos_wrapper_type_module" style=3D"color: inherit; font-size=
+: inherit; line-height: inherit;" data-hs-cos-general-type=3D"widget" data-=
+hs-cos-type=3D"module"><table class=3D"hse-image-wrapper" role=3D"presentat=
+ion" width=3D"100%" cellpadding=3D"0" cellspacing=3D"0">
+  <tbody>
+    <tr>
+      <td align=3D"center" valign=3D"top" style=3D"font-family:Arial, sans-=
+serif; color:#23496d; word-break:break-word; text-align:center; padding:0px=
+; font-size:0px">
+        <a href=3D"https://email.nscs.org/e3t/Ctc/W2+113/d107Qc04/VXk3Ty1Zy=
+pl7W9ghMZh46mrcBW4FBnYy5LYJwKN6pj1Wv3lYM-W69sMD-6lZ3mVW93GX0D5QlZGYW4js-VR9=
+dQSWqVFXPQj2R0kg5N2FW2CCZ-FcQW7P0CB45z2B8dW63fch010HqcBN8YH4Vz6R0wVW469D3W6=
+jjMLqW7j0sjx8fTD-VW6N27PN2dk6gWW1VfQ466gtmGhW40b8zP1Mw3wZN8qz1R8Sk3wSW93v-4=
+Z8-V4-YW5-vdSD2YhVm1N1kdh9kqKS91W5WsTHL4NHvn0W6dlHbw5q7QTPW4rls_d73P7w8W8tJ=
+PdW3zTqZtf5Xg5Zb04" target=3D"_blank" style=3D"color:#00a4bd" data-hs-link-=
+id=3D"0" data-hs-link-id-v2=3D"kHLOc5Gy">
+        <img alt=3D"Happy Anniversary" src=3D"https://email.nscs.org/hs-fs/=
+hubfs/Happy%20Anniversary.jpg?width=3D1200&amp;upscale=3Dtrue&amp;name=3DHa=
+ppy%20Anniversary.jpg" style=3D"outline:none; text-decoration:none; border:=
+none; max-width:100%; font-size:16px" width=3D"600" align=3D"middle">
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table></div>
+</div>
+<!--[if gte mso 9]></table><![endif]-->
+<!--[if (mso)|(IE)]></td><![endif]-->
+    <!--[if (mso)|(IE)]></tr></table><![endif]-->
+    </div>
+  =20
+  </div>
+  <div id=3D"section-1" class=3D"hse-section" style=3D"padding-left:10px; p=
+adding-right:10px">
+   =20
+   =20
+      <div class=3D"hse-column-container" style=3D"min-width:280px; max-wid=
+th:600px; margin:0 auto; background-color:#ffffff; padding-bottom:10px; pad=
+ding-top:10px" bgcolor=3D"#ffffff">
+   =20
+    <!--[if (mso)|(IE)]>
+      <table align=3D"center" style=3D"width:600px;" cellpadding=3D"0" cell=
+spacing=3D"0" role=3D"presentation" width=3D"600" bgcolor=3D"#ffffff">
+      <tr style=3D"background-color:#ffffff;">
+    <![endif]-->
+    <!--[if (mso)|(IE)]>
+  <td valign=3D"top" style=3D"width:600px;padding-bottom:10px; padding-top:=
+10px;">
+<![endif]-->
+<!--[if gte mso 9]>
+  <table role=3D"presentation" width=3D"600" cellpadding=3D"0" cellspacing=
+=3D"0" style=3D"width:600px">
+<![endif]-->
+<div id=3D"column-1-0" class=3D"hse-column hse-size-12">
+    <table role=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" width=
+=3D"100%" class=3D"" style=3D""><tbody><tr><td class=3D"hs_padded" style=3D=
+"font-family:Arial, sans-serif; font-size:13px; color:#23496d; word-break:b=
+reak-word; padding:20px 20px 10px"><div id=3D"hs_cos_wrapper_module-1-0-0" =
+class=3D"hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" s=
+tyle=3D"color: inherit; font-size: inherit; line-height: inherit;" data-hs-=
+cos-general-type=3D"widget" data-hs-cos-type=3D"module"><div id=3D"hs_cos_w=
+rapper_module-1-0-0_" class=3D"hs_cos_wrapper hs_cos_wrapper_widget hs_cos_=
+wrapper_type_rich_text" style=3D"color: inherit; font-size: inherit; line-h=
+eight: inherit;" data-hs-cos-general-type=3D"widget" data-hs-cos-type=3D"ri=
+ch_text"><p style=3D"line-height:175%"><span style=3D"color: #000000;">Dani=
+yah,</span></p>
+<p style=3D"line-height:100%">&nbsp;</p>
+<p style=3D"line-height:175%"><span style=3D"color: #000000;">Today is a ve=
+ry special day! On this day, 4 years ago, you became a member of The Nation=
+al Society of Collegiate Scholars at&nbsp; University of Maryland.&nbsp;</s=
+pan></p>
+<p style=3D"line-height:100%">&nbsp;</p>
+<p style=3D"line-height:175%"><span style=3D"color: #000000;">Qualifying fo=
+r membership with NSCS means that you excelled academically. Joining NSCS m=
+eans that you valued scholarship, leadership, and service. Here are some wa=
+ys that you can stay involved as an NSCS Alumnus:</span></p>
+<p style=3D"line-height:175%">&nbsp;</p>
+<ol style=3D"line-height:175%">
+<li><span style=3D"color: #000000;">Please <a href=3D"https://email.nscs.or=
+g/e3t/Ctc/W2+113/d107Qc04/VXk3Ty1Zypl7W9ghMZh46mrcBW4FBnYy5LYJwKN6pj1XH3lYM=
+-W8wLKSR6lZ3mhW1yZH3d4xMJj8W80QsGy6_0KtJW6qljNt9d11SjW7Vdz6Q2hdJ-kW5Cc_v566=
+pLG_W20lc3j12mMb0W1Bm_BS8SBDJKW2NFz--99K5GMW1Gsff25-fh6jW5V_5bZ6sJFD8W2JTWK=
+61kTc8rW7NZ98p960zvYW4DFv564nh5pXN3D0_W6r74svN5x7WTdN7hG7W4_8J601yPKlTN320k=
+WtncRGMW71xnX65DxSz_W2N4frf4hFMV7W7wVh5t8nB0SPVJnC4C6w6TBcW41htZ54X1bBRW3Yc=
+pzZ8R8nbGW3Mw3DV6pSXGHW4npNVq5yksZvW8nxWP19gDyffW96tZ565WKP6mW5PbhXc9ltx7Bf=
+2WK9mP04" target=3D"_blank" style=3D"font-weight:bold; color:#000000" rel=
+=3D"noopener" data-hs-link-id=3D"0" data-hs-link-id-v2=3D"pEm+wko2"><span s=
+tyle=3D"color: #981b1e;">follow NSCS&nbsp;on LinkedIn</span></a> and share =
+your milestone with your network!</span><br><br></li>
+<li><span style=3D"color: #000000;">We also invite you to join our exclusiv=
+e</span> <span style=3D"color: #981b1e;"><a href=3D"https://email.nscs.org/=
+e3t/Ctc/W2+113/d107Qc04/VXk3Ty1Zypl7W9ghMZh46mrcBW4FBnYy5LYJwKN6pj1WP3lYM-W=
+6N1vHY6lZ3m_W432y501zd7_GN4xM8dgZhrnHW72QLcT7dnl5yVMwMFj3CLpGZW9fkcb27mg9Xt=
+W4tBSWC55F6NxW2Tw0pz1vy38tW4_12tQ2SSxkWW7VFG4r6VTlDSW45305920lLWyW3XsZj65kD=
+mnjW15Xyfm5SbX-JW3pxfbb2nyT6MW39Xqcx8F_0m3W3tbN_07fjR-7W8NVng82mRkprF2LQdjS=
+cR17W22LGLn6Ct2gzVdPQPl64kTVbVlWG472xpdLkN150YYSFRNh0N6zgQVnQZm0Df3Bppwl04"=
+ style=3D"font-weight:bold; color:#981b1e" rel=3D"noopener" data-hs-link-id=
+=3D"0" data-hs-link-id-v2=3D"SAAwd+il" target=3D"_blank">LinkedIn NSCS Memb=
+er Community</a></span><span style=3D"color: #000000;">&nbsp;where you can =
+share perspectives with current students and alumni, as well as find out ab=
+out benefits and opportunities that are exclusively available to NSCS membe=
+rs.</span><br><span style=3D"color: #000000;"><em data-stringify-type=3D"it=
+alic"><br></em></span></li>
+<li><span style=3D"color: #000000;">As an anniversary gift, take an extra 1=
+5% off on the <span style=3D"color: #981b1e;"><a  href=3D"https://email.nsc=
+s.org/e3t/Ctc/W2+113/d107Qc04/VXk3Ty1Zypl7W9ghMZh46mrcBW4FBnYy5LYJwKN6pj1Wv=
+3lYM-W69sMD-6lZ3p5W7nyyXg4Mhl4vW6rpSq14g-L9GN10hSdBd49CcW1p_wxF38WxRWW1n1jW=
+N95gf37W5cJ0DQ5-z8vcW3vK2tB68BDktW4KdMvc9kmT9LW5KK5_54NBHn2N14hDlYsP3ntW8q8=
+Bpp1mC_TZW4nSD7z89Psc4W1Kd4H57PBx6NW51RML82HxPLRW4c8r6P2JCVq_W8BrlSc5CChKTW=
+5zyPZZ2GLgv6W700Q1v4C53zdW9dsThb8cLybYW7RSHT95WdYQ8f1k03zj04" style=3D"font=
+-weight:bold; color:#981b1e" rel=3D"noopener" data-hs-link-id=3D"0" data-hs=
+-link-id-v2=3D"BKY5627g" target=3D"_blank">NSCS Store</a></span> using disc=
+ount code&nbsp;<strong data-stringify-type=3D"bold"><span style=3D"font-sty=
+le: italic;">NSCSMilestone</span>.</strong></span><br><span style=3D"color:=
+ #000000;"><strong data-stringify-type=3D"bold"><br></strong></span></li>
+<li><span style=3D"color: #000000;">Look out for updates about signing up t=
+o be an <span style=3D"color: #981b1e;"><a href=3D"https://email.nscs.org/e=
+3t/Ctc/W2+113/d107Qc04/VXk3Ty1Zypl7W9ghMZh46mrcBW4FBnYy5LYJwKN6pj1WP3lYM-W6=
+N1vHY6lZ3psW275pZy4KZqDTW6wgSQL8PqP8TW8g-yj75Qz9krW2VthHm4BNR5ZW4lv6Xg8VBn1=
+GW8JpwfM5d1L7ZN8ypVFbRZ4NwV-RjpQ5j2JvjN7FVW9mMz2msW2fvR5_8KSw7yW259lqx8tZRc=
+fW6FRszJ25bpx8W6LLW3C5KWQt1VDRTNl44JWNpW8FFVQf6s-n1DW3Dw3jv45nL1qW8kxwJL7Fx=
+r-vV7gpFW3wxWh5VPq7777bX4KpW8r-zbM8Y_w7ZW57jYjl7BF6kMW3r3Hhj7cVz2Yf7rtdJv04=
+" style=3D"font-weight:bold; color:#981b1e" rel=3D"noopener" data-hs-link-i=
+d=3D"0" data-hs-link-id-v2=3D"Q46T1rO+" target=3D"_blank">NSCS Mentor</a></=
+span>! Our program kicks off twice a year in the summer and winter. You'll =
+be paired with a current student NSCS member and you can help offer them so=
+me great perspectives as a graduated and professional NSCS lifetime member.=
+ We'll be sure to send an update your way when it's open for sign-ups.</spa=
+n></li>
+</ol>
+<p style=3D"line-height:175%">&nbsp;</p></div></div></td></tr></tbody></tab=
+le>
+</div>
+<!--[if gte mso 9]></table><![endif]-->
+<!--[if (mso)|(IE)]></td><![endif]-->
+    <!--[if (mso)|(IE)]></tr></table><![endif]-->
+    </div>
+  =20
+  </div>
+  <div id=3D"section_1663358663017" class=3D"hse-section" style=3D"padding-=
+left:10px; padding-right:10px">
+   =20
+   =20
+      <div class=3D"hse-column-container" style=3D"min-width:280px; max-wid=
+th:600px; margin:0 auto; background-color:#ffffff" bgcolor=3D"#ffffff">
+   =20
+    <!--[if (mso)|(IE)]>
+      <table align=3D"center" style=3D"width:600px;" cellpadding=3D"0" cell=
+spacing=3D"0" role=3D"presentation" width=3D"600" bgcolor=3D"#ffffff">
+      <tr style=3D"background-color:#ffffff;">
+    <![endif]-->
+    <!--[if (mso)|(IE)]>
+  <td valign=3D"top" style=3D"width:600px;">
+<![endif]-->
+<!--[if gte mso 9]>
+  <table role=3D"presentation" width=3D"600" cellpadding=3D"0" cellspacing=
+=3D"0" style=3D"width:600px">
+<![endif]-->
+<div id=3D"column_1663358663017_0" class=3D"hse-column hse-size-12">
+    <table role=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" width=
+=3D"100%" class=3D"" style=3D""><tbody><tr><td class=3D"hs_padded" style=3D=
+"font-family:Arial, sans-serif; font-size:13px; color:#23496d; word-break:b=
+reak-word; padding:10px 20px"><div id=3D"hs_cos_wrapper_module_166335866753=
+12" class=3D"hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_modul=
+e" style=3D"color: inherit; font-size: inherit; line-height: inherit;" data=
+-hs-cos-general-type=3D"widget" data-hs-cos-type=3D"module"><div id=3D"hs_c=
+os_wrapper_module_16633586675312_" class=3D"hs_cos_wrapper hs_cos_wrapper_w=
+idget hs_cos_wrapper_type_rich_text" style=3D"color: inherit; font-size: in=
+herit; line-height: inherit;" data-hs-cos-general-type=3D"widget" data-hs-c=
+os-type=3D"rich_text"><p style=3D"line-height:100%"><span style=3D"color: #=
+000000;">Thank you again for being a lifetime member of The National Societ=
+y of Collegiate Scholars since 3/22/22!&nbsp;</span></p>
+<div data-hs-cos-general-type=3D"widget" data-hs-cos-type=3D"module" style=
+=3D"line-height:175%">
+<div data-hs-cos-general-type=3D"widget" data-hs-cos-type=3D"rich_text" sty=
+le=3D"line-height:175%">
+<p style=3D"line-height:175%">&nbsp;</p>
+<p style=3D"line-height:175%"><span style=3D"color: #000000;">To many more =
+years together,</span></p>
+<p style=3D"line-height:175%"><span style=3D"color: #000000;">The NSCS Team=
+</span></p>
+</div>
+</div></div></div></td></tr></tbody></table>
+</div>
+<!--[if gte mso 9]></table><![endif]-->
+<!--[if (mso)|(IE)]></td><![endif]-->
+    <!--[if (mso)|(IE)]></tr></table><![endif]-->
+    </div>
+  =20
+  </div>
+  <div id=3D"section_1663358621238" class=3D"hse-section" style=3D"padding-=
+left:10px; padding-right:10px">
+   =20
+   =20
+      <div class=3D"hse-column-container" style=3D"min-width:280px; max-wid=
+th:600px; margin:0 auto; background-color:#ffffff" bgcolor=3D"#ffffff">
+   =20
+    <!--[if (mso)|(IE)]>
+      <table align=3D"center" style=3D"width:600px;" cellpadding=3D"0" cell=
+spacing=3D"0" role=3D"presentation" width=3D"600" bgcolor=3D"#ffffff">
+      <tr style=3D"background-color:#ffffff;">
+    <![endif]-->
+    <!--[if (mso)|(IE)]>
+  <td valign=3D"top" style=3D"width:600px;">
+<![endif]-->
+<!--[if gte mso 9]>
+  <table role=3D"presentation" width=3D"600" cellpadding=3D"0" cellspacing=
+=3D"0" style=3D"width:600px">
+<![endif]-->
+<div id=3D"column_1663358621239_0" class=3D"hse-column hse-size-12">
+    <table role=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" width=
+=3D"100%" class=3D"" style=3D""><tbody><tr><td style=3D"font-family:Arial, =
+sans-serif; font-size:13px; color:#23496d; word-break:break-word; padding:1=
+0px 0px"><div id=3D"hs_cos_wrapper_module-1-0-1" class=3D"hs_cos_wrapper hs=
+_cos_wrapper_widget hs_cos_wrapper_type_module" style=3D"color: inherit; fo=
+nt-size: inherit; line-height: inherit;" data-hs-cos-general-type=3D"widget=
+" data-hs-cos-type=3D"module"><table role=3D"none" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" style=3D"vertical-align:top" width=3D"100%">
+  <tbody><tr>
+    <td align=3D"center" style=3D"font-family:Arial, sans-serif; color:#234=
+96d; font-size:0; word-break:break-word">
+      <p style=3D"font-size:1px;border-top:2px solid #A99268;width:100%;mar=
+gin:0 auto;"></p>
+      <!--[if mso]>
+        <table role=3D"none" align=3D"center" border=3D"0" cellpadding=3D"0=
+" cellspacing=3D"0" style=3D"font-size:1px;border-top:2px solid #A99268;wid=
+th:600px;">
+          <tr>
+            <td style=3D"height:0;line-height:0">&nbsp;</td>
+          </tr>
+        </table>
+      <![endif]-->
+    </td>
+  </tr>
+</tbody></table></div></td></tr></tbody></table>
+</div>
+<!--[if gte mso 9]></table><![endif]-->
+<!--[if (mso)|(IE)]></td><![endif]-->
+    <!--[if (mso)|(IE)]></tr></table><![endif]-->
+    </div>
+  =20
+  </div>
+  <div id=3D"section-2" class=3D"hse-section" style=3D"padding-left:10px; p=
+adding-right:10px">
+   =20
+   =20
+      <div class=3D"hse-column-container" style=3D"min-width:280px; max-wid=
+th:600px; margin:0 auto; background-color:#ffffff" bgcolor=3D"#ffffff">
+   =20
+    <!--[if (mso)|(IE)]>
+      <table align=3D"center" style=3D"width:600px;" cellpadding=3D"0" cell=
+spacing=3D"0" role=3D"presentation" width=3D"600" bgcolor=3D"#ffffff">
+      <tr style=3D"background-color:#ffffff;">
+    <![endif]-->
+    <!--[if (mso)|(IE)]>
+  <td valign=3D"top" style=3D"width:600px;">
+<![endif]-->
+<!--[if gte mso 9]>
+  <table role=3D"presentation" width=3D"600" cellpadding=3D"0" cellspacing=
+=3D"0" style=3D"width:600px">
+<![endif]-->
+<div id=3D"column-2-0" class=3D"hse-column hse-size-12">
+    <table role=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" width=
+=3D"100%" class=3D"" style=3D""><tbody><tr><td class=3D"hs_padded" style=3D=
+"font-family:Arial, sans-serif; font-size:13px; color:#23496d; word-break:b=
+reak-word; padding:10px 20px"><div id=3D"hs_cos_wrapper_module-2-0-0" class=
+=3D"hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style=
+=3D"color: inherit; font-size: inherit; line-height: inherit;" data-hs-cos-=
+general-type=3D"widget" data-hs-cos-type=3D"module"><table role=3D"presenta=
+tion" align=3D"center" style=3D"width: auto; text-align: center; margin: 0 =
+auto; " class=3D"hs_cos_wrapper_type_social_module">
+  <tbody>
+    <tr>
+      <td class=3D"social-network-cell" align=3D"center" style=3D"font-fami=
+ly:Arial, sans-serif; font-size:13px; color:#23496d; word-break:break-word"=
+>
+        <table role=3D"presentation" align=3D"center" style=3D"width: auto;=
+ text-align: center; margin: 0 auto; " class=3D"hs_cos_wrapper_type_social_=
+module_single">
+          <tbody>
+            <tr>
+              <td class=3D"display_block_on_small_screens" align=3D"center"=
+ style=3D"font-family:Arial, sans-serif; font-size:13px; color:#23496d; wor=
+d-break:break-word; padding:8px 5px; line-height:1; vertical-align:middle" =
+valign=3D"middle">
+                <a href=3D"https://email.nscs.org/e3t/Ctc/W2+113/d107Qc04/V=
+Xk3Ty1Zypl7W9ghMZh46mrcBW4FBnYy5LYJwKN6pj1WP3lYM-W6N1vHY6lZ3lJW6TnkF48kWnj9=
+W9b0JW15X5SV-W4s3Gh16pQVtlW8Hjr6x88lylHW26SbyM1CVhfHMp3DH6h4Fz5W4P8hQM3KVxx=
+TW9cDF1W4JBlHmW6HvW-52zWBnPW63N_dY4MWbMrVrVrJc3Q2KWmW8lkYyN1kTPjDW16WNw37CQ=
+CbhW6ZdR7w6t7XtJW51lSkS6FdKLrW5G6bVG8tMPKLW8lKs7K2KH0bcW7L0y421Ql_jQW5NKh9x=
+6M8QHpVD0ZSH3KLD-GVVs4yC7pdl60W79bB4X8VRgSPf22KXGb04" style=3D"color:#00a4b=
+d; text-decoration:none !important" data-hs-link-id=3D"0" data-hs-link-id-v=
+2=3D"J6OYdUlP" target=3D"_blank"><img src=3D"https://email.nscs.org/hs/hsst=
+atic/TemplateAssets/static-1.262/img/hs_default_template_images/modules/Fol=
+low+Me+-+Email/facebook_circle_color.png" alt=3D"Facebook" height=3D"25" st=
+yle=3D"outline:none; text-decoration:none; border:none; width:auto!importan=
+t; height:25px!important; vertical-align:middle" valign=3D"middle" width=3D=
+"auto">
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </td><td class=3D"social-network-cell" align=3D"center" style=3D"font=
+-family:Arial, sans-serif; font-size:13px; color:#23496d; word-break:break-=
+word">
+        <table role=3D"presentation" align=3D"center" style=3D"width: auto;=
+ text-align: center; margin: 0 auto; " class=3D"hs_cos_wrapper_type_social_=
+module_single">
+          <tbody>
+            <tr>
+              <td class=3D"display_block_on_small_screens" align=3D"center"=
+ style=3D"font-family:Arial, sans-serif; font-size:13px; color:#23496d; wor=
+d-break:break-word; padding:8px 5px; line-height:1; vertical-align:middle" =
+valign=3D"middle">
+                <a href=3D"https://email.nscs.org/e3t/Ctc/W2+113/d107Qc04/V=
+Xk3Ty1Zypl7W9ghMZh46mrcBW4FBnYy5LYJwKN6pj1XH3lYM-W8wLKSR6lZ3nhW4vHHMk7h4RWH=
+W5CXNZT26GKfJW7TjW_D73rxmDW8W4GVF2hLVBqW1cBWVC7zp8BmW7b01Gv7Vj10_W1Y8Mhn6gp=
+ct2W2VfZF75_5d2gW52DyrZ14C9QBW1WDHwT7xgC9NW6sF46s8lYJwdN67fTK3PBxStW6DVjqX5=
+F04w-W83Q23m5cScgFW79DnDz4GkhLtW95-Zmp1q7jZSW44KV085l5hP0W3wCLm37cVQyhN7gCk=
+xTWyY83W4yP_Jy1-LWD_N68437Y4KJ8rW72YcDm2XkVGhVVv2l81lMvN3N1P0s52MpPBMW6slCk=
+B709r-VW5xVnLs2j-RW4VRdtdN6gVSb3W2TfyLk5SpYjZdrWQFs04" style=3D"color:#00a4=
+bd; text-decoration:none !important" data-hs-link-id=3D"1" data-hs-link-id-=
+v2=3D"zK9k/Qqb" target=3D"_blank"><img src=3D"https://email.nscs.org/hs/hss=
+tatic/TemplateAssets/static-1.262/img/hs_default_template_images/modules/Fo=
+llow+Me+-+Email/linkedin_circle_color.png" alt=3D"LinkedIn" height=3D"25" s=
+tyle=3D"outline:none; text-decoration:none; border:none; width:auto!importa=
+nt; height:25px!important; vertical-align:middle" valign=3D"middle" width=
+=3D"auto">
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </td><td class=3D"social-network-cell" align=3D"center" style=3D"font=
+-family:Arial, sans-serif; font-size:13px; color:#23496d; word-break:break-=
+word">
+        <table role=3D"presentation" align=3D"center" style=3D"width: auto;=
+ text-align: center; margin: 0 auto; " class=3D"hs_cos_wrapper_type_social_=
+module_single">
+          <tbody>
+            <tr>
+              <td class=3D"display_block_on_small_screens" align=3D"center"=
+ style=3D"font-family:Arial, sans-serif; font-size:13px; color:#23496d; wor=
+d-break:break-word; padding:8px 5px; line-height:1; vertical-align:middle" =
+valign=3D"middle">
+                <a href=3D"https://email.nscs.org/e3t/Ctc/W2+113/d107Qc04/V=
+Xk3Ty1Zypl7W9ghMZh46mrcBW4FBnYy5LYJwKN6pj1Wv3lYM-W69sMD-6lZ3nJW1Qhmkf1gCZVc=
+W27dplM8vd-X7N7BCFG-Y8CTRW7pbP4y2LYz77W41bctP6T_ppqW8RZs9c3WdWkSW2LxNNh3n0-=
+ywW33svMK2bG7MlW8fZ62y14zgg0N6v8hkdm88TfW6wHcJp6cHMRgW5ZF9Wz75mgKSW2rqQwT5L=
+D-KmW6Z8f6Q3hBDWqW5bj8nB6gZs03W5j1r4s6FczMpW1LNXJ76GWDNfW6T031K9jwVqWW4hrKm=
+h9h9PxbW3zxr8r3fgKpgf4Gf7Rn04" style=3D"color:#00a4bd; text-decoration:none=
+ !important" data-hs-link-id=3D"0" data-hs-link-id-v2=3D"v5VqVJUc" target=
+=3D"_blank"><img src=3D"https://email.nscs.org/hs/hsstatic/TemplateAssets/s=
+tatic-1.262/img/hs_default_template_images/modules/Follow+Me+-+Email/twitte=
+r_circle_color.png" alt=3D"X" height=3D"25" style=3D"outline:none; text-dec=
+oration:none; border:none; width:auto!important; height:25px!important; ver=
+tical-align:middle" valign=3D"middle" width=3D"auto">
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </td><td class=3D"social-network-cell" align=3D"center" style=3D"font=
+-family:Arial, sans-serif; font-size:13px; color:#23496d; word-break:break-=
+word">
+        <table role=3D"presentation" align=3D"center" style=3D"width: auto;=
+ text-align: center; margin: 0 auto; " class=3D"hs_cos_wrapper_type_social_=
+module_single">
+          <tbody>
+            <tr>
+              <td class=3D"display_block_on_small_screens" align=3D"center"=
+ style=3D"font-family:Arial, sans-serif; font-size:13px; color:#23496d; wor=
+d-break:break-word; padding:8px 5px; line-height:1; vertical-align:middle" =
+valign=3D"middle">
+                <a href=3D"https://email.nscs.org/e3t/Ctc/W2+113/d107Qc04/V=
+Xk3Ty1Zypl7W9ghMZh46mrcBW4FBnYy5LYJwKN6pj1WP3lYM-W6N1vHY6lZ3pmW4qnzwg1SFH02=
+VNKh9J5DkP-qW5h3MkP26f85qW75LyNT33WPvqN3BnbHWRzWNhW9fzNhW3bmT6YW2v33Z92zfWn=
+MW8TVDhC2yZ0vMW7ZK9KF7CrPGPW2cxw5x1xDn4wW7b8FpJ2f0b7FN61Gf7S1YwFMW37dcWR8ds=
+9D6W7S9Ywc7Ys0KgW39vlKT6ffRYgN4b58538-R6VW7NFWvm7CJxQgW936WR04lJy9dW2F1X-w3=
+76xRCW50DP_s3-Nqq1W80T-v33tD6HcW3KWrxV4Y3NhPf73bl5P04" style=3D"color:#00a4=
+bd; text-decoration:none !important" data-hs-link-id=3D"0" data-hs-link-id-=
+v2=3D"Dqo/wDpT" target=3D"_blank"><img src=3D"https://email.nscs.org/hs/hss=
+tatic/TemplateAssets/static-1.262/img/hs_default_template_images/modules/Fo=
+llow+Me+-+Email/instagram_circle_color.png" alt=3D"Instagram" height=3D"25"=
+ style=3D"outline:none; text-decoration:none; border:none; width:auto!impor=
+tant; height:25px!important; vertical-align:middle" valign=3D"middle" width=
+=3D"auto">
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div></td></tr></tbody></table>
+</div>
+<!--[if gte mso 9]></table><![endif]-->
+<!--[if (mso)|(IE)]></td><![endif]-->
+    <!--[if (mso)|(IE)]></tr></table><![endif]-->
+    </div>
+  =20
+  </div>
+  <div id=3D"section-3" class=3D"hse-section hse-section-last" style=3D"pad=
+ding-left:10px; padding-right:10px">
+   =20
+   =20
+      <div class=3D"hse-column-container" style=3D"min-width:280px; max-wid=
+th:600px; margin:0 auto; background-color:#e6e6e6" bgcolor=3D"#e6e6e6">
+   =20
+    <!--[if (mso)|(IE)]>
+      <table align=3D"center" style=3D"width:600px;" cellpadding=3D"0" cell=
+spacing=3D"0" role=3D"presentation" width=3D"600" bgcolor=3D"#e6e6e6">
+      <tr style=3D"background-color:#e6e6e6;">
+    <![endif]-->
+    <!--[if (mso)|(IE)]>
+  <td valign=3D"top" style=3D"width:600px;">
+<![endif]-->
+<!--[if gte mso 9]>
+  <table role=3D"presentation" width=3D"600" cellpadding=3D"0" cellspacing=
+=3D"0" style=3D"width:600px">
+<![endif]-->
+<div id=3D"column-3-0" class=3D"hse-column hse-size-12">
+    <table role=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" width=
+=3D"100%" class=3D"" style=3D""><tbody><tr><td class=3D"hs_padded" style=3D=
+"font-family:Arial, sans-serif; font-size:13px; color:#23496d; word-break:b=
+reak-word; padding:10px 20px"><div id=3D"hs_cos_wrapper_module-3-0-0" class=
+=3D"hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style=
+=3D"color: inherit; font-size: inherit; line-height: inherit;" data-hs-cos-=
+general-type=3D"widget" data-hs-cos-type=3D"module"><table role=3D"presenta=
+tion" class=3D"hse-footer hse-secondary" width=3D"100%" cellpadding=3D"0" c=
+ellspacing=3D"0" style=3D"font-family:Arial, sans-serif; font-size:12px; li=
+ne-height:135%; color:#23496d; margin-bottom:0; padding:0">
+  <tbody>
+    <tr>
+      <td align=3D"center" valign=3D"top" style=3D"font-family:Arial, sans-=
+serif; font-size:13px; color:#23496d; word-break:break-word; text-align:cen=
+ter; margin-bottom:0; line-height:135%; padding:10px 20px">
+        <p style=3D"font-family:Arial, sans-serif;font-size:10px;font-weigh=
+t:normal;text-decoration:none;font-style:normal;color:#23496d">
+          The National Society of Collegiate Scholars, 1701 Pennsylvania Av=
+enue, NW, Suite 200, Washington, DC 20006, United States, (202) 265-9000
+        </p>
+        <p>
+          <a data-unsubscribe=3D"true" href=3D"https://email.nscs.org/hs/pr=
+eferences-center/en/direct?data=3DW2nXS-N30h-GyW30twX83VXhlqW1BKbSy3JJl_tW3=
+SMN2V3hYT8kW2-br2B30qFD0W1Vy3m-3R7mQRW4hLyPB49RFBYW3VBR0f1VxdHzW34BTgW2TQrH=
+PW47m4xC21m7VvW3LTLF51SdfCGW3hX7VN4mm_Q7W23r7Bk3H37-vW4tvpqc1ZnPhXW2KY7Bt1S=
+js_SW3z98F71Z75xSW366GBQ21lP23W23hcNQ1Z4wNkW4cP2c_43Zb5dW4fFfSC3dyn4fW4pj2b=
+-4hFVcKW1LkTrw2PK1xvW34FlT62YxYG6W4mDj242CYJMfW2RRtPJ2-KKqMW43Vp963XZ7dTW49=
+NRxX34GwhgW45pldc1BDGsZW1_r-5D3Vt-HxW2PLgZZ4fwD6ZW3jnyb61Q3l8FW2-MnV04tf_cQ=
+W3VGwWS3gdVC5W1_3xRG3LHkfFW4cH6jP1LzRzFW2p8ndC3M423fW2-CTX749MC4SW383YCK3gt=
+rrLW2sFxlF2545CGW3T50Px2HFxhjW2sZ7MZ2nGm7wW4tgk1-2w3zZ-W49KRtx3GY4fdW3SKcMb=
+2nRvV2W4pc1-C45CgsBW43PpjX3BLgsKW2HzjsL2-mwlXW2Rs3G83SzPsgW38sHzb4pGyCfW43P=
+0YT2sDbD-W38tCxr2KTl4bW2xH-hf2MH73SW2RKdtR3GY5_CW3h_RPz3XyZtwW2sN8mX3XF6d9W=
+2CJs3n32KhHX0&amp;utm_source=3Dhs_automation&amp;utm_medium=3Demail&amp;utm=
+_content=3D227296333&amp;_hsenc=3Dp2ANqtz-_685KZriIObnmxaTPuJJFpNZ65p4X1OqG=
+8DB03B_gSWv2qRL30S6ic6KUDNybZqh5s263vnz-WXSrGKMVhbPMGwH-6AQ&amp;_hsmi=3D227=
+296333" style=3D"font-family:Arial, sans-serif; font-size:10px; color:#981b=
+1e; font-weight:normal; text-decoration:underline; font-style:normal" data-=
+hs-link-id=3D"0" data-hs-link-id-v2=3D"GDIbDpsV" target=3D"_blank">Unsubscr=
+ibe</a>
+          <a data-unsubscribe=3D"true" href=3D"https://email.nscs.org/hs/pr=
+eferences-center/en/page?data=3DW2nXS-N30h-GyW30twX83VXhlqW1BKbSy3JJl_tW3SM=
+N2V3hYT8kW2-br2B30qFD0W1Vy3m-3R7mQRW4hLyPB49RFBYW3VBR0f1VxdHzW34BTgW2TQrHPW=
+47m4xC21m7VvW3LTLF51SdfCGW3hX7VN4mm_Q7W23r7Bk3H37-vW4tvpqc1ZnPhXW2KY7Bt1Sjs=
+_SW3z98F71Z75xSW366GBQ21lP23W23hcNQ1Z4wNkW4cP2c_43Zb5dW4fFfSC3dyn4fW4pj2b-4=
+hFVcKW1LkTrw2PK1xvW34FlT62YxYG6W4mDj242CYJMfW2RRtPJ2-KKqMW43Vp963XZ7dTW49NR=
+xX34GwhgW45pldc1BDGsZW1_r-5D3Vt-HxW2PLgZZ4fwD6ZW3jnyb61Q3l8FW2-MnV04tf_cQW3=
+VGwWS3gdVC5W1_3xRG3LHkfFW4cH6jP1LzRzFW2p8ndC3M423fW2-CTX749MC4SW383YCK3gtrr=
+LW2sFxlF2545CGW3T50Px2HFxhjW2sZ7MZ2nGm7wW4tgk1-2w3zZ-W49KRtx3GY4fdW3SKcMb2n=
+RvV2W4pc1-C45CgsBW43PpjX3BLgsKW2HzjsL2-mwlXW2Rs3G83SzPsgW38sHzb4pGyCfW43P0Y=
+T2sDbD-W38tCxr2KTl4bW2xH-hf2MH73SW2RKdtR3GY5_CW3h_RPz3XyZtwW2sN8mX3XF6d9W2C=
+Js3n32KhHX0&amp;utm_source=3Dhs_automation&amp;utm_medium=3Demail&amp;utm_c=
+ontent=3D227296333&amp;_hsenc=3Dp2ANqtz-_685KZriIObnmxaTPuJJFpNZ65p4X1OqG8D=
+B03B_gSWv2qRL30S6ic6KUDNybZqh5s263vnz-WXSrGKMVhbPMGwH-6AQ&amp;_hsmi=3D22729=
+6333" style=3D"font-family:Arial, sans-serif; font-size:10px; color:#981b1e=
+; font-weight:normal; text-decoration:underline; font-style:normal" data-hs=
+-link-id=3D"0" data-hs-link-id-v2=3D"kDnPxijp" target=3D"_blank">Manage pre=
+ferences</a>
+        </p>
+      </td>
+    </tr>
+  </tbody>
+</table></div></td></tr></tbody></table>
+</div>
+<!--[if gte mso 9]></table><![endif]-->
+<!--[if (mso)|(IE)]></td><![endif]-->
+    <!--[if (mso)|(IE)]></tr></table><![endif]-->
+    </div>
+  =20
+  </div></div>
+          </td>
+        </tr>
+      </tbody></table>
+    </div>
+ =20
+<img src=3D"https://email.nscs.org/e3t/Cto/W2+113/d107Qc04/VXk3Ty1Zypl7W9gh=
+MZh46mrcBW4FBnYy5LYJwKW6pj1GV3D8Ql0142" alt=3D"" width=3D"1" height=3D"1" b=
+order=3D"0" style=3D"display:none!important;min-height:1px!important;width:=
+1px!important;border-width:0!important;margin-top:0!important;margin-bottom=
+:0!important;margin-right:0!important;margin-left:0!important;padding-top:0=
+!important;padding-bottom:0!important;padding-right:0!important;padding-lef=
+t:0!important"></body></html>
+------=_Part_5507073_1362007675.1774180912399--
+

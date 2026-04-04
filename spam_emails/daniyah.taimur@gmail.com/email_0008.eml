@@ -1,0 +1,841 @@
+Delivered-To: daniyah.taimur@gmail.com
+Received: by 2002:a05:7022:397:b0:12a:7275:101a with SMTP id 23csp2458238dlc;
+        Tue, 31 Mar 2026 16:37:03 -0700 (PDT)
+X-Received: by 2002:a05:6214:459e:b0:8a4:778:5133 with SMTP id 6a1803df08f44-8a437e194e8mr27343976d6.11.1775000222971;
+        Tue, 31 Mar 2026 16:37:02 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1775000222; cv=none;
+        d=google.com; s=arc-20240605;
+        b=Uvtj2ZRenjOruHQKe95mfOaDFQdFjWwOY04Bh9ToHICy6f3tJb2Zp/9wJZ96L7CCNr
+         hNLz5FMQA33iguXqYJRSx9ADn3O4ch6G9Bifu2pBNZNN13r71HwLG2feUsWDE0gY7RPg
+         Zex73O9/bB5eexdorym3fqmwzQNkwKGdhU84Bhxl6hSoLc/4mrglmiVrQjoAjI5ot7gB
+         jbIiZLoUmIsZs3fq7La7otxYo5KLY2A9+xE/XJBRriR6EdRFg0Zk2zMTpPexTfq4K/Ul
+         nM+Vu9QTD/uoVDRMkUTokvrW/Z8ZhyTTv9j1yRyiuvBRvEFejO6jgcTLb4Sx4y0IOLSZ
+         7tNw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:list-unsubscribe-post:list-unsubscribe:list-id:importance
+         :reply-to:subject:message-id:mime-version:from:date:dkim-signature
+         :dkim-signature;
+        bh=YbjjOT3z6C1kk1CpFUgjdgcKT5p4XDQjmnxYOget9ok=;
+        fh=hn7lGI/jN0jDx/bZDIcuXgesffVekZbSuTPK5vOu6ug=;
+        b=LPtjsQrg/wIqY/7k8jAMWzKRqjheavRJfq76iTCTW9FjpPBVwbJpg9hq5oQf/zlo0I
+         xbTH/nomgGCCktQs1ERlU73VkcYZzxWDbA42vfaXnMTsJZmAtEfVR19kUu1D/ARu8CR+
+         u+WsqUx7cw1p6HZod/nG743VGW3Oiep3uIgYNzLoPnnLAC5QPr5pLBUla3gaAXvguLM7
+         Z8qH44kS2b6q/Ogp7sERiizwP4up0CWPiUFFOLWty+inCfAOuutOgDm7duoo39Aewr6S
+         m8G0KNC1/F/p2EGTRFO/JsTyoiGaKaIvSODlcFAc6BCAZARcn32NJgSDP948dFthPDKt
+         oqTw==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@stanford.edu header.s=m1 header.b=k9pcaNM4;
+       dkim=pass header.i=@sendgrid.info header.s=smtpapi header.b=G6B8IrR5;
+       spf=pass (google.com: domain of bounces+511372-5e55-daniyah.taimur=gmail.com@slate-mx.stanford.edu designates 198.37.158.230 as permitted sender) smtp.mailfrom="bounces+511372-5e55-daniyah.taimur=gmail.com@slate-mx.stanford.edu";
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=stanford.edu
+Return-Path: <bounces+511372-5e55-daniyah.taimur=gmail.com@slate-mx.stanford.edu>
+Received: from o4.mx.technolutions.net (o4.mx.technolutions.net. [198.37.158.230])
+        by mx.google.com with ESMTPS id 6a1803df08f44-89ed003c882si148291466d6.323.2026.03.31.16.37.02
+        for <daniyah.taimur@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 31 Mar 2026 16:37:02 -0700 (PDT)
+Received-SPF: pass (google.com: domain of bounces+511372-5e55-daniyah.taimur=gmail.com@slate-mx.stanford.edu designates 198.37.158.230 as permitted sender) client-ip=198.37.158.230;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@stanford.edu header.s=m1 header.b=k9pcaNM4;
+       dkim=pass header.i=@sendgrid.info header.s=smtpapi header.b=G6B8IrR5;
+       spf=pass (google.com: domain of bounces+511372-5e55-daniyah.taimur=gmail.com@slate-mx.stanford.edu designates 198.37.158.230 as permitted sender) smtp.mailfrom="bounces+511372-5e55-daniyah.taimur=gmail.com@slate-mx.stanford.edu";
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=stanford.edu
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=stanford.edu;
+	h=content-type:date:from:mime-version:subject:reply-to:list-id:
+	list-unsubscribe:list-unsubscribe-post:to:cc:content-type:date:feedback-id:from:
+	subject:to;
+	s=m1; t=1775000222; bh=YbjjOT3z6C1kk1CpFUgjdgcKT5p4XDQjmnxYOget9ok=;
+	b=k9pcaNM4p87v+t0+9aaq9Bd+Y6vSdBov+EN5VBFUkhP8jsdYxUGnRGnRaZdxqkancV4i
+	+cLhLq+bCE7GEHsgS2Nj884M+Y2WDRhUOgj2nsZmT+56HGK5ZwfMcQztvm5zMAokXwUM9F
+	TwjcOBmsusOrC517F0i9CKSDywhpKfH1o=
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sendgrid.info;
+	h=content-type:date:from:mime-version:subject:reply-to:list-id:
+	list-unsubscribe:list-unsubscribe-post:to:cc:content-type:date:feedback-id:from:
+	subject:to;
+	s=smtpapi; t=1775000222; bh=YbjjOT3z6C1kk1CpFUgjdgcKT5p4XDQjmnxYOget9ok=;
+	b=G6B8IrR5PwjnHyr+FJfaTfH7huy7nZXg4KT0+1Q+0N20/Bko7O6ZUoqrlTRj9igNIZ66
+	OgpZfWys1RvoqB9SPvCKOvGWtnL5cWNWGo4649AHUvy+1e10iH2I6VvkC+s5y8N2ZISS0N
+	cu8bwAm1s8bjA+1P6PgAqaRuMP29ujS00=
+Received: by recvd-756768c6c8-2cw6l with SMTP id recvd-756768c6c8-2cw6l-1-69CC5A9E-2A
+	2026-03-31 23:37:02.379704204 +0000 UTC m=+96000.348624488
+Received: from NTExMzcy (unknown)
+	by geopod-ismtpd-1 (SG) with HTTP
+	id 5q-UVeGNRHSuPPK2MHmvZg
+	Tue, 31 Mar 2026 23:37:02.368 +0000 (UTC)
+Content-Type: multipart/alternative; boundary=8b758c27d113554ffcf3a0e064ef7265aada02e4fc27c3c204c8d8d48201
+Date: Tue, 31 Mar 2026 23:37:02 +0000 (UTC)
+From: Stanford MBA Admissions <admissions-mba@stanford.edu>
+Mime-Version: 1.0
+Message-ID: <3e145d60-2a9a-49de-b225-e0d254553745@technolutions.net>
+Subject: Around the GSB | March 2026
+Reply-To: admissions-mba@stanford.edu
+Importance: Normal
+List-ID: Stanford Graduate School of Business
+List-Unsubscribe: 
+ =?us-ascii?Q?=3Cunsubscribe+smb+3e145d60-2a9a-49de-b225-e0d254553745=40slate-mx?=
+ =?us-ascii?Q?=2Etechnolutions=2Enet=3E=2C?=
+ =?us-ascii?Q?_=3Chttps=3A=2F=2Fapplymbamsx=2Estanford=2Eedu=2Fgo=3Fr=3Doptout&mid=3D3e145d60-2a9?=
+ =?us-ascii?Q?a-49de-b225-e0d254553745=3E?=
+List-Unsubscribe-Post: List-Unsubscribe=One-Click
+X-SG-EID: 
+ =?us-ascii?Q?u001=2EydFoGz6Vad0fy9cQ56Sbxq0XBlnqNrAbg+tdk3de8hUqcR9Ur6N=2FzrPYv?=
+ =?us-ascii?Q?Ni5CqbB2tiIAFkbasYR5lqBr9ubvoXANf=2FfiWp=2F?=
+ =?us-ascii?Q?nXE0B1NlLpoq4P5eX1R3muGzFHQQlzfNLGV53WZ?=
+ =?us-ascii?Q?CgS5TvyQDkxkaP=2FvTnEnlWLZ0ez97s5lB8f=2F5Gb?=
+ =?us-ascii?Q?g0H9gbwwE5IiE3IpyR4Dvf889SUl5bSlyc7XGCX?=
+ =?us-ascii?Q?tqCDu7rr9GiaEiZzhryzSdIo4neqF9kA4domd91?=
+ =?us-ascii?Q?9S47apHOHJgczq2Id79NEAVnKA=3D=3D?=
+X-SG-ID: 
+ =?us-ascii?Q?u001=2ESdBcvi+Evd=2FbQef8eZF3BlwSELs1iWtKvO7zNFv=2FGGGKa4EXApH3yFrQK?=
+ =?us-ascii?Q?ngsl3SzBiB=2Fc=2F0Ch7n4utnZ4PXFUSTz+E=2FMV6vu?=
+ =?us-ascii?Q?bxWM=2FahodSBuNyT3YBZUA24r2c88vupGHOlg1YS?=
+ =?us-ascii?Q?lL31NwtW7O2Y7O1ajkUaNCDCjYVKAFiyNqJdmNq?=
+ =?us-ascii?Q?1KX9ql3jYscXpKp21FXwh46vxs4HnDOBY43BA0z?=
+ =?us-ascii?Q?SDo6y8O2w51gayvXVuSSPzxn0Qim5vv+XvlTXNk?=
+ =?us-ascii?Q?OdZP7a7oNW=2Fx2KET4MYqd+fU1x88ZYehHAZ47y4?=
+ =?us-ascii?Q?G5M8UFFA=3D?=
+To: daniyah.taimur@gmail.com
+X-Entity-ID: u001.vCAXU0U9k1UXvsV6eLSgfQ==
+
+--8b758c27d113554ffcf3a0e064ef7265aada02e4fc27c3c204c8d8d48201
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Mime-Version: 1.0
+
+Celebrating Women's History Month.
+
+        =20
+Dear Daniyah,
+
+At Stanford GSB, we mark Women's History Month by spotlighting Amelia Farac=
+o-Hadlock <https://www.linkedin.com/posts/stanford-graduate-school-of-busin=
+ess_womenshistorymonth-activity-7443013350017568769-s4yh?utm_source=3Dshare=
+&utm_medium=3Dmember_desktop&rcm=3DACoAAAam570BgmUsMMJMnJA127VDU0CXcaDwoAI&=
+utm_campaign=3Dmba_newsletter&utm_content=3Dmar26&utm_medium=3Demail&utm_so=
+urce=3Dnew_propsect>, MBA '26, whose campaign leadership advances policies =
+for women, families, and children. We also go inside the first-year Executi=
+ve Challenge <https://www.gsb.stanford.edu/experience/news-history/lessons-=
+leadership-2025-executive-challenge?utm_campaign=3Dmba_newsletter&utm_conte=
+nt=3Dmar26&utm_medium=3Demail&utm_source=3Dnew_propsect> to see how student=
+s practice leadership they'll carry through the MBA Program and beyond.
+HONORING WOMEN'S HISTORY MONTH AT STANFORD GSB=20
+
+In recognition of Women's History Month, we profiled Amelia Faraco-Hadlock =
+<https://www.linkedin.com/posts/stanford-graduate-school-of-business_womens=
+historymonth-activity-7443013350017568769-s4yh?utm_source=3Dshare&utm_mediu=
+m=3Dmember_desktop&rcm=3DACoAAAam570BgmUsMMJMnJA127VDU0CXcaDwoAI&utm_campai=
+gn=3Dmba_newsletter&utm_content=3Dmar26&utm_medium=3Demail&utm_source=3Dnew=
+_propsect>, MBA '26. She is a devoted public servant who is committed to en=
+suring that opportunity is within reach for women and girls across every co=
+mmunity.
+
+READ MORE <https://www.linkedin.com/posts/stanford-graduate-school-of-busin=
+ess_womenshistorymonth-activity-7443013350017568769-s4yh?utm_source=3Dshare=
+&utm_medium=3Dmember_desktop&rcm=3DACoAAAam570BgmUsMMJMnJA127VDU0CXcaDwoAI&=
+utm_campaign=3Dmba_newsletter&utm_content=3Dmar26&utm_medium=3Demail&utm_so=
+urce=3Dnew_propsect>
+Start Local, Then Go Global
+
+In this episode of the View From the Top podcast, Alibaba co-founder, Joe T=
+sai, talks about growth, failed pitches, and the AI arms race.
+
+LISTEN NOW <https://www.gsb.stanford.edu/insights/joe-tsai-says-start-local=
+-then-go-global?utm_campaign=3Dmba_newsletter&utm_content=3Dmar26&utm_mediu=
+m=3Demail&utm_source=3Dnew_propsect>
+
+
+
+The Economic Intuition Behind Sports, Dating, and Getting a Job
+
+In this podcast, Professor Paul Oyer discusses the economic intuition of pr=
+o athletes, the parallels between dating and the job market, the AI-driven =
+resurgence of professional networks, and why economics is the study of scar=
+ce resources.
+
+LISTEN NOW <https://www.gsb.stanford.edu/insights/economic-intuition-behind=
+-sports-dating-getting-job?utm_campaign=3Dmba_newsletter&utm_content=3Dmar2=
+6&utm_medium=3Demail&utm_source=3Dnew_propsect>
+
+
+
+Lessons in Leadership at the 2025 Executive ChallengeEvery year, first-year=
+ MBA students at Stanford GSB participate in the Executive Challenge <https=
+://www.gsb.stanford.edu/experience/learning/leadership/executive-challenge?=
+utm_campaign=3Dmba_newsletter&utm_content=3Dmar26&utm_medium=3Demail&utm_so=
+urce=3Dnew_propsect>, the culminating event for the Leadership Labs <https:=
+//www.gsb.stanford.edu/stanford-gsb-experience/learning/leadership/leadersh=
+ip-labs?utm_campaign=3Dmba_newsletter&utm_content=3Dmar26&utm_medium=3Demai=
+l&utm_source=3Dnew_propsect> course. Part of the required curriculum for al=
+l MBA students, the challenge is a GSB-wide, day-long event in which studen=
+t squads role-play three business cases.
+
+READ MORE <https://www.gsb.stanford.edu/experience/news-history/lessons-lea=
+dership-2025-executive-challenge?utm_campaign=3Dmba_newsletter&utm_content=
+=3Dmar26&utm_medium=3Demail&utm_source=3Dnew_propsect>
+Why Surprises Catch Us Off Guard =E2=80=94 And How to Anticipate Them=20
+
+Shifting between abstract and concrete thinking can help us prepare for une=
+xpected events.
+
+READ MORE <https://www.gsb.stanford.edu/insights/why-surprises-catch-us-gua=
+rd-how-anticipate-them?utm_campaign=3Dmba_newsletter&utm_content=3Dmar26&ut=
+m_medium=3Demail&utm_source=3Dnew_propsect>
+Nini Hamrick, MBA '20
+
+                                    "Our success has been defined by delive=
+ring AI products that actually work in the field."
+READ MORE  <https://www.gsb.stanford.edu/programs/mba/life-community/alumni=
+/voices/nini-hamrick?utm_campaign=3Dmba_newsletter&utm_content=3Dmar26&utm_=
+medium=3Demail&utm_source=3Dnew_propsect>
+
+
+
+
+Upcoming Events=20
+
+The MBA + Master's Tour Middle East <https://tours.mba.com/middleeast?utm_s=
+ource=3Dschooladm&utm_medium=3Demail&utm_campaign=3Duniversity_marketing_st=
+anford&utm_campaign=3Dmba_newsletter&utm_content=3Dmar26&utm_medium=3Demail=
+&utm_source=3Dnew_propsect>
+                        2 April | 7:00 p.m. -- 9:30 p.m. Gulf Standard Time=
+ | Online
+
+First Fridays with GSB Admissions: Alumni Relations and the GSB Community <=
+https://applymbamsx.stanford.edu/register/?id=3Dacb3b6b4-3ea8-41f1-b275-974=
+c9ee4917c&utm_campaign=3Dmba_newsletter&utm_content=3Dmar26&utm_medium=3Dem=
+ail&utm_source=3Dnew_propsect>
+                        3 April | 9:00 a.m. -- 9:45 a.m. PT | Online
+
+GSB Campus Visit Day <https://applymbamsx.stanford.edu/register/?id=3Dd07f9=
+969-7191-4792-ae33-9e47fe7eb176&utm_campaign=3Dmba_newsletter&utm_content=
+=3Dmar26&utm_medium=3Demail&utm_source=3Dnew_propsect>
+                        6 April | 9:30 a.m. -- 3:45 p.m. PT | On Campus
+
+Fort=C3=A9 MBA Forum <https://www.fortefoundation.org/pre-mba/forums/?utm_s=
+ource=3Dforte&utm_medium=3Dpromokit&utm_campaign=3Dforums&utm_campaign=3Dmb=
+a_newsletter&utm_content=3Dmar26&utm_medium=3Demail&utm_source=3Dnew_propse=
+ct>
+                        9 April | 11:00 a.m. -- 2:00 p.m. ET | Online
+
+MBA/MSx Information Session in London <https://applymbamsx.stanford.edu/reg=
+ister/?id=3Dd3d59a27-3c0e-4a5d-8340-34a4f304c796&utm_campaign=3Dmba_newslet=
+ter&utm_content=3Dmar26&utm_medium=3Demail&utm_source=3Dnew_propsect>
+                        13 April | 7:00 p.m. -- 9:00 p.m. GMT Daylight Time=
+ | Online
+
+MBA + Master's Tour Europe <https://tours.mba.com/europe?utm_source=3Dschoo=
+ladm&utm_medium=3Demail&utm_campaign=3Duniversity_marketing_stanford&utm_ca=
+mpaign=3Dmba_newsletter&utm_content=3Dmar26&utm_medium=3Demail&utm_source=
+=3Dnew_propsect>
+                        14 April | 7:00 p.m. -- 9:30 p.m. Central European =
+Time | Online
+
+                                              =20
+
+See All Events <https://www.gsb.stanford.edu/programs/mba/admission/events/=
+schedule?utm_campaign=3Dmba_newsletter&utm_content=3Dmar26&utm_medium=3Dema=
+il&utm_source=3Dnew_propsect>
+
+That's all for now.
+
+                      Whether you'd like to move up in your chosen field or=
+ change paths completely, the education you receive at Stanford GSB will em=
+power you with the knowledge, skills, and long-term vision that lead to inn=
+ovation and growth.
+
+                      Our students and alumni don't all fit one mold, and w=
+e don't expect candidates to either. We hope you'll consider applying in an=
+ upcoming round <https://www.gsb.stanford.edu/programs/mba/admission/deadli=
+nes?utm_campaign=3Dmba_newsletter&utm_content=3Dmar26&utm_medium=3Demail&ut=
+m_source=3Dnew_propsect> and look forward to learning more about your story=
+. The Round 3 application deadline is 7 April 2026.
+
+                      Remember, you can create a MyStanfordGSB.Info <https:=
+//applymbamsx.stanford.edu/portal/door?goto=3Dconnect&target=3Dmy-gsb&utm_c=
+ampaign=3Dmba_newsletter&utm_content=3Dmar26&utm_medium=3Demail&utm_source=
+=3Dnew_propsect> account to gain access to additional content =E2=80=94 inc=
+luding tips and recommended resources.
+
+                      Stanford MBA Admissions Office
+
+
+
+This email was sent to daniyah.taimur@gmail.com by Stanford MBA Admissions.
+Unsubscribe from Stanford Graduate School of Business. <https://applymbamsx=
+.stanford.edu/go?r=3Doptout&mid=3D3e145d60-2a9a-49de-b225-e0d254553745&utm_=
+campaign=3Dmba_newsletter&utm_content=3Dmar26&utm_medium=3Demail&utm_source=
+=3Dnew_propsect>
+--8b758c27d113554ffcf3a0e064ef7265aada02e4fc27c3c204c8d8d48201
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset=utf-8
+Mime-Version: 1.0
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta content=3D"text/html; charset=3Dutf-8" http-equiv=3D"content-type" />
+<base target=3D"_blank" />
+<style>body { font-family: Times New Roman, Times, serif; font-size: 12pt; =
+} a, a:link, a:visited { color: blue; } a:active, a:hover { color: red; } p=
+re { white-space: pre-wrap; }</style><meta charset=3D"UTF-8" xmlns:o=3D"urn=
+:schemas-microsoft-com:office:office" /><meta name=3D"viewport" content=3D"=
+width=3Ddevice-width, initial-scale=3D1.0" xmlns:o=3D"urn:schemas-microsoft=
+-com:office:office" /><meta http-equiv=3D"X-UA-Compatible" content=3D"IE=3D=
+edge" xmlns:o=3D"urn:schemas-microsoft-com:office:office" /><meta name=3D"f=
+ormat-detection" content=3D"telephone=3Dno" xmlns:o=3D"urn:schemas-microsof=
+t-com:office:office" /><style type=3D"text/css" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office">a { text-decoration: none; }
+    a[x-apple-data-detectors] {
+      color: inherit !important;
+      text-decoration: underline;
+    text-decoration-color: #8C1515; /* Stanford Crimson */
+      font-size: inherit !important;
+      font-family: inherit !important;
+      font-weight: inherit !important;
+      line-height: inherit !important;
+    }
+    .es-button {
+      mso-style-priority: 100 !important;
+      text-decoration: none !important;
+    }
+    .es-desk-hidden {
+      display: none;
+      float: center;
+      overflow: hidden;
+      width: 0;
+      max-height: 0;
+      line-height: 0;
+      mso-hide: all;
+    }
+    @media only screen and (max-width:600px) {
+      p, ul li, ol li, a { line-height:150% !important }
+      h1, h2, h3, h1 a, h2 a, h3 a { line-height:120% }
+      h1 { font-size:30px !important; text-align:left }
+      h2 { font-size:24px !important; text-align:left }
+      h3 { font-size:20px !important; text-align:left }
+      .es-menu td a { font-size:14px !important }
+      .es-header-body p, .es-content-body p, .es-footer-body p,
+      .es-header-body ul li, .es-content-body ul li, .es-footer-body ul li,
+      .es-header-body ol li, .es-content-body ol li, .es-footer-body ol li,
+      .es-header-body a, .es-content-body a, .es-footer-body a {
+        font-size:14px !important
+      }
+      .es-infoblock p, .es-infoblock ul li, .es-infoblock ol li, .es-infobl=
+ock a {
+        font-size:12px !important
+      }
+      .es-m-txt-c { text-align:center !important }
+      .es-m-txt-r { text-align:right !important }
+      .es-m-txt-l { text-align:left !important }
+      .es-button-border { display:inline-block !important }
+      a.es-button, button.es-button {
+        font-size:18px !important;
+        display:inline-block !important
+      }
+      .es-adaptive table, .es-left, .es-right {
+        width:100% !important
+      }
+      .es-content table, .es-header table, .es-footer table,
+      .es-content, .es-footer, .es-header {
+        width:100% !important;
+        max-width:600px !important
+      }
+      .es-adapt-td { display:block !important; width:100% !important }
+      .adapt-img { width:100% !important; height:auto !important }
+    }</style>
+</head>
+<body style=3D"margin: 0; padding: 0; background-color:#f6f6f6;">
+<div style=3D"display: none; font-size: 1px; color: #333333; line-height: 1=
+px; max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden;">Celebra=
+ting Women's History Month. </div>
+    &nbsp;
+    <table bgcolor=3D"#f6f6f6" border=3D"0" cellpadding=3D"0" cellspacing=
+=3D"0" role=3D"presentation" width=3D"100%" xmlns:o=3D"urn:schemas-microsof=
+t-com:office:office"><tbody><tr><td align=3D"center"><!-- Begin centered co=
+ntainer --><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"=
+presentation" style=3D"width: 100%; max-width: 600px;" width=3D"600"><tbody=
+><tr><td style=3D"padding: 0; margin: 0;"><br /><!-- HEADER --><table bgcol=
+or=3D"#ffffff" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" wi=
+dth=3D"100%"><tbody><tr><td align=3D"center"><span style=3D"font-family:Ari=
+al,Helvetica,sans-serif;"><a href=3D"https://mx.technolutions.net/ss/c/u001=
+.jxaZRujEt1lhE0WEp4QewF1deJLcTq6f7iI5u28hQXluoBe69nB1971XkliNy8J2IU8CZ4fczW=
+Ploe1qf5apM2kzNu3IKfqRZ_EiG9wsAa6sPpOJMeNQJQ3Qr8HFhykYTBa9vNRRCm7OtoqvmgQX4=
+8Xe7SLWokdUtxmZT0aztsg/4pe/1uNlDUhkTGe5aQx53dFqqg/h0/h001.3XKz66p-4Sc8mra0q=
+rPWe_7OHrU_vwJSUxL7Q1J2tqY" title=3D"https://www.gsb.stanford.edu/mba"><img=
+ alt=3D"Stanford GSB" style=3D"display: block; max-width: 600px; border: 0p=
+x; width: 100%;" width=3D"100%" src=3D"https://mx.technolutions.net/proxy/1=
+VjfWl0Wb_P_MZ_SC40jYU5dmWLlruqEt8l3Dxtx8LrmE49vKGKq6PSiFOWllitjQqtLaYYKjYcY=
+0sLXAPG1FGfYY0_GXr5TQzHZsos5Gmgl_4QhtKCFUiyr__wMqz5R/KiIlUu04OJzDjYqJAefx6t=
+TWMkoQJRTwZTPcO2SyRr8" /></a></span></td></tr></tbody></table><!-- INTRO --=
+><table bgcolor=3D"#ffffff" cellpadding=3D"20" cellspacing=3D"0" role=3D"pr=
+esentation" width=3D"100%"><tbody><tr><td style=3D"line-height: 24px;"><spa=
+n style=3D"font-family: Arial, Helvetica, sans-serif;"><strong style=3D"col=
+or: rgb(153, 0, 0); font-size: 16px;">Dear Daniyah,</strong><br /><br /><fo=
+nt color=3D"#2e2d29"><span style=3D"font-size: 14px;">At Stanford GSB, we m=
+ark&nbsp;Women<span style=3D"font-family: Arial, Helvetica, sans-serif;"><f=
+ont color=3D"#2e2d29"><span style=3D"font-size: 14px;"><span style=3D"font-=
+family: Arial, Helvetica, sans-serif;"><font color=3D"#2e2d29"><span style=
+=3D"font-size: 14px;">&#8217;</span></font></span></span></font></span>s Hi=
+story Month by spotlighting&nbsp;<a href=3D"https://mx.technolutions.net/ss=
+/c/u001.jxaZRujEt1lhE0WEp4QewP0BSOFx9sM6ZdO5ggLiKeFiuYFcFYeg90-u_qGNpuS_or6=
+Nr_YqmpVhySpH68Iqj8MpDm3JaYyHzxO_q2A3V4CEzZrmGEJ3V_10HHbJccbZCRK_edc1rGgVQc=
+B4KMTkmAzm47vylxP8GWwLcbzlPJ-94KAbTN1dZUrc0tg7vd4Qo3suZpTKW1VZmaAm8LdCmHIhx=
+oZ7gmvrJWZgRHKyjypVTb8RCugCGor5dXeMu9Ewp6ss28vL-oiWk5pFBTyy6Vniu5FqPqQjeIls=
+9QrzIYaP5bKWWbVtF21giukyHL1mL_vjnK-IGrGvu3qo9_o1OiGnG0UWdc1uCGO_qZFQbw_I3WD=
+Rbfux24h8tUAfw4BpldAc1b2Mvq7-fOCI0Ei0Pg/4pe/1uNlDUhkTGe5aQx53dFqqg/h1/h001.=
+jh-0Pt0Pwxr78-4Pwur7RkqW_CY4iGNaJ6XrPM-ZUEU" title=3D"https://www.linkedin.=
+com/posts/stanford-graduate-school-of-business_womenshistorymonth-activity-=
+7443013350017568769-s4yh?utm_source=3Dshare&amp;utm_medium=3Dmember_desktop=
+&amp;rcm=3DACoAAAam570BgmUsMMJMnJA127VDU0CXcaDwoAI" style=3D"color:#8c1515"=
+>Amelia Faraco-Hadlock</a>, MBA &#8217;26, whose campaign leadership advanc=
+es policies for<span style=3D"font-family: Arial, Helvetica, sans-serif;"><=
+font color=3D"#2e2d29"><span style=3D"font-size: 14px;"><span style=3D"font=
+-family: Arial, Helvetica, sans-serif;"><font color=3D"#2e2d29"><span style=
+=3D"font-size: 14px;">&nbsp;women, families, and children. We also go insid=
+e the first-year </span></font></span></span></font></span><a href=3D"https=
+://mx.technolutions.net/ss/c/u001.jxaZRujEt1lhE0WEp4QewF1deJLcTq6f7iI5u28hQ=
+XkaBS5auiA8jrl9A4V2FrgHInX_YcfA3yiqnBJuc7H9fZ5uF_FumrNnnnEreod1cg0PkqeAPh86=
+HgKGmqAIE7aGw6QEucJvHGjiFWKu_YtcCu5ISzfQOH8yV0tf6q8f16RV4Mj3acwpyNQ8OgBeTVM=
+P191rKScarDxx-hBcdB-AaXxmsKi7dg16Bz5DCwesXBJBLEoHBJST8nuchpUVwtJd/4pe/1uNlD=
+UhkTGe5aQx53dFqqg/h2/h001.DEJTrqsNRyuEeVAP5n3x5SPBEw5L7vPNMV6naF4NNts" titl=
+e=3D"https://www.gsb.stanford.edu/experience/news-history/lessons-leadershi=
+p-2025-executive-challenge" style=3D"color:#8c1515">Executive Challenge</a>=
+&nbsp;to see how students practice leadership they<span style=3D"font-famil=
+y: Arial, Helvetica, sans-serif;"><font color=3D"#2e2d29"><span style=3D"fo=
+nt-size: 14px;">&#8217;</span></font></span>ll carry through the MBA Progra=
+m and beyond.</span></font></span></td></tr></tbody></table><!-- FEATURE ST=
+ORY: Women=E2=80=99s History Month Highlight --><table bgcolor=3D"#990000" =
+cellpadding=3D"20" cellspacing=3D"0" role=3D"presentation" width=3D"100%"><=
+tbody><tr><td align=3D"center"><span style=3D"font-family:Arial,Helvetica,s=
+ans-serif;"><a href=3D"https://mx.technolutions.net/ss/c/u001.jxaZRujEt1lhE=
+0WEp4QewP0BSOFx9sM6ZdO5ggLiKeFiuYFcFYeg90-u_qGNpuS_or6Nr_YqmpVhySpH68Iqj8Mp=
+Dm3JaYyHzxO_q2A3V4CEzZrmGEJ3V_10HHbJccbZCRK_edc1rGgVQcB4KMTkmAzm47vylxP8GWw=
+LcbzlPJ-94KAbTN1dZUrc0tg7vd4Qo3suZpTKW1VZmaAm8LdCmHIhxoZ7gmvrJWZgRHKyjypVTb=
+8RCugCGor5dXeMu9Ewp6ss28vL-oiWk5pFBTyy6Vniu5FqPqQjeIls9QrzIYaP5bKWWbVtF21gi=
+ukyHL1mL_vjnK-IGrGvu3qo9_o1OiGnG0UWdc1uCGO_qZFQbw_I3WDRbfux24h8tUAfw4BpldAc=
+1b2Mvq7-fOCI0Ei0Pg/4pe/1uNlDUhkTGe5aQx53dFqqg/h3/h001.Yn2d8dqpQG-fAQyqTMY2A=
+e0zQxa-7oliHPyUrWqHMQ4" title=3D"https://www.linkedin.com/posts/stanford-gr=
+aduate-school-of-business_womenshistorymonth-activity-7443013350017568769-s=
+4yh?utm_source=3Dshare&amp;utm_medium=3Dmember_desktop&amp;rcm=3DACoAAAam57=
+0BgmUsMMJMnJA127VDU0CXcaDwoAI"><img alt=3D"" style=3D"display: block; width=
+: 560px; max-width: 560px; border: 0px; height: 371px;" height=3D"371" widt=
+h=3D"560" src=3D"https://mx.technolutions.net/proxy/1VjfWl0Wb_P_MZ_SC40jYU5=
+dmWLlruqEt8l3Dxtx8LrmE49vKGKq6PSiFOWllitjY0i-Rkb_0TidgyoETciJqyVgjlLUBB7hfJ=
+6MIN3GS6bCnEVcdOGOxoZGPqWEPjBY/M-xr6fykO0dGY0yLxJUXmFmILovfg-97Cu9pV7IJZNB9=
+Es2TuGJfCCGhcwfDncAi" /></a></span></td></tr><tr><td bgcolor=3D"#efefef" st=
+yle=3D"padding: 20px; border-bottom: 4px solid rgb(153, 0, 0); font-size: 1=
+4px; line-height: 21px; font-family: Arial, Helvetica, sans-serif;"><span s=
+tyle=3D"font-family: Arial, Helvetica, sans-serif;"><strong style=3D"color:=
+ rgb(130, 0, 0);"><strong>HONORING WOMEN&#8217;S HISTORY MONTH AT STANFORD =
+GSB&nbsp;</strong></strong><br /><br /><font color=3D"#2e2d29">In recogniti=
+on of Women&#8217;s History Month, we profiled <a href=3D"https://mx.techno=
+lutions.net/ss/c/u001.jxaZRujEt1lhE0WEp4QewP0BSOFx9sM6ZdO5ggLiKeFiuYFcFYeg9=
+0-u_qGNpuS_or6Nr_YqmpVhySpH68Iqj8MpDm3JaYyHzxO_q2A3V4CEzZrmGEJ3V_10HHbJccbZ=
+CRK_edc1rGgVQcB4KMTkmAzm47vylxP8GWwLcbzlPJ-94KAbTN1dZUrc0tg7vd4Qo3suZpTKW1V=
+ZmaAm8LdCmHIhxoZ7gmvrJWZgRHKyjypVTb8RCugCGor5dXeMu9Ewp6ss28vL-oiWk5pFBTyy6V=
+niu5FqPqQjeIls9QrzIYaP5bKWWbVtF21giukyHL1mL_vjnK-IGrGvu3qo9_o1OiGnG0UWdc1uC=
+GO_qZFQbw_I3WDRbfux24h8tUAfw4BpldAc1b2Mvq7-fOCI0Ei0Pg/4pe/1uNlDUhkTGe5aQx53=
+dFqqg/h4/h001.fFhpkdVSUHdcBjh_RnsAiDiP-DCJv6kyU_t_nN0AW24" title=3D"https:/=
+/www.linkedin.com/posts/stanford-graduate-school-of-business_womenshistorym=
+onth-activity-7443013350017568769-s4yh?utm_source=3Dshare&amp;utm_medium=3D=
+member_desktop&amp;rcm=3DACoAAAam570BgmUsMMJMnJA127VDU0CXcaDwoAI" style=3D"=
+color:#8c1515">Amelia Faraco-Hadlock</a>, MBA <span style=3D"font-family: A=
+rial, Helvetica, sans-serif;"><font color=3D"#2e2d29">&#8217;26</font></spa=
+n>. She is a devoted public servant who is committed to ensuring that oppor=
+tunity is within reach for women and girls across every community.<br /><br=
+ /><span style=3D"font-family:Arial,Helvetica,sans-serif;"><a href=3D"https=
+://mx.technolutions.net/ss/c/u001.jxaZRujEt1lhE0WEp4QewP0BSOFx9sM6ZdO5ggLiK=
+eFiuYFcFYeg90-u_qGNpuS_or6Nr_YqmpVhySpH68Iqj8MpDm3JaYyHzxO_q2A3V4CEzZrmGEJ3=
+V_10HHbJccbZCRK_edc1rGgVQcB4KMTkmAzm47vylxP8GWwLcbzlPJ-94KAbTN1dZUrc0tg7vd4=
+Qo3suZpTKW1VZmaAm8LdCmHIhxoZ7gmvrJWZgRHKyjypVTb8RCugCGor5dXeMu9Ewp6ss28vL-o=
+iWk5pFBTyy6Vniu5FqPqQjeIls9QrzIYaP5bKWWbVtF21giukyHL1mL_vjnK-IGrGvu3qo9_o1O=
+iGnG0UWdc1uCGO_qZFQbw_I3WDRbfux24h8tUAfw4BpldAc1b2Mvq7-fOCI0Ei0Pg/4pe/1uNlD=
+UhkTGe5aQx53dFqqg/h5/h001.nTLo9317hygRzUZjOMgkWJ6nRQEAhUmYyAxJcGa3o_0" titl=
+e=3D"https://www.linkedin.com/posts/stanford-graduate-school-of-business_wo=
+menshistorymonth-activity-7443013350017568769-s4yh?utm_source=3Dshare&amp;u=
+tm_medium=3Dmember_desktop&amp;rcm=3DACoAAAam570BgmUsMMJMnJA127VDU0CXcaDwoA=
+I" style=3D"color:#8c1515; text-decoration:underline; font-weight:bold;">RE=
+AD MORE</a></span></font></span></td></tr></tbody></table><!-- GRIT & GROWT=
+H FEATURE --><table bgcolor=3D"#ffffff" cellpadding=3D"20" cellspacing=3D"0=
+" role=3D"presentation" width=3D"100%"><tbody><tr><td align=3D"left"><table=
+ cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" width=3D"100%"><=
+tbody><tr><td style=3D"padding-bottom: 20px;" valign=3D"top" width=3D"181">=
+<span style=3D"font-family:Arial,Helvetica,sans-serif;"><a href=3D"https://=
+mx.technolutions.net/ss/c/u001.jxaZRujEt1lhE0WEp4QewF1deJLcTq6f7iI5u28hQXnM=
+PeSTqmXxXRfr43Y43ae9cc3nn43xUrrIc6U6lyVYM6uuvTqOJg2NDZzPL4htLQE0ifBkHFT5vXy=
+xJhIoYdqojOD_m90AX1g-eLTCycXvqeV9OlGk0Nab6klW8c9HUGydrhIE_f4W25DKMYuNPfbAW3=
+UHkEo779LInTlQFzGM6BSh4LwYXP6RqdZkj7fQob0/4pe/1uNlDUhkTGe5aQx53dFqqg/h6/h00=
+1.F4GFHf1z2dokiGq32eQGDVeSvw7By1pE9aIMXLzYOfQ" title=3D"https://www.gsb.sta=
+nford.edu/insights/joe-tsai-says-start-local-then-go-global"><img alt=3D"" =
+style=3D"display: block; border: 0px; max-width: 174px; height: 179px; widt=
+h: 174px;" height=3D"179" width=3D"174" src=3D"https://mx.technolutions.net=
+/proxy/1VjfWl0Wb_P_MZ_SC40jYU5dmWLlruqEt8l3Dxtx8LrmE49vKGKq6PSiFOWllitjY0i-=
+Rkb_0TidgyoETciJq9fljkwy5l0Pa848keCl5Edljgj_wpjjY3oEB3l4BXOS" /></a></span>=
+</td><td style=3D"padding-left: 20px; vertical-align: top;"><p style=3D"mar=
+gin:0; font-size:16px; color:#800000; font-weight:bold;"><span style=3D"fon=
+t-family:Arial,Helvetica,sans-serif;">Start Local, Then Go Global</span></p=
+><p style=3D"font-size:14px; color:#333333; line-height:21px;"><span style=
+=3D"font-family:Arial,Helvetica,sans-serif;">In this episode of the <em>Vie=
+w From the Top</em> podcast, Alibaba co-founder, Joe Tsai, talks about grow=
+th, failed pitches, and the AI arms race.</span></p><p style=3D"margin-top:=
+10px;"><span style=3D"font-family:Arial,Helvetica,sans-serif;"><a href=3D"h=
+ttps://mx.technolutions.net/ss/c/u001.jxaZRujEt1lhE0WEp4QewF1deJLcTq6f7iI5u=
+28hQXnMPeSTqmXxXRfr43Y43ae9cc3nn43xUrrIc6U6lyVYM6uuvTqOJg2NDZzPL4htLQE0ifBk=
+HFT5vXyxJhIoYdqojOD_m90AX1g-eLTCycXvqeV9OlGk0Nab6klW8c9HUGydrhIE_f4W25DKMYu=
+NPfbAW3UHkEo779LInTlQFzGM6BSh4LwYXP6RqdZkj7fQob0/4pe/1uNlDUhkTGe5aQx53dFqqg=
+/h7/h001.HvrsQZH_iQ53ZNEruqfVub_adqHcZR37JIqLv1bMweg" title=3D"https://www.=
+gsb.stanford.edu/insights/joe-tsai-says-start-local-then-go-global" style=
+=3D"color:#8c1515; text-decoration:underline; font-weight:bold;">LISTEN NOW=
+</a></span></p></td></tr></tbody></table></td></tr></tbody></table><table b=
+gcolor=3D"#efefef" cellpadding=3D"20" cellspacing=3D"0" role=3D"presentatio=
+n" width=3D"100%"><tbody><tr><td align=3D"left"><table cellpadding=3D"0" ce=
+llspacing=3D"0" role=3D"presentation" width=3D"100%"><tbody><tr><td style=
+=3D"padding-bottom: 20px;" valign=3D"top" width=3D"181"><span style=3D"font=
+-family:Arial,Helvetica,sans-serif;"><a href=3D"https://mx.technolutions.ne=
+t/ss/c/u001.jxaZRujEt1lhE0WEp4QewF1deJLcTq6f7iI5u28hQXnlAVvtru6iRWsZra1YUPs=
+txMruwEifL2HtM8o5P1hF8bZCKOOpOGGemzkWOc1mq6IpR1LpyjcnjcfVH5e63mqLts072QwUsx=
+aaykkQTenV4MqAmk8dwLLe02rDpwWqOB2D6r3uDY2Tofj2HM8MVBK5xiBDI466U5CONiPFLfYob=
+lGa8FuswIQyNwohwGFHbU7ZgAlf8EjoruZtZnNJ86zA/4pe/1uNlDUhkTGe5aQx53dFqqg/h8/h=
+001.xQXQixJmzdHce4B5LBFycbrdtqphIp2I7xlDElySTis" title=3D"https://www.gsb.s=
+tanford.edu/insights/economic-intuition-behind-sports-dating-getting-job"><=
+img alt=3D"" style=3D"display: block; border: 0px; width: 174px; max-width:=
+ 174px; height: 171px;" height=3D"171" width=3D"174" src=3D"https://mx.tech=
+nolutions.net/proxy/1VjfWl0Wb_P_MZ_SC40jYU5dmWLlruqEt8l3Dxtx8LrmE49vKGKq6PS=
+iFOWllitjY0i-Rkb_0TidgyoETciJqyVgjlLUBB7hfJ6MIN3GS6atOZ1ppYvyFEdg3ExnaBlG/s=
+HEFFw9hewZ97SD_AfV4PXy5bdmGwVJOM4DZEVERQ1qpuDkSqoRUrVrBDHjxDBpB" /></a></sp=
+an></td><td style=3D"padding-left: 20px; vertical-align: top;"><p style=3D"=
+margin:0; font-size:16px; color:#800000; font-weight:bold;"><span style=3D"=
+font-family:Arial,Helvetica,sans-serif;">The Economic Intuition Behind Spor=
+ts, Dating, and Getting a Job</span></p><p style=3D"font-size:14px; color:#=
+333333; line-height:21px;"><span style=3D"font-family:Arial,Helvetica,sans-=
+serif;">In this podcast, Professor Paul Oyer discusses the economic intuiti=
+on of pro athletes, the parallels between dating and the job market, the AI=
+-driven resurgence of professional networks, and why economics is the study=
+ of scarce resources.</span></p><p style=3D"margin-top:10px;"><span style=
+=3D"font-family:Arial,Helvetica,sans-serif;"><a href=3D"https://mx.technolu=
+tions.net/ss/c/u001.jxaZRujEt1lhE0WEp4QewF1deJLcTq6f7iI5u28hQXnlAVvtru6iRWs=
+Zra1YUPstxMruwEifL2HtM8o5P1hF8bZCKOOpOGGemzkWOc1mq6IpR1LpyjcnjcfVH5e63mqLts=
+072QwUsxaaykkQTenV4MqAmk8dwLLe02rDpwWqOB2D6r3uDY2Tofj2HM8MVBK5xiBDI466U5CON=
+iPFLfYoblGa8FuswIQyNwohwGFHbU7ZgAlf8EjoruZtZnNJ86zA/4pe/1uNlDUhkTGe5aQx53dF=
+qqg/h9/h001.GFv19Whm5sdgv6k-q8UmD8wmh4mFTXBtNwIAFsHQDc4" title=3D"https://w=
+ww.gsb.stanford.edu/insights/economic-intuition-behind-sports-dating-gettin=
+g-job" style=3D"color:#8c1515; text-decoration:underline; font-weight:bold;=
+">LISTEN NOW</a></span></p></td></tr></tbody></table></td></tr></tbody></ta=
+ble><!-- ON A MISSION TO TEACH THE WORLD THE BASICS OF PERSONAL FINANCE -->=
+<table align=3D"center" bgcolor=3D"#ffffff" cellpadding=3D"20" cellspacing=
+=3D"0" role=3D"presentation" style=3D"margin: 0 auto;" width=3D"600"></tabl=
+e><table bgcolor=3D"#ffffff" cellpadding=3D"20" cellspacing=3D"0" role=3D"p=
+resentation" width=3D"100%"><tbody><tr><td align=3D"center" bgcolor=3D"#990=
+000" style=3D"padding:15px;"><span style=3D"font-family:Arial,Helvetica,san=
+s-serif;"><a href=3D"https://mx.technolutions.net/ss/c/u001.jxaZRujEt1lhE0W=
+Ep4QewF1deJLcTq6f7iI5u28hQXkaBS5auiA8jrl9A4V2FrgHInX_YcfA3yiqnBJuc7H9fZ5uF_=
+FumrNnnnEreod1cg0PkqeAPh86HgKGmqAIE7aGw6QEucJvHGjiFWKu_YtcCu5ISzfQOH8yV0tf6=
+q8f16RV4Mj3acwpyNQ8OgBeTVMP191rKScarDxx-hBcdB-AaXxmsKi7dg16Bz5DCwesXBJBLEoH=
+BJST8nuchpUVwtJd/4pe/1uNlDUhkTGe5aQx53dFqqg/h10/h001.7L_ucH5pgNOg0c9gOqxwUW=
+Yc7Hqu87vdmkIcCpGsruY" title=3D"https://www.gsb.stanford.edu/experience/new=
+s-history/lessons-leadership-2025-executive-challenge" style=3D"text-decora=
+tion: underline; text-decoration-color: #8C1515;"><img alt=3D"" style=3D"di=
+splay: block; border: 0px; width: 540px; max-width: 560px; height: 393px;" =
+height=3D"393" width=3D"540" src=3D"https://mx.technolutions.net/proxy/1Vjf=
+Wl0Wb_P_MZ_SC40jYU5dmWLlruqEt8l3Dxtx8LrmE49vKGKq6PSiFOWllitjY0i-Rkb_0Tidgyo=
+ETciJqzPu2Y-r57-FC4HQvPUE-fS8BEFmHmy2tOFvvCkhDCRY/TUuiW7gZhWUUyzkPVQg7yQ" /=
+></a></span></td></tr><tr><td bgcolor=3D"#efefef" style=3D"padding: 20px; b=
+order-bottom: 4px solid rgb(153, 0, 0); font-size: 14px; line-height: 21px;=
+"><span style=3D"color: rgb(51, 51, 51); font-family: Arial, Helvetica, san=
+s-serif;"><strong style=3D"color:#800000;"><strong style=3D"color:#820000;"=
+><strong style=3D"color:#820000;"></strong></strong></strong></span><span s=
+tyle=3D"font-family: Arial, Helvetica, sans-serif;"><strong style=3D"color:=
+ rgb(130, 0, 0);">Lessons in Leadership at the 2025 Executive Challenge</st=
+rong></span><p style=3D""><span style=3D"font-family: Arial, Helvetica, san=
+s-serif;"><font color=3D"#333333"><span style=3D"font-family: Arial, Helvet=
+ica, sans-serif;"><font color=3D"#2e2d29">Every year, first-year MBA studen=
+ts at&nbsp;Stanford GSB&nbsp;participate in the&nbsp;<a href=3D"https://mx.=
+technolutions.net/ss/c/u001.jxaZRujEt1lhE0WEp4QewF1deJLcTq6f7iI5u28hQXlCBQM=
+oB_PUyP_8w3z6RHBAore3LKB93CRVfLiZ-A-hxIifkjfP50ZZVAjCTdtoiCvcmiGv3CIznAsgm0=
+TMKrN-sJIMiw1p_Z2uuLQcv96ypZjpO5W0xBvmAvmwrwnaPBKFvzkQ9owj7nb_REsXNaRl2b9Sf=
+C5laQlHZspc1WRS0_Tp5rKoAza_NP_tH1Q8QJs/4pe/1uNlDUhkTGe5aQx53dFqqg/h11/h001.=
+M_uyTKtbp0it3J8kYFl3MsPaznlc1acmvOMHyU-xDr0" title=3D"https://www.gsb.stanf=
+ord.edu/experience/learning/leadership/executive-challenge" style=3D"color:=
+#8c1515">Executive Challenge</a>, the culminating event for the&nbsp;<em><a=
+ href=3D"https://mx.technolutions.net/ss/c/u001.jxaZRujEt1lhE0WEp4QewF1deJL=
+cTq6f7iI5u28hQXmciwX5C0knQP4bkBTX-hb7RXkhEjV9-N7B2y3eQGr2JMgQlkL2T-zw2kViXh=
+qW8vk34BHImTFRdQTNdGAsxsaBsBBvIdJreUY0oTQtJCsIQ_1ZczK5jEL87itWHSTt2gGoWoba-=
+5C3lJngVwMV1IHx-ZlxP646lU83kHidXwVlvp7MvYqE7voMm8i1LNwMzL58-bhQmxErR-hZVH0D=
+WmYG/4pe/1uNlDUhkTGe5aQx53dFqqg/h12/h001.lHhwTkSO6rIKXQ9s0SQ3BK8jp5UrpY1M0s=
+IZx3JJEsU" title=3D"https://www.gsb.stanford.edu/stanford-gsb-experience/le=
+arning/leadership/leadership-labs" style=3D"color:#8c1515">Leadership Labs<=
+/a>&nbsp;course</em>. Part of the required curriculum for all MBA students,=
+ the challenge is a GSB-wide, day-long event in which student squads role-p=
+lay three business cases</font></span>.</font></span></p><span style=3D"col=
+or: rgb(51, 51, 51); font-family: Arial, Helvetica, sans-serif;"><a href=3D=
+"https://mx.technolutions.net/ss/c/u001.jxaZRujEt1lhE0WEp4QewF1deJLcTq6f7iI=
+5u28hQXkaBS5auiA8jrl9A4V2FrgHInX_YcfA3yiqnBJuc7H9fZ5uF_FumrNnnnEreod1cg0Pkq=
+eAPh86HgKGmqAIE7aGw6QEucJvHGjiFWKu_YtcCu5ISzfQOH8yV0tf6q8f16RV4Mj3acwpyNQ8O=
+gBeTVMP191rKScarDxx-hBcdB-AaXxmsKi7dg16Bz5DCwesXBJBLEoHBJST8nuchpUVwtJd/4pe=
+/1uNlDUhkTGe5aQx53dFqqg/h13/h001.6WdTOu-JL_Fgnqrg4vIT18yIyExqH4upUUVMUt3b6d=
+4" title=3D"https://www.gsb.stanford.edu/experience/news-history/lessons-le=
+adership-2025-executive-challenge" style=3D"color:#8c1515; text-decoration:=
+ underline; text-decoration-color: #8C1515; font-weight:bold;">READ MORE</a=
+></span></td></tr></tbody></table><!-- WHAT HAPPENED AFTER A COURT RULED TH=
+AT EMPLOYERS =E2=80=9COWN YOUR BRAIN=E2=80=9D --><table align=3D"center" bg=
+color=3D"#ffffff" cellpadding=3D"20" cellspacing=3D"0" role=3D"presentation=
+" style=3D"margin: 0 auto;" width=3D"600"></table><table bgcolor=3D"#ffffff=
+" cellpadding=3D"20" cellspacing=3D"0" role=3D"presentation" width=3D"100%"=
+><tbody><tr><td align=3D"center" bgcolor=3D"#990000" style=3D"padding:15px;=
+"><span style=3D"font-family:Arial,Helvetica,sans-serif;"><a href=3D"https:=
+//mx.technolutions.net/ss/c/u001.jxaZRujEt1lhE0WEp4QewF1deJLcTq6f7iI5u28hQX=
+kmFDb6y1p0k9dILCH992cpZxuLN9-170z7aOf8pZ743kyjzclcAbH0WiHDNHV6AWpVfHBRNl1qk=
+D1dq9LRn_6C8cqcCvdvQRcDY2UwGCB8BcXI9q15W3swwy0nVw1VV14lwHs7ndkH5_6FHZFpU_sH=
+4yeRVeK1xMXMVPlBxTdiwY4va0deu7MXt0cAFsFlw_IAE66SXYrq2zVrQAQYpBna/4pe/1uNlDU=
+hkTGe5aQx53dFqqg/h14/h001.AmmyU4ZHBr3rR0NHhP2bc0r-WJWy64eq0EuhqyzBviY" titl=
+e=3D"https://www.gsb.stanford.edu/insights/why-surprises-catch-us-guard-how=
+-anticipate-them"><img alt=3D"" style=3D"display: block; border: 0px; width=
+: 540px; max-width: 560px; background-color: rgb(153, 0, 0); padding: 0px; =
+height: 340px;" height=3D"340" width=3D"540" src=3D"https://mx.technolution=
+s.net/proxy/1VjfWl0Wb_P_MZ_SC40jYU5dmWLlruqEt8l3Dxtx8LrmE49vKGKq6PSiFOWllit=
+j4-RQnx1x_dVHP9jDbrmgHT--rG9BzSPygpUyRDfk83w2gfHyiZLgrT3Mc67zckq7/sKtFcFpfz=
+t2v9UycBtKKbwfGBUYQpsmvMfC_nQQjTKk" /></a></span></td></tr><tr><td bgcolor=
+=3D"#efefef" style=3D"padding:20px; border-bottom:4px solid #990000; color:=
+#333333; font-size:14px; line-height:21px;"><span style=3D"font-family:Aria=
+l,Helvetica,sans-serif;"><span style=3D"font-family: Arial, Helvetica, sans=
+-serif;"><strong style=3D"color: rgb(130, 0, 0);">Why Surprises Catch Us Of=
+f Guard &#8212; And How to Anticipate Them&nbsp;</strong></span><br /><br /=
+><span style=3D"font-size:14px;"><span style=3D"color:#2e2d29;">Shifting be=
+tween abstract and concrete thinking can help us prepare for unexpected eve=
+nts</span></span>.<br /><br /><a href=3D"https://mx.technolutions.net/ss/c/=
+u001.jxaZRujEt1lhE0WEp4QewF1deJLcTq6f7iI5u28hQXkmFDb6y1p0k9dILCH992cpZxuLN9=
+-170z7aOf8pZ743kyjzclcAbH0WiHDNHV6AWpVfHBRNl1qkD1dq9LRn_6C8cqcCvdvQRcDY2UwG=
+CB8BcXI9q15W3swwy0nVw1VV14lwHs7ndkH5_6FHZFpU_sH4yeRVeK1xMXMVPlBxTdiwY4va0de=
+u7MXt0cAFsFlw_IAE66SXYrq2zVrQAQYpBna/4pe/1uNlDUhkTGe5aQx53dFqqg/h15/h001.gK=
+-Nxlq8Vn4ZFCarpG_6ehJB5JgwKxwh1Vt0CuG_wLA" title=3D"https://www.gsb.stanfor=
+d.edu/insights/why-surprises-catch-us-guard-how-anticipate-them" style=3D"c=
+olor:#8c1515; text-decoration:underline; font-weight:bold;">READ MORE</a></=
+span></td></tr></tbody></table><!-- Container with white background --><tab=
+le cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" style=3D"borde=
+r-collapse:collapse; background-color:#ffffff;" width=3D"100%"><tbody><tr><=
+td align=3D"center" style=3D"padding:20px 0;"><!-- Inner Table for layout (=
+2-column) --><table cellpadding=3D"0" cellspacing=3D"0" role=3D"presentatio=
+n" style=3D"border-collapse:collapse;"><tbody><tr><!-- Left Column: Image -=
+-><td align=3D"center" class=3D"es-m-p0r es-m-p20b" style=3D"padding:0; mar=
+gin:0; width:181px;" valign=3D"top"><table cellpadding=3D"0" cellspacing=3D=
+"0" role=3D"presentation" style=3D"border-collapse:collapse;" width=3D"100%=
+"><tbody><tr><td align=3D"center" class=3D"es-m-p30" style=3D"padding:0; ma=
+rgin:0; font-size:0px;"><a href=3D"https://mx.technolutions.net/ss/c/u001.j=
+xaZRujEt1lhE0WEp4QewF1deJLcTq6f7iI5u28hQXlE8mCbl3yKl5TEq5XWoVCw1PSBvc2zNyTo=
+dtQGZA0qp0fqey67WFB7FxdODvLAZk8zSvuL8QEIBV_-Q1SqhhCiYK79HqCrqkdzvkFGC-AOznl=
+lUakLJE9Bi46r1iO-EMFzEeSI6bE21PENUND1hIYcAPS1n3CFKuu6hm3bPdGZFBTJ9gbgxTwzd4=
+nlGJpVx273v8R4CxpRe_zwdIQnnrXf/4pe/1uNlDUhkTGe5aQx53dFqqg/h16/h001.JLSRAGWm=
+As0e2DcIiFfp5dKi5fbqDDTC_K2jIW93JyA" title=3D"https://www.gsb.stanford.edu/=
+programs/mba/life-community/alumni/voices/nini-hamrick" target=3D"_blank"><=
+img alt=3D"" class=3D"adapt-img" style=3D"display: block; border: 0px; outl=
+ine: none; text-decoration: none; width: 140px; height: 140px;" height=3D"1=
+40" width=3D"140" src=3D"https://mx.technolutions.net/proxy/1VjfWl0Wb_P_MZ_=
+SC40jYU5dmWLlruqEt8l3Dxtx8LrmE49vKGKq6PSiFOWllitjS1xleA1xboDwjvR-IOYtPsF1Mr=
+kCK2Bf35-LpihH89JD__LDUIq4HBNM4vHCmI_N/IT9YU6N3teybF2OE0_pgRAPML5lcblkGyJ6y=
+gDY2wMmIG_CTjmMJjbHvxQU2jVYOUkzDE4z5MISMtGDvcBxhrg" /></a></td></tr></tbody=
+></table></td><!--[if mso]><td style=3D"width:20px"></td><![endif]--><!-- R=
+ight Column: Text --><td align=3D"left" class=3D"es-right" style=3D"padding=
+:0; margin:0; width:369px;"><table cellpadding=3D"0" cellspacing=3D"0" role=
+=3D"presentation" style=3D"border-collapse:collapse;" width=3D"100%"><tbody=
+><tr><td align=3D"left" style=3D"padding:0; margin:0;"><p style=3D"margin:0=
+; font-family:Arial, Helvetica Neue, Helvetica, sans-serif; font-size:14px;=
+ line-height:21px; color:#333333;"><span style=3D"font-size:14px; color:#80=
+0000;">Nini Hamrick, MBA &#8217;20</span><br /><br />
+                                    &#8220;Our success has been defined by =
+delivering AI products that actually work in the field.&#8221;<br /><a href=
+=3D"https://mx.technolutions.net/ss/c/u001.jxaZRujEt1lhE0WEp4QewF1deJLcTq6f=
+7iI5u28hQXlE8mCbl3yKl5TEq5XWoVCw1PSBvc2zNyTodtQGZA0qp0fqey67WFB7FxdODvLAZk8=
+zSvuL8QEIBV_-Q1SqhhCiYK79HqCrqkdzvkFGC-AOznllUakLJE9Bi46r1iO-EMFzEeSI6bE21P=
+ENUND1hIYcAPS1n3CFKuu6hm3bPdGZFBTJ9gbgxTwzd4nlGJpVx273v8R4CxpRe_zwdIQnnrXf/=
+4pe/1uNlDUhkTGe5aQx53dFqqg/h17/h001.tWUf5rX0wkUQ9_E9S4jxoABb2ZAiSNjfRZqqgsJ=
+_Sp8" title=3D"https://www.gsb.stanford.edu/programs/mba/life-community/alu=
+mni/voices/nini-hamrick" style=3D"color:#990000; font-size:14px; text-decor=
+ation:underline;" target=3D"_blank">READ MORE </a></p></td></tr></tbody></t=
+able></td></tr></tbody></table></td></tr></tbody></table><!-- Crimson Divid=
+er Line --><table cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation"=
+ style=3D"border-collapse:collapse;" width=3D"100%"><tbody><tr><td style=3D=
+"padding:0px 0;"><table align=3D"center" cellpadding=3D"0" cellspacing=3D"0=
+" role=3D"presentation" style=3D"border-collapse:collapse;" width=3D"100%">=
+<tbody><tr><td height=3D"3" style=3D"line-height:1px; background-color:#990=
+000; font-size:0;"></td></tr></tbody></table></td></tr></tbody></table><!--=
+ UPCOMING EVENTS --><table bgcolor=3D"#ffffff" cellpadding=3D"20" cellspaci=
+ng=3D"0" role=3D"presentation" width=3D"100%"><tbody><tr><td style=3D"font-=
+size:14px; color:#333333; line-height:21px;"><p><span style=3D"font-family:=
+Arial,Helvetica,sans-serif;"><strong style=3D"color:#990000; font-size:16px=
+;">Upcoming Events&nbsp;</strong></span><span></span><br /><span style=3D"f=
+ont-family:Arial,Helvetica,sans-serif;"><br /><span style=3D"font-family:Ar=
+ial,Helvetica,sans-serif;"><a href=3D"https://mx.technolutions.net/ss/c/u00=
+1.jHUdaz39nLWnSyuTlUQzaWJPN1TTYLVzZS3_eyx3E8fzsF9w45sCRKvpJLMB9uSdkRIDCgNOW=
+g-QGyLxgvxq0cpM1pJqIz0hArHM8wIHe6i2kbJEjl33FPWECSGddtg4T7rXVxV3MdSy0yGWq1eK=
+NVt3nCCRxxdqYQFVNOzC3WU-QNsPJEsomh9c4d9Ez07jgB1F8lmW1tkMQ1CtEc-snjBtSaRSisq=
+q-7a-AXtCvCgu8Z2eKGEwmAlxemUNPHxJiS7LQKMm_P35JKCIXjnwQw/4pe/1uNlDUhkTGe5aQx=
+53dFqqg/h18/h001.y7xjzF9IQC-J-2kizUVHiGO06d7xdolXtOl14SnJQ8c" title=3D"http=
+s://tours.mba.com/middleeast?utm_source=3Dschooladm&amp;utm_medium=3Demail&=
+amp;utm_campaign=3Duniversity_marketing_stanford" style=3D"color:#990000; t=
+ext-decoration:underline;">The MBA + Master&#8217;s Tour Middle East</a><br=
+ />
+                        2 April | 7:00 p.m. &#8211; 9:30 p.m. Gulf Standard=
+&nbsp;Time | Online</span><br /><br /><a href=3D"https://mx.technolutions.n=
+et/ss/c/u001.cpQnkll3XXHbQrBNB1xm0FTHE_MBiraxRVsxI_RcrpWR_veEvWZVtY_IxxOE7T=
+PRvxPBsSNQ1zGJvkohTBPqSkFLF3rn-yzBnY14TirTN9Tnrp1jEDfCCqu8Ykvn01PBee1LIJL1e=
+xanbUejlhNw0TKbmtpt22uBWnNPPyYH7ud_GNdE_X6C-CeGszn770pfuNUNqRjGEQo6Ecw6NkQy=
+qYQncxmhjWIdVfVq2gbS07CKDB1qaECspftgn06hzuSf/4pe/1uNlDUhkTGe5aQx53dFqqg/h19=
+/h001.WcgIW7aDh0zMWHgC-7--4bVUJrQkdMY8heFGr76CIqc" title=3D"https://applymb=
+amsx.stanford.edu/register/?id=3Dacb3b6b4-3ea8-41f1-b275-974c9ee4917c" styl=
+e=3D"color:#990000; text-decoration:underline;">First Fridays with GSB Admi=
+ssions: Alumni Relations and the GSB Community</a><br />
+                        3 April | 9:00 a.m. &#8211; 9:45 a.m. PT | Online<b=
+r /><br /><span style=3D"font-family:Arial,Helvetica,sans-serif;"><span sty=
+le=3D"font-family:Arial,Helvetica,sans-serif;"><a href=3D"https://mx.techno=
+lutions.net/ss/c/u001.cpQnkll3XXHbQrBNB1xm0FTHE_MBiraxRVsxI_RcrpWR_veEvWZVt=
+Y_IxxOE7TPRPOKNDl5IWAlojPrYjjjXy8yukw3e_jTd6lMvX-mdqAGN2jiZbYdrNZY0woPstILq=
+2sCNAYUgZlqyefHQU1M0kl8D1GVqc2bkXSm0UBrmg5r7sALVdzHs-uSPSverFMsqfidkWbvLcRA=
+K0Ip-2zUy28s9xsiHyDfY_ZJH9kG6ddRmwlVNiAE1Z7sEDzIs4kAr/4pe/1uNlDUhkTGe5aQx53=
+dFqqg/h20/h001.cyO_dfPAgJsb3iCzBKpaMAP-Pdp7Dc4j9PnLHccw-j4" title=3D"https:=
+//applymbamsx.stanford.edu/register/?id=3Dd07f9969-7191-4792-ae33-9e47fe7eb=
+176" style=3D"color:#990000; text-decoration:underline;">GSB Campus Visit D=
+ay</a><br />
+                        6 April | 9:30 a.m. &#8211; 3:45 p.m. PT | On Campu=
+s<br /><br /><span style=3D"font-family:Arial,Helvetica,sans-serif;"><span =
+style=3D"font-family:Arial,Helvetica,sans-serif;"><span style=3D"font-famil=
+y:Arial,Helvetica,sans-serif;"><a href=3D"https://mx.technolutions.net/ss/c=
+/u001.jxaZRujEt1lhE0WEp4QewI8COW8XNBTw_GktYqlcoi1YyIBCyIndAzVHeKNKZJg6ylRH7=
+LFayv5UU8i3GgRzyzy8ojOmrUD4yCgsMmguPlvh8Zw_66rp9eetFAugMpOw3pkOqece2q4uJbU-=
+MvquilkZhAEmhyO2XqkNW7wpcJRrGs6RX376DNtSXXkis62n6GPt5XkATLZn4q_DIPsyjoGcPkm=
+5HrIVqPJZUXSl3bBiiEgsHj01to34XbTIqsMGNo7Z-Qb5j2l18mGUfPA-6w/4pe/1uNlDUhkTGe=
+5aQx53dFqqg/h21/h001.xhCGUn8oVqWuspzcrEgVUiJ-VqoCxZp4bm6FL3tY_v0" title=3D"=
+https://www.fortefoundation.org/pre-mba/forums/?utm_source=3Dforte&amp;utm_=
+medium=3Dpromokit&amp;utm_campaign=3Dforums" style=3D"color:#990000; text-d=
+ecoration:underline;">Fort&#233; MBA Forum</a><br />
+                        9 April | 11:00 a.m. &#8211; 2:00 p.m. ET | Online<=
+br /><br /><span style=3D"font-family:Arial,Helvetica,sans-serif;"><span st=
+yle=3D"font-family:Arial,Helvetica,sans-serif;"><a href=3D"https://mx.techn=
+olutions.net/ss/c/u001.cpQnkll3XXHbQrBNB1xm0FTHE_MBiraxRVsxI_RcrpWR_veEvWZV=
+tY_IxxOE7TPR3oM-XSEDzpwlfRw5COobK8B_XUwe6Lbs9QMzBc6yBDZ8xpsVdJYREAoX0mpefMP=
+SKAXhpiJDvssx8OjiE3JvQcfqgdDVrDpR0hYEd_-EItU6b4wK1pHP8_RtNrbvVK816gy_gXv6eE=
+rDOpHAL18jigGBMNm-Isluq8mBIOgQWFLlVWGgE5DguhqHdydvRZ-9/4pe/1uNlDUhkTGe5aQx5=
+3dFqqg/h22/h001.TEogbvGci9zYOWcE_Qb_p_ML3fSXoQpQoydW-wmccLs" title=3D"https=
+://applymbamsx.stanford.edu/register/?id=3Dd3d59a27-3c0e-4a5d-8340-34a4f304=
+c796" style=3D"color:#990000; text-decoration:underline;">MBA/MSx Informati=
+on Session in London</a><br />
+                        13 April | 7:00 p.m. &#8211; 9:00&nbsp;p.m. GMT Day=
+light Time | Online<br /><br /><span style=3D"font-family:Arial,Helvetica,s=
+ans-serif;"><span style=3D"font-family:Arial,Helvetica,sans-serif;"><span s=
+tyle=3D"font-family:Arial,Helvetica,sans-serif;"><span style=3D"font-family=
+:Arial,Helvetica,sans-serif;"><span style=3D"font-family:Arial,Helvetica,sa=
+ns-serif;"><span style=3D"font-family:Arial,Helvetica,sans-serif;"><span st=
+yle=3D"font-family:Arial,Helvetica,sans-serif;"><span style=3D"font-family:=
+Arial,Helvetica,sans-serif;"><a href=3D"https://mx.technolutions.net/ss/c/u=
+001.jHUdaz39nLWnSyuTlUQzaVth-ZGcoFYBfKVs_1gP_w-zeiPb89A_0-S1_b-62boIMG7Jv3Y=
+ENJbMedzpevTp6er2BmCFbzGdrn-ZebvAb_vpa97EOQUqjCKE6VdnH_DQeFrRVHgqkxtM6_BiKI=
+0Mi1VH_3G1W5Lxpr-SaVDJ2TQon5BmsbTOyEvD5S1sUtwUCmZ_GN_g1bDgNSMRHgsJfeVTPShJO=
+5G6kUbhcCX70W5XLBNrZ-pTMamEZslBLtmSIE_SGDSSvdqXUuUY0ePJ-w/4pe/1uNlDUhkTGe5a=
+Qx53dFqqg/h23/h001.R3fFeti4OGqK57k-LxRXgpu6q17XKiVhkTGZv5x0nY4" title=3D"ht=
+tps://tours.mba.com/europe?utm_source=3Dschooladm&amp;utm_medium=3Demail&am=
+p;utm_campaign=3Duniversity_marketing_stanford" style=3D"color:#990000; tex=
+t-decoration:underline;">MBA + Master&#8217;s Tour Europe</a><br />
+                        14 April | 7:00 p.m. &#8211; 9:30&nbsp;p.m. Central=
+ European Time&nbsp;| Online</span></span></span></span></span></span></spa=
+n></span></span></span></span></span></span></span></span></span><br /><br =
+/>
+                        &nbsp;
+                      </p><p></p><div style=3D"text-align: center; margin-t=
+op: 20px;"><span style=3D"font-family:Arial,Helvetica,sans-serif;"><a href=
+=3D"https://mx.technolutions.net/ss/c/u001.jxaZRujEt1lhE0WEp4QewF1deJLcTq6f=
+7iI5u28hQXlE8mCbl3yKl5TEq5XWoVCw86XBIyFbs3mnxbzfOKoYRIEhQWjiFNo5kWo8lSTXqWx=
+BRfg9icGD6s3luKdL-sgkEHnslFzE8KVOfTsUOKg7wen8y3p7A9569qer_1BOJF27Jdxxez_Wt2=
+gLdgpuAIf-VqK6EZ8qTo-x047cbpC1iRuUnN4CW5nEWrk0fIoYXL0/4pe/1uNlDUhkTGe5aQx53=
+dFqqg/h24/h001.s-_mywOyzJZiB-khxrnkICJC69ZHUtfQUAxOrPLcpls" title=3D"https:=
+//www.gsb.stanford.edu/programs/mba/admission/events/schedule" class=3D"es-=
+button" style=3D"background:#990000; color:#ffffff; padding:10px 20px; disp=
+lay:inline-block; border-radius:0px; font-size:14px; text-decoration:none;"=
+>See All Events</a></span></div></td></tr></tbody></table><!-- FOOTER --><t=
+able align=3D"center" bgcolor=3D"#ffffff" cellpadding=3D"20" cellspacing=3D=
+"0" role=3D"presentation" style=3D"margin: 0 auto;" width=3D"600"></table><=
+table bgcolor=3D"#990000" cellpadding=3D"20" cellspacing=3D"0" role=3D"pres=
+entation" width=3D"100%"><tbody><tr><td style=3D"font-size:14px; color:#fff=
+fff; line-height:21px;"><span style=3D"font-family:Arial,Helvetica,sans-ser=
+if;"><strong>That&#8217;s all for now.</strong><br /><br />
+                      Whether you&#8217;d like to move up in your chosen fi=
+eld or change paths completely, the education you receive at Stanford GSB w=
+ill empower you with the knowledge, skills, and long-term vision that lead =
+to innovation and growth.<br /><br />
+                      Our students and alumni don&#8217;t all fit one mold,=
+ and we don&#8217;t expect candidates to either. We hope you&#8217;ll consi=
+der applying in an <a href=3D"https://mx.technolutions.net/ss/c/u001.jxaZRu=
+jEt1lhE0WEp4QewF1deJLcTq6f7iI5u28hQXlE8mCbl3yKl5TEq5XWoVCwUdob2vBL40B40OVCp=
+1PLXtDl5jCp5-RuDv5B6d4mO47R26Put_3q9EJ5Zek7v4pAbaouGcM7_PQuK4k95G-1E5s3wBi_=
+kltJzScMdm48f7Ey8BSMLedOeIV8VCxzQShL77NldtDxsO-Zt-itR4fhAg/4pe/1uNlDUhkTGe5=
+aQx53dFqqg/h25/h001.0mDWcsaA6bXzbhPtPZ73n_34pEACnJAOTJ1y2pBYIpc" title=3D"h=
+ttps://www.gsb.stanford.edu/programs/mba/admission/deadlines" style=3D"-web=
+kit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:ex=
+actly;text-decoration:underline;color:#ffffff;font-size:14px">upcoming roun=
+d</a> and look forward to learning more about your story. The Round 3 appli=
+cation deadline is 7 April&nbsp;2026.<br /><br />
+                      Remember, you can create a <a href=3D"https://mx.tech=
+nolutions.net/ss/c/u001.cpQnkll3XXHbQrBNB1xm0FTHE_MBiraxRVsxI_RcrpVGqWdwH0p=
+MAi9MVo0f_ajf49rPzCFuA62d6yZZm7DTHM4wNfxixa0O1TLYKnDXVxCRSNbiziSzPB73kdPLAD=
+nAV7vclJTIsjxMj93iyguVaTd9nRZ96CkCZlcSTfQIzt9YdxJY5XR6KBGc_LFFcxE2YMfLGd_hv=
+irTRtUYnubk1-wh427ZaLwv8fhIA9y_wyE/4pe/1uNlDUhkTGe5aQx53dFqqg/h26/h001.fOQR=
+xkj79OA_Y8K3ZqkXv15dnIXy7Ltxv8en7HbnN90" title=3D"https://applymbamsx.stanf=
+ord.edu/portal/door?goto=3Dconnect&amp;target=3Dmy-gsb" style=3D"-webkit-te=
+xt-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;=
+text-decoration:underline;color:#ffffff;font-size:14px">MyStanfordGSB.Info<=
+/a>&nbsp;account to gain access to additional content &#8212; including tip=
+s and recommended resources.<br /><br />
+                      Stanford MBA Admissions Office</span></td></tr><tr><t=
+d align=3D"center"><span style=3D"font-family:Arial,Helvetica,sans-serif;">=
+<a href=3D"https://mx.technolutions.net/ss/c/u001.jxaZRujEt1lhE0WEp4QewFt-X=
+jd8vEyIQf0VhGguqDKhm2pf2aIGaNNljF7QaQJUgjnQflbagExuRc9_Tv763HyhNfIYs1flcuKz=
+xKlf-SbnPf-XNYuAKyyFIekHMRMs-W9OqHnqgxAS4C0zUomU0aupmz_eJtPQ-Y-NjOn0gc82Pzl=
+3qE2L2r6PvfxSl4_Q/4pe/1uNlDUhkTGe5aQx53dFqqg/h27/h001.2wvGD37JzEzUJ_CrrMt5q=
+-TRz8TzLMnaf4_uSG6-370" title=3D"https://www.facebook.com/StanfordGSB/"><im=
+g alt=3D"Facebook" style=3D"margin-right:10px;" width=3D"25" src=3D"https:/=
+/mx.technolutions.net/proxy/1VjfWl0Wb_P_MZ_SC40jYU5dmWLlruqEt8l3Dxtx8Lo4_qX=
+1554hS9US8--clK_uQ6t8sVwHQ1_GXroWngdNtIH-aEv_FVvSLaZiDLVmBK0" /></a><a href=
+=3D"https://mx.technolutions.net/ss/c/u001.jxaZRujEt1lhE0WEp4QewP0BSOFx9sM6=
+ZdO5ggLiKeGo7o9P0l64F-jvFFEZtBvG6PhMyCvBPc9oRi-9sLdKdD_Ldd-7Hl9lV0lR876PfRm=
+rK2B3t8KIUx2duAlwkbiq_BYtpbuk7G5f2ICyRgd07y2gVdJKZXt20IvNNEc08j7L4D86Lry4_Y=
+z4PtmPVc5tHElD_HnaElPWCR8tvbpOzw/4pe/1uNlDUhkTGe5aQx53dFqqg/h28/h001.1eAZI1=
+Mf_JwEyGHULy_6K-vQYIoL38FXFV5tZV8435M" title=3D"https://www.linkedin.com/sh=
+owcase/stanford-gsb-admissions/"><img alt=3D"LinkedIn" style=3D"margin-righ=
+t:10px;" width=3D"25" src=3D"https://mx.technolutions.net/proxy/1VjfWl0Wb_P=
+_MZ_SC40jYU5dmWLlruqEt8l3Dxtx8Lo4_qX1554hS9US8--clK_uSuqrN87IwUzEVxFqywqFYc=
+lrC1Bm8Q2C9kfdKRhxVR0" /></a><a href=3D"https://mx.technolutions.net/ss/c/u=
+001.jxaZRujEt1lhE0WEp4QewNyUWzt-M6pZ_FXvPJGcmVrfssIeE8SF8C0qzE5q6iWKu9aemEn=
+gMdp_egoLRvrRSpVXd8TFV0-2Of-nAILUR5Zz2NmRw_Frf2KUk-1nScKtzWrxTeXih5_-jhvanM=
+Y64HouIyJiY2eheWInsbisKcNJ1OS9m-dsIhlCFTYrPE_n/4pe/1uNlDUhkTGe5aQx53dFqqg/h=
+29/h001.rEgHHwm95kloGaRL54FCchAI6xUR1QrhJjy8Lv0TqCA" title=3D"https://www.i=
+nstagram.com/gsbadmissions/"><img alt=3D"Instagram" style=3D"margin-right:1=
+0px;" width=3D"25" src=3D"https://mx.technolutions.net/proxy/1VjfWl0Wb_P_MZ=
+_SC40jYU5dmWLlruqEt8l3Dxtx8Lo4_qX1554hS9US8--clK_u63oRo2Y6IxFtbheCdkRRZzd0R=
+3vC5-zr3lsmQlNnjIM" /></a><a href=3D"https://mx.technolutions.net/ss/c/u001=
+.jxaZRujEt1lhE0WEp4QewGemdqH0OvSE3VEEBnpb3TIVxcjMdlgmPMf6BVxBVrbYODX_2GtGoo=
+YhTPL_oRHg5m77UzC3GerpVZwQBC4vw3WJxrgS_AV5Ln9XenIo8wrku1l8MowUF4IQxbxw-mKH0=
+g73ACQz06gKsSzXMvfej3Z5JvHTgXP_a7m1Y5tMPIkQ/4pe/1uNlDUhkTGe5aQx53dFqqg/h30/=
+h001.zkfDr41PVKOF_B5-t5ESFuilOctWNAl_xFdgMjGqEV8" title=3D"https://www.yout=
+ube.com/@stanfordgsb"><img alt=3D"YouTube" width=3D"25" src=3D"https://mx.t=
+echnolutions.net/proxy/1VjfWl0Wb_P_MZ_SC40jYU5dmWLlruqEt8l3Dxtx8Lo4_qX1554h=
+S9US8--clK_uGwySCGjPQ-ShAMBbAyuzsrcMI_mz7K-x_YS6JZRVqsg" /></a></span></td>=
+</tr></tbody></table></td></tr></tbody></table></td></tr></tbody></table><d=
+iv class=3D"deliver_unsubscribe" style=3D"opacity: 0.75; clear: both; color=
+: #333333; font-family: Arial, Helvetica, sans-serif; font-size: 11px; marg=
+in: 25px auto; width: auto; max-width: 600px; background-color: #fafafa; te=
+xt-align: center; padding: 5px;">This email was sent to daniyah.taimur@gmai=
+l.com by Stanford MBA Admissions.<br /><a href=3D"https://mx.technolutions.=
+net/ss/c/u001.cpQnkll3XXHbQrBNB1xm0FTHE_MBiraxRVsxI_RcrpW-utjAeGYzw6keMU5A5=
+PBRzgm_dDkQ5mkjKjUf4mfvcWk4kSTEQ5oz6_gx5gEiOUBNgnat4MiygVwWRhdFvZBQvSrI8xyY=
+yiwgA2nVXmbP6zwzSqWCYbk-Ja8lN-QINj4UJYQ_1OiwgBSPUGVDYwMtMJayCr8OPJndhkqiatD=
+tlWFKjhguTzEIx7gx-Srtq1cLUAiFAR2I5XjzcpicXsHD/4pe/1uNlDUhkTGe5aQx53dFqqg/h3=
+1/h001.Oe_AAFwx6kQ_huB_cUpTknXU8RtIM9x7o5nH8DpTnZY">Unsubscribe</a> from St=
+anford Graduate School of Business.</div>
+<img src=3D"https://mx.technolutions.net/ss/o/u001.l7ggKG0fqQ6Gg4_ean_HcQ/4=
+pe/1uNlDUhkTGe5aQx53dFqqg/ho.gif" alt=3D"" width=3D"1" height=3D"1" border=
+=3D"0" style=3D"height:1px !important;width:1px !important;border-width:0 !=
+important;margin-top:0 !important;margin-bottom:0 !important;margin-right:0=
+ !important;margin-left:0 !important;padding-top:0 !important;padding-botto=
+m:0 !important;padding-right:0 !important;padding-left:0 !important;"/></bo=
+dy>
+</html>
+--8b758c27d113554ffcf3a0e064ef7265aada02e4fc27c3c204c8d8d48201--

@@ -1,0 +1,872 @@
+Delivered-To: daniyah.taimur@gmail.com
+Received: by 2002:a05:7022:397:b0:12a:7275:101a with SMTP id 23csp824504dlc;
+        Sun, 29 Mar 2026 05:48:25 -0700 (PDT)
+X-Received: by 2002:a05:6a21:202:b0:39b:e321:63ef with SMTP id adf61e73a8af0-39c87b64f7dmr6852035637.57.1774788505677;
+        Sun, 29 Mar 2026 05:48:25 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1774788505; cv=none;
+        d=google.com; s=arc-20240605;
+        b=hxYTa3iEwbk1RSRAMjJRuFszoovX+21OizojBXPuFs3I0O3cEkzar8MNTzJHS6feyB
+         LLshEoMj5Qj0ovjZ46vhYRT8xB3y+iVNTRI+qRdKEix+w/F3jSIulsgB3ScuPaxFlgD1
+         zmiZVWtWNwAjgUkJ6eZY0shroeHvScROPl0YX5mqbxclnhNC/kYDMDEwSg97gH6Wcs2N
+         ajnavU6Q7bSt5adY8TLiR3TKFrqe9TJLdL3MINJ2Xbbyyt0b2xAHYRErqltdTOZgBhQ1
+         UHf17hDKZKJM4aBZe/CL+jY5loxgyYP9nag7u28BZ7nqcVVrL4f5PzRaCk90uDRUDTUq
+         qoIQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:list-unsubscribe-post:list-unsubscribe:list-id
+         :feedback-id:message-id:date:to:reply-to:from:subject:dkim-signature
+         :dkim-signature;
+        bh=/LaXa77JrvvgIJ+mA6zTGb0xP0/keXzrkJEqqf+4Lak=;
+        fh=4GJpn9Q6JUFUAjAyT3b4DPAmfDQ42G7asOBE/Ee3jW8=;
+        b=ViIKnPxGuf38jHuehVoQMnRbwwdeWDMkHlNBVUMwOa/J8eJpVWynV7xXGWDcjqVXdr
+         y582bL8Sj+tN7cvSPEUhUHpEghXlWYtXF+kpECL36ERzW+3kVz+36dOymYEFHNoH8M7Q
+         X5+WaLG98Pye53a/Wyi3c9coPIp0d3GIr1xZLksYj7OQFIoLRDULnDihjn0iRECP2cRt
+         1l1C/7IhCXk6HtBa2oXN+EfdpZFGsl8bL4g+ZumLxmoHFmOLUY+ffPMXgc0Y914w63WC
+         mTpP3RY/Wji16xxlU6oYiDmwFE1h8RcNOrj/tDQ8nQLQTnZNrmnMOowFy+eGb2lNwjX6
+         h12w==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@gmail.mcsv.net header.s=k2 header.b=aqCP22j2;
+       dkim=pass header.i=@boucherie.nyc header.s=k3 header.b=ll4FP6V8;
+       spf=pass (google.com: domain of bounce-mc.us17_174242653.13907098-175a020859@mail6.sea172.mcdlv.net designates 148.105.10.6 as permitted sender) smtp.mailfrom=bounce-mc.us17_174242653.13907098-175a020859@mail6.sea172.mcdlv.net;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=boucherie.nyc
+Return-Path: <bounce-mc.us17_174242653.13907098-175a020859@mail6.sea172.mcdlv.net>
+Received: from mail6.sea172.mcdlv.net (mail6.sea172.mcdlv.net. [148.105.10.6])
+        by mx.google.com with ESMTPS id 41be03b00d2f7-c76916df761si8033217a12.101.2026.03.29.05.48.25
+        for <daniyah.taimur@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 29 Mar 2026 05:48:25 -0700 (PDT)
+Received-SPF: pass (google.com: domain of bounce-mc.us17_174242653.13907098-175a020859@mail6.sea172.mcdlv.net designates 148.105.10.6 as permitted sender) client-ip=148.105.10.6;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@gmail.mcsv.net header.s=k2 header.b=aqCP22j2;
+       dkim=pass header.i=@boucherie.nyc header.s=k3 header.b=ll4FP6V8;
+       spf=pass (google.com: domain of bounce-mc.us17_174242653.13907098-175a020859@mail6.sea172.mcdlv.net designates 148.105.10.6 as permitted sender) smtp.mailfrom=bounce-mc.us17_174242653.13907098-175a020859@mail6.sea172.mcdlv.net;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=boucherie.nyc
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.mcsv.net;
+	s=k2; t=1774787420; x=1774873820;
+	bh=/LaXa77JrvvgIJ+mA6zTGb0xP0/keXzrkJEqqf+4Lak=;
+	h=Subject:From:Reply-To:To:Date:Message-ID:X-MC-User:Feedback-ID:
+	 List-ID:List-Unsubscribe:List-Unsubscribe-Post:Content-Type:
+	 MIME-Version:CC:Date:Subject:From;
+	b=aqCP22j2bYI/pPj8aLQBCb3eJXEImTMlNYVbKY3Fvzjk3deOIYFltyMpKel+pAzR8
+	 kgIJOSnTR9I6ISJJy2+stfodkV7GN9HFV5gXIUUZhGMV1t6XFiazzp3gOusRwstXIm
+	 J0XTdGeGC3HN/S9CgI3hXEEj3JuFvfcv/G/2LqnQefiCBOkKmZY+SAvAudd3WcKMdR
+	 h7JQNCqHH3N78dtx9ST9xukNj6SWDSXfAcX0jdcz8l0hjCIivTPkP6o+RQN3BrnyEI
+	 fOTHMtl+lxdfOOvOP4KPj9o/DYPj8yv1oGwwSR04vDJtSKRiW8xY/aIPsbRxCVkqd1
+	 wGPlHrUDbh/bA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=boucherie.nyc; s=k3;
+	t=1774787420; x=1775057420; i=contact@boucherie.nyc;
+	bh=/LaXa77JrvvgIJ+mA6zTGb0xP0/keXzrkJEqqf+4Lak=;
+	h=Subject:From:Reply-To:To:Date:Message-ID:X-MC-User:Feedback-ID:
+	 List-ID:List-Unsubscribe:List-Unsubscribe-Post:Content-Type:
+	 MIME-Version:CC:Date:Subject:From;
+	b=ll4FP6V8uL1hzZ+aGirw7D07TqltgfifTQZCngFd6NMuZtpOL2RiXgSHWRC/0Jh9c
+	 fKWGTGXxgsYPxrQsNJtxz//8DUGMt9ypJxKe4tRBjYY34AVNKOSVxKuFzE6ncUPmab
+	 zwEmuqexs3WO512wKGt2U4R1znRAVccEJPHI5+O/kv99D4PS2nFTlid3vlgGFLA7Po
+	 OrkZpYmQZsLs1WwrVyyzuL6Mhns+6gSq/kTA76TOSG8O/g55A2Z2KmoqLcsll1kImP
+	 4+Y3GmfDBpHWb8fDK7+aazRmvM8FygicYfBNMuQJJGfwTmVVGhnzPbVNBeo3m1fugY
+	 1K72BN7PjU4/Q==
+Received: from localhost (localhost [127.0.0.1])
+	by mail6.sea172.mcdlv.net (Mailchimp) with ESMTP id 4fkDHJ2TcQz6CS8RX
+	for <daniyah.taimur@gmail.com>; Sun, 29 Mar 2026 12:30:20 +0000 (UTC)
+Subject: =?utf-8?Q?Taste=20Spring=20With=20Our=20New=20Easter=20Dishes=F0=9F=8C=B8?=
+From: La Grande Boucherie <contact@boucherie.nyc>
+Reply-To: =?utf-8?Q?La=20Grande=20Boucherie?= <contact@boucherie.nyc>
+To: =?utf-8?Q?Daniyah=20Taimur?= <daniyah.taimur@gmail.com>
+Date: Sun, 29 Mar 2026 12:29:59 +0000
+Message-ID: <d256d6f7580e2728cbb6ef5d6.175a020859.20260329122950.33d240d4d0.b868e0ae@mail6.sea172.mcdlv.net>
+X-Mailer: Mailchimp Mailer - **CID33d240d4d0175a020859**
+X-Campaign: mailchimpd256d6f7580e2728cbb6ef5d6.33d240d4d0
+X-campaignid: mailchimpd256d6f7580e2728cbb6ef5d6.33d240d4d0
+X-Report-Abuse: Please report abuse for this campaign here: https://mailchimp.com/contact/abuse/?u=d256d6f7580e2728cbb6ef5d6&id=33d240d4d0&e=175a020859
+X-MC-User: d256d6f7580e2728cbb6ef5d6
+Feedback-ID: 174242653:174242653.13907098:us17:mc
+List-ID: d256d6f7580e2728cbb6ef5d6mc list <d256d6f7580e2728cbb6ef5d6.1357473.list-id.mcsv.net>
+X-Accounttype: pr
+List-Unsubscribe: <https://nyc.us17.list-manage.com/unsubscribe?u=d256d6f7580e2728cbb6ef5d6&id=2e8d62da09&t=h&e=175a020859&c=33d240d4d0>, <mailto:unsubscribe-mc.us17_d256d6f7580e2728cbb6ef5d6.33d240d4d0-175a020859@unsubscribe.mailchimpapp.net?subject=unsubscribe>
+List-Unsubscribe-Post: List-Unsubscribe=One-Click
+Content-Type: multipart/alternative; boundary="_----------=_MCPart_893065947"
+MIME-Version: 1.0
+
+This is a multi-part message in MIME format
+
+--_----------=_MCPart_893065947
+Content-Type: text/plain; charset="utf-8"; format="fixed"
+Content-Transfer-Encoding: quoted-printable
+
+https://www.boucherieus.com/location/la-grande-boucherie-dc/
+
+
+** Gather for Easter at La Grande Boucherie
+------------------------------------------------------------
+https://www.opentable.com/r/la-grande-boucherie-dc-reservations-washington=
+?restref=3D1328152=E2=8C=A9=3Den-US&ot_source=3DEmail&ot_campaign=3DEaster=
+%20Brunch
+
+Join us this Easter Sunday with seasonal specials crafted for the occasion=
+=2E Spring Braised Lamb with green peas and mint=2C Green Asparagus Hollanda=
+ise au Citron=2C and creamy dark chocolate Riz au Lait are available all d=
+ay for brunch and dinner. Gather with loved ones in our stunning dining ro=
+om for a meal that celebrates the season.
+MAKE A RESERVATION (https://www.opentable.com/r/la-grande-boucherie-dc-res=
+ervations-washington?restref=3D1328152=E2=8C=A9=3Den-US&ot_source=3DEmail&=
+ot_campaign=3DEaster%20Brunch)
+https://www.boucherieus.com/location/la-grande-boucherie-dc/
+
+Copyright =C2=A9 2026 The Group NYC=2C All rights reserved.
+
+Our mailing address is:
+
+699 14th St NW (https://maps.app.goo.gl/WBHec99MG9JCmkFXA)
+
+Washington=2C DC 20005 (https://maps.app.goo.gl/WBHec99MG9JCmkFXA)
+
+Update your preferences (https://nyc.us17.list-manage.com/profile?u=3Dd256=
+d6f7580e2728cbb6ef5d6&id=3D2e8d62da09&e=3D175a020859&c=3D33d240d4d0) | Unsub=
+scribe (https://nyc.us17.list-manage.com/unsubscribe?u=3Dd256d6f7580e2728c=
+bb6ef5d6&id=3D2e8d62da09&t=3Db&e=3D175a020859&c=3D33d240d4d0) | View in brow=
+ser (https://mailchi.mp/1a886fde147c/lgb-dc-easter-follow-up?e=3D175a020859)
+https://www.facebook.com/BoucherieNYC
+https://www.instagram.com/boucherie_us/
+https://www.boucherieus.com
+https://x.com/Boucherienyc
+https://www.linkedin.com/company/boucherienyc/
+--_----------=_MCPart_893065947
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html><html xmlns=3D"http://www.w3.org/1999/xhtml" xmlns:v=3D"urn=
+:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-microsoft-com:office:of=
+fice"><head>
+<!--[if gte mso 15]>
+<xml>
+<o:OfficeDocumentSettings>
+<o:AllowPNG/>
+<o:PixelsPerInch>96</o:PixelsPerInch>
+</o:OfficeDocumentSettings>
+</xml>
+<![endif]-->
+<meta charset=3D"UTF-8" />
+<meta http-equiv=3D"X-UA-Compatible" content=3D"IE=3Dedge" />
+<meta name=3D"viewport" content=3D"width=3Ddevice-width=2C initial-scale=
+=3D1" />
+<title>Taste Spring With Our New Easter Dishes=F0=9F=8C=B8</title>
+<link rel=3D"preconnect" href=3D"https://fonts.googleapis.com" />
+<link rel=3D"preconnect" href=3D"https://fonts.gstatic.com" crossorigin=3D=
+"" />
+<!--[if !mso]><!--><link rel=3D"stylesheet" type=3D"text/css" id=3D"newGo=
+ogleFontsStatic" href=3D"https://fonts.googleapis.com/css?family=3DRoboto:=
+400=2C400i=2C700=2C700i=2C900=2C900i" /><!--<![endif]--><style>img{-ms-in=
+terpolation-mode:bicubic;}
+table=2C td{mso-table-lspace:0pt;mso-table-rspace:0pt;}
+=2EmceStandardButton=2C .mceStandardButton td=2C .mceStandardButton td a{mso=
+-hide:all!important;}
+p=2C a=2C li=2C td=2C blockquote{mso-line-height-rule:exactly;}
+p=2C a=2C li=2C td=2C body=2C table=2C blockquote{-ms-text-size-adjust:100=
+%;-webkit-text-size-adjust:100%;}
+=2EmcnPreviewText{display:none!important;}
+=2EbodyCell{margin:0 auto;padding:0;width:100%;}
+=2EExternalClass=2C .ExternalClass p=2C .ExternalClass td=2C .ExternalClass=
+ div=2C .ExternalClass span=2C .ExternalClass font{line-height:100%;}
+=2EReadMsgBody=2C .ExternalClass{width:100%;}
+a[x-apple-data-detectors]{color:inherit!important;text-decoration:none!im=
+portant;font-size:inherit!important;font-family:inherit!important;font-wei=
+ght:inherit!important;line-height:inherit!important;}
+body{height:100%;margin:0;padding:0;width:100%;background:#ffffff;}
+p{margin:0;padding:0;}
+table{border-collapse:collapse;}
+td=2C p=2C a{word-break:break-word;}
+h1=2C h2=2C h3=2C h4=2C h5=2C h6{display:block;margin:0;padding:0;}
+img=2C a img{border:0;height:auto;outline:none;text-decoration:none;}
+a[href^=3D"tel"]=2C a[href^=3D"sms"]{color:inherit;cursor:default;text-d=
+ecoration:none;}
+=2EmceColumn .mceButtonLink=2C
+            .mceColumn-1 .mceButtonLink=2C
+            .mceColumn-2 .mceButtonLink=2C
+            .mceColumn-3 .mceButtonLink=2C
+            .mceColumn-4 .mceButtonLink{min-width:30px;}
+div[contenteditable=3D"true"]{outline:0;}
+=2EmceImageBorder{display:inline-block;}
+=2EmceImageBorder img{border:0!important;}
+body=2C #bodyTable{background-color:rgb(13=2C 27=2C 26);}
+=2EmceText=2C .mcnTextContent=2C .mceLabel{font-family:Arial=2C "Helvetica N=
+eue"=2C Helvetica=2C sans-serif;}
+=2EmceText=2C .mcnTextContent=2C .mceLabel{color:rgb(255=2C 255=2C 255);}
+=2EmceText h1=2C .mceText p=2C .mceText label=2C .mceText input{margin-botto=
+m:0;}
+=2EmceSpacing-12 .mceInput + .mceErrorMessage{margin-top:-6px;}
+=2EmceSpacing-24 .mceInput + .mceErrorMessage{margin-top:-12px;}
+=2EmceInput{background-color:transparent;border:2px solid rgb(208=2C 208=2C=
+ 208);width:60%;color:rgb(77=2C 77=2C 77);display:block;}
+=2EmceInput[type=3D"radio"]=2C .mceInput[type=3D"checkbox"]{float:left;mar=
+gin-right:12px;display:inline;width:auto!important;}
+=2EmceLabel > .mceInput{margin-bottom:0;margin-top:2px;}
+=2EmceLabel{display:block;}
+=2EmceText p=2C .mcnTextContent p{color:rgb(255=2C 255=2C 255);font-family:A=
+rial=2C "Helvetica Neue"=2C Helvetica=2C sans-serif;font-size:14px;font-we=
+ight:normal;line-height:2;mso-line-height-alt:200%;text-align:center;lette=
+r-spacing:0;direction:ltr;margin:0;}
+=2EmceText h1=2C .mcnTextContent h1{color:rgb(255=2C 255=2C 255);font-family=
+:"Times New Roman"=2C Times=2C Baskerville=2C Georgia=2C serif;font-size:3=
+2px;font-weight:normal;line-height:1.5;mso-line-height-alt:150%;text-align=
+:center;letter-spacing:0;direction:ltr;}
+=2EmceText a=2C .mcnTextContent a{color:rgb(205=2C 191=2C 222);font-style:no=
+rmal;font-weight:normal;text-decoration:underline;direction:ltr;}
+p.mcePastedContent=2C h1.mcePastedContent=2C h2.mcePastedContent=2C h3.mce=
+PastedContent=2C h4.mcePastedContent{text-align:left;}
+#d23 p=2C #d23 h1=2C #d23 h2=2C #d23 h3=2C #d23 h4=2C #d23 ul{text-align:c=
+enter;}
+@media only screen and (max-width: 480px) {
+body=2C table=2C td=2C p=2C a=2C li=2C blockquote{-webkit-text-size-adjust=
+:none!important;}
+body{width:100%!important;min-width:100%!important;}
+body.mobile-native{-webkit-user-select:none;user-select:none;transition:tr=
+ansform 0.2s ease-in;transform-origin:top center;}
+colgroup{display:none;}
+=2EmceLogo img=2C .mceImage img=2C .mceSocialFollowIcon img{height:auto!impo=
+rtant;}
+=2EmceWidthContainer{max-width:660px!important;}
+=2EmceColumn=2C .mceColumn-2{display:block!important;width:100%!important;}
+=2EmceColumn-forceSpan{display:table-cell!important;width:auto!important;}
+=2EmceColumn-forceSpan .mceButton a{min-width:0!important;}
+=2EmceReverseStack{display:table;width:100%;}
+=2EmceColumn-1{display:table-footer-group;width:100%!important;}
+=2EmceColumn-3{display:table-header-group;width:100%!important;}
+=2EmceColumn-4{display:table-caption;width:100%!important;}
+=2EmceKeepColumns .mceButtonLink{min-width:0;}
+=2EmceBlockContainer=2C .mceSpacing-24{padding-right:16px!important;padding-=
+left:16px!important;}
+=2EmceBlockContainerE2E{padding-right:0;padding-left:0;}
+=2EmceImage=2C .mceLogo{width:100%!important;height:auto!important;}
+=2EmceText img{max-width:100%!important;}
+=2EmceFooterSection .mceText=2C .mceFooterSection .mceText p{font-size:16px!=
+important;line-height:140%!important;}
+=2EmceText p{margin:0;font-size:16px!important;line-height:1.5!important;mso=
+-line-height-alt:150%;}
+=2EmceText h1{font-size:31px!important;line-height:1.5!important;mso-line-he=
+ight-alt:150%;}
+=2EbodyCell{padding-left:16px!important;padding-right:16px!important;}
+=2EmceButtonContainer{width:fit-content!important;max-width:fit-content!impo=
+rtant;}
+=2EmceButtonLink{padding:18px 28px!important;font-size:16px!important;}
+#b22{padding:10px 45px!important;}
+#b22 table=2C #b29 table=2C #b44 table{margin-left:auto!important;margin-r=
+ight:auto!important;float:none!important;}
+#b23 .mceTextBlockContainer=2C #b107{padding:12px 16px!important;}
+#gutterContainerId-23=2C #gutterContainerId-127=2C #gutterContainerId-128{=
+padding:0!important;}
+#b29{padding:24px!important;}
+#b44{padding:12px!important;}
+#b107 table{float:none!important;margin:0 auto!important;}
+#b107 .mceButtonLink{padding-top:16px!important;padding-bottom:16px!import=
+ant;font-size:14px!important;}
+#b127 .mceTextBlockContainer=2C #b128 .mceTextBlockContainer{padding:12px=
+ 24px!important;}
+}
+@media only screen and (max-width: 640px) {
+=2EmceClusterLayout td{padding:4px!important;}
+}</style></head>
+<body>
+<!--
+-->
+<!--[if !gte mso 9]><!----><span class=3D"mcnPreviewText" style=3D"displa=
+y:none; font-size:0px; line-height:0px; max-height:0px; max-width:0px; opa=
+city:0; overflow:hidden; visibility:hidden; mso-hide:all;">Easter specials=
+ available for brunch</span><!--<![endif]-->
+<!--
+-->
+<div style=3D"display: none; max-height: 0px; overflow: hidden;">=CD=8F=
+ =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=
+=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=
+=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C=
+ =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=
+=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0=
+ =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=
+=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=
+=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87=
+  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87 =
+ =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=
+=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F=
+ =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=
+=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=
+=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C=
+ =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=
+=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0=
+ =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=
+=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=
+=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87=
+  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87 =
+ =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=
+=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F=
+ =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=
+=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=
+=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C=
+ =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=
+=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0=
+ =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=
+=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=
+=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87=
+  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87 =
+ =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=
+=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F=
+ =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=
+=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=
+=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C=
+ =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=
+=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0=
+ =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=
+=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=
+=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87=
+  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87 =
+ =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=
+=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F=
+ =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=
+=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=
+=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C=
+ =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=
+=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0=
+ =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=
+=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=
+=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87=
+  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87 =
+ =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=
+=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F=
+ =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=
+=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=
+=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C=
+ =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=
+=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0=
+ =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=
+=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=
+=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87=
+  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87 =
+ =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=
+=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F=
+ =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=
+=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=
+=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C=
+ =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=
+=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0=
+ =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=
+=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=
+=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87=
+  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87 =
+ =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=
+=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F=
+ =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=
+=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=
+=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C=
+ =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=
+=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0=
+ =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=
+=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=
+=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87=
+  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87 =
+ =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=
+=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F=
+ =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=
+=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=
+=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C=
+ =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=
+=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0=
+ =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=
+=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=
+=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87=
+  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87 =
+ =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=
+=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F=
+ =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=
+=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=
+=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C=
+ =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=
+=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0=
+ =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=
+=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=
+=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87=
+  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87 =
+ =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=
+=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F=
+ =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=
+=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=
+=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C=
+ =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=
+=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0=
+ =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=
+=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=
+=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87=
+  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87 =
+ =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=
+=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F=
+ =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=
+=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=
+=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C=
+ =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=
+=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0=
+ =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=
+=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=
+=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87=
+  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87 =
+ =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=
+=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F=
+ =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=
+=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=
+=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C=
+ =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=
+=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0=
+ =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=
+=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=
+=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87=
+  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87 =
+ =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=
+=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F=
+ =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=
+=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=
+=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C=
+ =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=
+=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0=
+ =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=
+=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=
+=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87=
+  =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87 =
+ =CD=8F =E2=80=8C =C2=A0 =E2=80=87  =CD=8F =E2=80=8C =C2=A0 =E2=80=87=C2=
+=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD=
+ =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=
+=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD=
+ =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=
+=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD=
+ =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=
+=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD=
+ =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=
+=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD=
+ =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=
+=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD=
+ =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=
+=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD=
+ =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=
+=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD=
+ =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=
+=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD=
+ =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=
+=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD=
+ =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=
+=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD=
+ =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=
+=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD=
+ =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=
+=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD=
+ =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=
+=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD =C2=AD</div><div styl=
+e=3D"display:none;"><img src=3D"https://nyc.us17.list-manage.com/track/ope=
+n.php?u=3Dd256d6f7580e2728cbb6ef5d6&id=3D33d240d4d0&e=3D175a020859" heigh=
+t=3D"1" width=3D"1" style=3D"display:none;" alt=3D""></div>
+<center>
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" height=3D"100%" wi=
+dth=3D"100%" id=3D"bodyTable" role=3D"presentation" style=3D"background-co=
+lor: rgb(13=2C 27=2C 26);">
+<tbody><tr>
+<td class=3D"bodyCell" align=3D"center" valign=3D"top">
+<table id=3D"root" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=
+=3D"100%" role=3D"presentation"><tbody data-block-id=3D"4" class=3D"mceWra=
+pper"><tr><td style=3D"background-color:#ffffff" valign=3D"top" align=3D"c=
+enter" class=3D"mceSection4"><!--[if (gte mso 9)|(IE)]><table align=3D"ce=
+nter" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"660" style=
+=3D"width:660px;"><tr><td><![endif]--><table border=3D"0" cellpadding=3D"=
+0" cellspacing=3D"0" width=3D"100%" style=3D"max-width:660px" role=3D"pres=
+entation"><tbody><tr><td style=3D"background-color:#000000" valign=3D"top"=
+ class=3D"mceWrapperInner"><table align=3D"center" border=3D"0" cellpaddin=
+g=3D"0" cellspacing=3D"0" width=3D"100%" role=3D"presentation" data-block-=
+id=3D"3"><tbody><tr class=3D"mceRow"><td style=3D"background-position:cent=
+er;background-repeat:no-repeat;background-size:cover" valign=3D"top"><tabl=
+e border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" role=3D"=
+presentation"><tbody><tr><td style=3D"padding-top:0;padding-bottom:0" vali=
+gn=3D"top" class=3D"mceColumn" id=3D"mceColumnId--9" data-block-id=3D"-9"=
+ colspan=3D"12" width=3D"100%"><table border=3D"0" cellpadding=3D"0" cells=
+pacing=3D"0" width=3D"100%" role=3D"presentation"><tbody><tr><td style=3D"=
+background-color:#ffffff;padding-top:24px;padding-bottom:24px;padding-righ=
+t:24px;padding-left:24px;border:0;border-radius:0" valign=3D"top" class=3D=
+"mceImageBlockContainer" align=3D"center" id=3D"b29"><div><!--[if !mso]><=
+!--></div><a href=3D"https://nyc.us17.list-manage.com/track/click?u=3Dd256=
+d6f7580e2728cbb6ef5d6&id=3D4a407131f9&e=3D175a020859" style=3D"display:bl=
+ock" target=3D"_blank" data-block-id=3D"29"><table align=3D"center" border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"50%" style=3D"border-c=
+ollapse:separate;margin:0;vertical-align:top;max-width:50%;width:50%;heigh=
+t:auto" role=3D"presentation" data-testid=3D"image-29"><tbody><tr><td styl=
+e=3D"border:0;border-radius:0;margin:0" valign=3D"top"><img alt=3D"" src=
+=3D"https://mcusercontent.com/d256d6f7580e2728cbb6ef5d6/images/08b6c2f5-3a=
+38-c49a-83b0-6a3b7d3cf83a.png" width=3D"306" height=3D"auto" style=3D"disp=
+lay:block;max-width:100%;height:auto;border-radius:0" class=3D"imageDropZo=
+ne mceLogo" /></td></tr></tbody></table></a><div><!--<![endif]--></div><d=
+iv>
+<!--[if mso]>
+<a href=3D"https://www.boucherieus.com/location/la-grande-boucherie-dc/"><=
+span class=3D"mceImageBorder" style=3D"border:0;border-width:2px;vertical-=
+align:top;margin:0"><img role=3D"presentation" class=3D"imageDropZone mceL=
+ogo" src=3D"https://mcusercontent.com/d256d6f7580e2728cbb6ef5d6/images/08b=
+6c2f5-3a38-c49a-83b0-6a3b7d3cf83a.png" alt=3D"" width=3D"306" height=3D"au=
+to" style=3D"display:block;max-width:306px;width:306px;height:auto"/></spa=
+n></a>
+<![endif]-->
+</div></td></tr></tbody></table></td></tr></tbody></table></td></tr></tbod=
+y></table></td></tr></tbody></table><!--[if (gte mso 9)|(IE)]></td></tr><=
+/table><![endif]--></td></tr></tbody><tbody data-block-id=3D"21" class=3D=
+"mceWrapper"><tr><td style=3D"background-color:#ffffff" valign=3D"top" ali=
+gn=3D"center" class=3D"mceSection21"><!--[if (gte mso 9)|(IE)]><table ali=
+gn=3D"center" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"66=
+0" style=3D"width:660px;"><tr><td><![endif]--><table border=3D"0" cellpad=
+ding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"max-width:660px" role=
+=3D"presentation"><tbody><tr><td style=3D"background-color:#ffffff" valign=
+=3D"top" class=3D"mceWrapperInner"><table align=3D"center" border=3D"0" ce=
+llpadding=3D"0" cellspacing=3D"0" width=3D"100%" role=3D"presentation" dat=
+a-block-id=3D"20"><tbody><tr class=3D"mceRow"><td style=3D"background-posi=
+tion:center;background-repeat:no-repeat;background-size:cover" valign=3D"t=
+op"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%"=
+ role=3D"presentation"><tbody><tr><td style=3D"padding-top:0;padding-botto=
+m:0" valign=3D"top" class=3D"mceColumn" id=3D"mceColumnId--10" data-block-=
+id=3D"-10" colspan=3D"12" width=3D"100%"><table border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" width=3D"100%" role=3D"presentation"><tbody><tr><=
+td valign=3D"top" class=3D"mceGutterContainer" id=3D"gutterContainerId-43"=
+><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" st=
+yle=3D"border-collapse:separate" role=3D"presentation"><tbody><tr><td styl=
+e=3D"background-color:#ffffff;padding-top:0;padding-bottom:0;padding-right=
+:0;padding-left:0;border:0;border-radius:0" valign=3D"top" id=3D"b43"><tab=
+le align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=
+=3D"100%" role=3D"presentation" data-block-id=3D"43" id=3D"section_a221a11=
+b14063dd78165818ba6b5afbb" class=3D"mceLayout"><tbody><tr class=3D"mceRow"=
+><td style=3D"background-position:center;background-repeat:no-repeat;backg=
+round-size:cover" valign=3D"top"><table border=3D"0" cellpadding=3D"0" cel=
+lspacing=3D"0" width=3D"100%" role=3D"presentation"><tbody><tr><td valign=
+=3D"top" class=3D"mceColumn" id=3D"mceColumnId--12" data-block-id=3D"-12"=
+ colspan=3D"12" width=3D"100%"><table border=3D"0" cellpadding=3D"0" cells=
+pacing=3D"0" width=3D"100%" role=3D"presentation"><tbody><tr><td style=3D"=
+border:0;border-radius:0" valign=3D"top" align=3D"center" id=3D"b-5"><tabl=
+e align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=
+=3D"100%" role=3D"presentation" data-block-id=3D"-5"><tbody><tr class=3D"m=
+ceRow"><td style=3D"background-position:center;background-repeat:no-repeat=
+;background-size:cover" valign=3D"top"><table border=3D"0" cellpadding=3D"=
+0" cellspacing=3D"0" width=3D"100%" role=3D"presentation"><tbody><tr><td v=
+align=3D"top" class=3D"mceColumn" id=3D"mceColumnId--13" data-block-id=3D"=
+-13" colspan=3D"12" width=3D"100%"><table border=3D"0" cellpadding=3D"0" c=
+ellspacing=3D"0" width=3D"100%" role=3D"presentation"><tbody><tr><td style=
+=3D"border:0;border-radius:0" valign=3D"top" id=3D"b48"><table align=3D"ce=
+nter" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" role=
+=3D"presentation" data-block-id=3D"48"><tbody><tr class=3D"mceRow"><td sty=
+le=3D"background-position:center;background-repeat:no-repeat;background-si=
+ze:cover" valign=3D"top"><table border=3D"0" cellpadding=3D"0" cellspacing=
+=3D"24" width=3D"100%" role=3D"presentation"><tbody><tr><td style=3D"paddi=
+ng-top:0;padding-bottom:0" valign=3D"top" class=3D"mceColumn" id=3D"mceCol=
+umnId-47" data-block-id=3D"47" colspan=3D"12" width=3D"100%"><table border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" role=3D"presenta=
+tion"><tbody><tr><td style=3D"padding-top:0;padding-bottom:0;padding-right=
+:0;padding-left:0" valign=3D"top" class=3D"mceGutterContainer" id=3D"gutte=
+rContainerId-128"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0"=
+ width=3D"100%" style=3D"border-collapse:separate" role=3D"presentation"><=
+tbody><tr><td style=3D"padding-top:0;padding-bottom:0;padding-right:0;padd=
+ing-left:0;border:0;border-radius:0" valign=3D"top" id=3D"b128"><table wid=
+th=3D"100%" style=3D"border:0;background-color:transparent;border-radius:0=
+;border-collapse:separate"><tbody><tr><td style=3D"padding-left:24px;paddi=
+ng-right:24px;padding-top:12px;padding-bottom:12px" class=3D"mceTextBlockC=
+ontainer"><div data-block-id=3D"128" class=3D"mceText" id=3D"d128" style=
+=3D"width:100%"><h1 class=3D"last-child"><strong><span style=3D"color:#000=
+000;"><span style=3D"font-family: Roboto=2C Arial=2C sans-serif">Gather fo=
+r Easter at La Grande Boucherie</span></span></strong></h1></div></td></tr=
+></tbody></table></td></tr></tbody></table></td></tr><tr><td style=3D"back=
+ground-color:transparent;padding-top:12px;padding-bottom:12px;padding-righ=
+t:12px;padding-left:12px;border:0;border-radius:0" valign=3D"top" class=3D=
+"mceImageBlockContainer" align=3D"center" id=3D"b44"><div><!--[if !mso]><=
+!--></div><a href=3D"https://nyc.us17.list-manage.com/track/click?u=3Dd256=
+d6f7580e2728cbb6ef5d6&id=3D37372956a9&e=3D175a020859" style=3D"display:bl=
+ock" target=3D"_blank" data-block-id=3D"44"><table align=3D"center" border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"border-=
+collapse:separate;margin:0;vertical-align:top;max-width:100%;width:100%;he=
+ight:auto" role=3D"presentation" data-testid=3D"image-44"><tbody><tr><td s=
+tyle=3D"border:0;border-radius:0;margin:0" valign=3D"top"><img alt=3D"" sr=
+c=3D"https://mcusercontent.com/d256d6f7580e2728cbb6ef5d6/images/a9aadedf-d=
+1b2-1747-3962-8fefef95a230.jpg" width=3D"636" height=3D"auto" style=3D"dis=
+play:block;max-width:100%;height:auto;border-radius:0" class=3D"imageDropZ=
+one mceImage" /></td></tr></tbody></table></a><div><!--<![endif]--></div>=
+<div>
+<!--[if mso]>
+<a href=3D"https://www.opentable.com/r/la-grande-boucherie-dc-reservations=
+-washington?restref=3D1328152&lang=3Den-US&ot_source=3DEmail&ot_campaign=
+=3DEaster%20Brunch"><span class=3D"mceImageBorder" style=3D"border:0;borde=
+r-width:2px;vertical-align:top;margin:0"><img role=3D"presentation" class=
+=3D"imageDropZone mceImage" src=3D"https://mcusercontent.com/d256d6f7580e2=
+728cbb6ef5d6/images/a9aadedf-d1b2-1747-3962-8fefef95a230.jpg" alt=3D"" wid=
+th=3D"636" height=3D"auto" style=3D"display:block;max-width:636px;width:63=
+6px;height:auto"/></span></a>
+<![endif]-->
+</div></td></tr><tr><td style=3D"padding-top:0;padding-bottom:0;padding-ri=
+ght:0;padding-left:0" valign=3D"top" class=3D"mceGutterContainer" id=3D"gu=
+tterContainerId-127"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"=
+0" width=3D"100%" style=3D"border-collapse:separate" role=3D"presentation"=
+><tbody><tr><td style=3D"padding-top:0;padding-bottom:0;padding-right:0;pa=
+dding-left:0;border:0;border-radius:0" valign=3D"top" id=3D"b127"><table w=
+idth=3D"100%" style=3D"border:0;background-color:transparent;border-radius=
+:0;border-collapse:separate"><tbody><tr><td style=3D"padding-left:24px;pad=
+ding-right:24px;padding-top:12px;padding-bottom:12px" class=3D"mceTextBloc=
+kContainer"><div data-block-id=3D"127" class=3D"mceText" id=3D"d127" style=
+=3D"width:100%"><p class=3D"last-child" style=3D"text-align: center; margi=
+n-top: 5px; margin-bottom: 5px;"><span style=3D"color:rgb(0=2C 0=2C 0);"><=
+span style=3D"font-family: &quot;Helvetica Neue&quot;=2C Helvetica=2C Aria=
+l=2C Verdana=2C sans-serif">Join us this Easter Sunday with </span></span>=
+<em><strong><span style=3D"color:rgb(0=2C 0=2C 0);"><span style=3D"font-fa=
+mily: &quot;Helvetica Neue&quot;=2C Helvetica=2C Arial=2C Verdana=2C sans-=
+serif">seasonal specials </span></span></strong></em><span style=3D"color:=
+rgb(0=2C 0=2C 0);"><span style=3D"font-family: &quot;Helvetica Neue&quot;=
+=2C Helvetica=2C Arial=2C Verdana=2C sans-serif">crafted for the occasion.=
+ </span></span><em><strong><span style=3D"color:rgb(0=2C 0=2C 0);"><span s=
+tyle=3D"font-family: &quot;Helvetica Neue&quot;=2C Helvetica=2C Arial=2C V=
+erdana=2C sans-serif">Spring Braised Lamb</span></span></strong></em><stro=
+ng><span style=3D"color:rgb(0=2C 0=2C 0);"><span style=3D"font-family: &qu=
+ot;Helvetica Neue&quot;=2C Helvetica=2C Arial=2C Verdana=2C sans-serif"> <=
+/span></span></strong><span style=3D"color:rgb(0=2C 0=2C 0);"><span style=
+=3D"font-family: &quot;Helvetica Neue&quot;=2C Helvetica=2C Arial=2C Verda=
+na=2C sans-serif">with green peas and mint=2C </span></span><em><strong><s=
+pan style=3D"color:rgb(0=2C 0=2C 0);"><span style=3D"font-family: &quot;He=
+lvetica Neue&quot;=2C Helvetica=2C Arial=2C Verdana=2C sans-serif">Green A=
+sparagus Hollandaise au Citron</span></span></strong></em><span style=3D"c=
+olor:rgb(0=2C 0=2C 0);"><span style=3D"font-family: &quot;Helvetica Neue&q=
+uot;=2C Helvetica=2C Arial=2C Verdana=2C sans-serif">=2C and creamy dark c=
+hocolate </span></span><em><strong><span style=3D"color:rgb(0=2C 0=2C 0);"=
+><span style=3D"font-family: &quot;Helvetica Neue&quot;=2C Helvetica=2C Ar=
+ial=2C Verdana=2C sans-serif">Riz au Lait </span></span></strong></em><spa=
+n style=3D"color:rgb(0=2C 0=2C 0);"><span style=3D"font-family: &quot;Helv=
+etica Neue&quot;=2C Helvetica=2C Arial=2C Verdana=2C sans-serif">are avail=
+able all day for brunch and dinner. Gather with loved ones in our stunning=
+ dining room for a meal that celebrates the season.</span></span></p></div=
+></td></tr></tbody></table></td></tr></tbody></table></td></tr><tr><td sty=
+le=3D"background-color:transparent;padding-top:12px;padding-bottom:12px;pa=
+dding-right:16px;padding-left:16px;border:0;border-radius:0" valign=3D"top=
+" class=3D"mceButtonBlockContainer" align=3D"center" id=3D"b107"><div><!--=
+[if !mso]><!--></div><table align=3D"center" border=3D"0" cellpadding=3D"=
+0" cellspacing=3D"0" role=3D"presentation" data-block-id=3D"107" class=3D"=
+mceButtonContainer"><tbody><tr class=3D"mceStandardButton"><td style=3D"ba=
+ckground-color:#000000;border-radius:0;text-align:center" valign=3D"top" c=
+lass=3D"mceButton"><a href=3D"https://nyc.us17.list-manage.com/track/click=
+?u=3Dd256d6f7580e2728cbb6ef5d6&id=3Db47e3cf42e&e=3D175a020859" target=3D"=
+_blank" class=3D"mceButtonLink" style=3D"background-color:#000000;border-r=
+adius:0;border:1px solid #000000;color:#ffffff;display:block;font-family:'=
+Helvetica Neue'=2C Helvetica=2C Arial=2C Verdana=2C sans-serif;font-size:1=
+4px;font-weight:bold;font-style:normal;padding:16px 28px;text-decoration:n=
+one;text-align:center;direction:ltr;letter-spacing:3px" rel=3D"noreferrer"=
+>MAKE A RESERVATION</a></td></tr></tbody></table><div><!--<![endif]--></d=
+iv><table align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0=
+" role=3D"presentation" data-block-id=3D"107" class=3D"mceButtonContainer"=
+><tbody><tr>
+<!--[if mso]>
+<td align=3D"center">
+<v:roundrect xmlns:v=3D"urn:schemas-microsoft-com:vml"
+xmlns:w=3D"urn:schemas-microsoft-com:office:word"
+href=3D"https://www.opentable.com/r/la-grande-boucherie-dc-reservations-wa=
+shington?restref=3D1328152&lang=3Den-US&ot_source=3DEmail&ot_campaign=3DEa=
+ster%20Brunch"
+style=3D"v-text-anchor:middle; width:268.68px; height:50.17px;"
+arcsize=3D"0%"
+strokecolor=3D"#000000"
+strokeweight=3D"1px"
+fillcolor=3D"#000000">
+<v:stroke dashstyle=3D"solid"/>
+<w:anchorlock />
+<center style=3D"
+color: #ffffff;
+display: block;
+font-family: 'Helvetica Neue'=2C Helvetica=2C Arial=2C Verdana=2C sans-ser=
+if;
+font-size: 14;
+font-style: normal;
+font-weight: bold;
+letter-spacing: 3px;
+text-decoration: none;
+text-align: center;
+direction: ltr;"
+>
+MAKE A RESERVATION
+</center>
+</v:roundrect>
+</td>
+<![endif]-->
+</tr></tbody></table></td></tr><tr><td style=3D"background-color:transpare=
+nt;border:0;border-radius:0" valign=3D"top" id=3D"b130"><table border=3D"0=
+" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" role=3D"presentation"=
+ data-block-id=3D"130"><tbody><tr><td valign=3D"top" class=3D"mceSpacerBlo=
+ck" height=3D"20"></td></tr></tbody></table></td></tr></tbody></table></td=
+></tr></tbody></table></td></tr></tbody></table></td></tr></tbody></table>=
+</td></tr></tbody></table></td></tr></tbody></table></td></tr></tbody></ta=
+ble></td></tr></tbody></table></td></tr></tbody></table></td></tr></tbody>=
+</table></td></tr></tbody></table></td></tr></tbody></table></td></tr></tb=
+ody></table></td></tr></tbody></table><!--[if (gte mso 9)|(IE)]></td></tr=
+></table><![endif]--></td></tr></tbody><tbody data-block-id=3D"27" class=
+=3D"mceWrapper"><tr><td style=3D"background-color:#ffffff" valign=3D"top"=
+ align=3D"center" class=3D"mceSection27"><!--[if (gte mso 9)|(IE)]><table=
+ align=3D"center" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=
+=3D"660" style=3D"width:660px;"><tr><td><![endif]--><table border=3D"0" c=
+ellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"max-width:660px=
+" role=3D"presentation"><tbody><tr><td style=3D"background-color:#0d1b1a"=
+ valign=3D"top" class=3D"mceWrapperInner"><table align=3D"center" border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" role=3D"presenta=
+tion" data-block-id=3D"26"><tbody><tr class=3D"mceRow"><td style=3D"backgr=
+ound-position:center;background-repeat:no-repeat;background-size:cover" va=
+lign=3D"top"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=
+=3D"100%" role=3D"presentation"><tbody><tr><td style=3D"padding-top:0;padd=
+ing-bottom:0" valign=3D"top" class=3D"mceColumn" id=3D"mceColumnId--11" da=
+ta-block-id=3D"-11" colspan=3D"12" width=3D"100%"><table border=3D"0" cell=
+padding=3D"0" cellspacing=3D"0" width=3D"100%" role=3D"presentation"><tbod=
+y><tr><td style=3D"background-color:#ffffff;padding-top:10px;padding-botto=
+m:10px;padding-right:10px;padding-left:10px;border:0;border-radius:0" vali=
+gn=3D"top" class=3D"mceLayoutContainer" id=3D"b25"><table align=3D"center"=
+ border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" role=3D"p=
+resentation" data-block-id=3D"25" id=3D"section_84caefae1b15ca62f0a4c24040=
+180e1f" class=3D"mceFooterSection"><tbody><tr class=3D"mceRow"><td style=
+=3D"background-color:#ffffff;background-position:center;background-repeat:=
+no-repeat;background-size:cover;padding-top:0px;padding-bottom:0px" valign=
+=3D"top"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"12" width=3D=
+"100%" role=3D"presentation"><tbody><tr><td style=3D"padding-top:0;padding=
+-bottom:0" valign=3D"top" class=3D"mceColumn" id=3D"mceColumnId--3" data-b=
+lock-id=3D"-3" colspan=3D"12" width=3D"100%"><table border=3D"0" cellpaddi=
+ng=3D"0" cellspacing=3D"0" width=3D"100%" role=3D"presentation"><tbody><tr=
+><td style=3D"background-color:transparent;padding-top:10px;padding-bottom=
+:10px;padding-right:45px;padding-left:45px;border:0;border-radius:0" valig=
+n=3D"top" class=3D"mceImageBlockContainer" align=3D"center" id=3D"b22"><di=
+v><!--[if !mso]><!--></div><a href=3D"https://nyc.us17.list-manage.com/tr=
+ack/click?u=3Dd256d6f7580e2728cbb6ef5d6&id=3D1ae96f493f&e=3D175a020859" s=
+tyle=3D"display:block" target=3D"_blank" data-block-id=3D"22"><table align=
+=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"50%"=
+ style=3D"border-collapse:separate;margin:0;vertical-align:top;max-width:5=
+0%;width:50%;height:auto" role=3D"presentation" data-testid=3D"image-22"><=
+tbody><tr><td style=3D"border:0;border-radius:0;margin:0" valign=3D"top"><=
+img alt=3D"" src=3D"https://mcusercontent.com/d256d6f7580e2728cbb6ef5d6/im=
+ages/08b6c2f5-3a38-c49a-83b0-6a3b7d3cf83a.png" width=3D"285" height=3D"aut=
+o" style=3D"display:block;max-width:100%;height:auto;border-radius:0" clas=
+s=3D"imageDropZone mceLogo" /></td></tr></tbody></table></a><div><!--<![e=
+ndif]--></div><div>
+<!--[if mso]>
+<a href=3D"https://www.boucherieus.com/location/la-grande-boucherie-dc/"><=
+span class=3D"mceImageBorder" style=3D"border:0;border-width:2px;vertical-=
+align:top;margin:0"><img role=3D"presentation" class=3D"imageDropZone mceL=
+ogo" src=3D"https://mcusercontent.com/d256d6f7580e2728cbb6ef5d6/images/08b=
+6c2f5-3a38-c49a-83b0-6a3b7d3cf83a.png" alt=3D"" width=3D"285" height=3D"au=
+to" style=3D"display:block;max-width:285px;width:285px;height:auto"/></spa=
+n></a>
+<![endif]-->
+</div></td></tr><tr><td style=3D"padding-top:0;padding-bottom:0;padding-ri=
+ght:0;padding-left:0" valign=3D"top" class=3D"mceGutterContainer" id=3D"gu=
+tterContainerId-23"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0=
+" width=3D"100%" style=3D"border-collapse:separate" role=3D"presentation">=
+<tbody><tr><td style=3D"padding-top:0;padding-bottom:0;padding-right:0;pad=
+ding-left:0;border:0;border-radius:0" valign=3D"top" align=3D"center" id=
+=3D"b23"><table width=3D"100%" style=3D"border:0;background-color:transpar=
+ent;border-radius:0;border-collapse:separate"><tbody><tr><td style=3D"padd=
+ing-left:16px;padding-right:16px;padding-top:12px;padding-bottom:12px" cla=
+ss=3D"mceTextBlockContainer"><div data-block-id=3D"23" class=3D"mceText" i=
+d=3D"d23" style=3D"display:inline-block;width:100%"><p><em><span style=3D"=
+color:rgb(0=2C 0=2C 0);">Copyright =C2=A9 2026 The Group NYC=2C All rights=
+ reserved.</span></em></p><p><br /></p><p><span style=3D"color:rgb(0=2C 0=
+=2C 0);">Our mailing address is:</span></p><p class=3D"mcePastedContent"><=
+a href=3D"https://nyc.us17.list-manage.com/track/click?u=3Dd256d6f7580e272=
+8cbb6ef5d6&id=3D0ec2d08c29&e=3D175a020859" target=3D"_blank" style=3D"col=
+or: #0d1b1a;"><span style=3D"font-size: 14px"><span style=3D"font-family:=
+ Roboto=2C Arial=2C sans-serif"><span style=3D"background-color: rgb(255=
+=2C 255=2C 255)">699 14th St NW</span></span></span></a></p><p class=3D"mc=
+ePastedContent"><a href=3D"https://nyc.us17.list-manage.com/track/click?u=
+=3Dd256d6f7580e2728cbb6ef5d6&id=3Dbcfe23391d&e=3D175a020859" target=3D"_b=
+lank" style=3D"color: #0d1b1a;"><span style=3D"font-size: 14px"><span styl=
+e=3D"font-family: Roboto=2C Arial=2C sans-serif"><span style=3D"background=
+-color: rgb(255=2C 255=2C 255)">Washington=2C DC 20005</span></span></span=
+></a></p><p class=3D"mcePastedContent last-child"><span style=3D"color:#00=
+0000;"><br /></span><a href=3D"https://nyc.us17.list-manage.com/profile?u=
+=3Dd256d6f7580e2728cbb6ef5d6&id=3D2e8d62da09&e=3D175a020859&c=3D33d240d4d0"=
+ style=3D"color: #000000;">Update your preferences</a><span style=3D"color=
+:#000000;"> | </span><a href=3D"https://nyc.us17.list-manage.com/unsubscri=
+be?u=3Dd256d6f7580e2728cbb6ef5d6&id=3D2e8d62da09&t=3Db&e=3D175a020859&c=3D33=
+d240d4d0" style=3D"color: #000000;">Unsubscribe</a><span style=3D"color:#0=
+00000;"> | </span><a href=3D"https://mailchi.mp/1a886fde147c/lgb-dc-easter=
+-follow-up?e=3D175a020859" style=3D"color: #000000;">View in browser</a></p>=
+</div></td></tr></tbody></table></td></tr></tbody></table></td></tr><tr><t=
+d style=3D"border:0;border-radius:0" valign=3D"top" class=3D"mceLayoutCont=
+ainer" align=3D"center" id=3D"b-2"><table align=3D"center" border=3D"0" ce=
+llpadding=3D"0" cellspacing=3D"0" width=3D"100%" role=3D"presentation" dat=
+a-block-id=3D"-2"><tbody><tr class=3D"mceRow"><td style=3D"background-posi=
+tion:center;background-repeat:no-repeat;background-size:cover;padding-top:=
+0px;padding-bottom:0px" valign=3D"top"><table border=3D"0" cellpadding=3D"=
+0" cellspacing=3D"24" width=3D"100%" role=3D"presentation"><tbody></tbody>=
+</table></td></tr></tbody></table></td></tr></tbody></table></td></tr></tb=
+ody></table></td></tr></tbody></table></td></tr><tr><td style=3D"backgroun=
+d-color:#ffffff;padding-top:12px;padding-bottom:12px;padding-right:0;paddi=
+ng-left:0;border:0;border-radius:0" valign=3D"top" class=3D"mceLayoutConta=
+iner" id=3D"b79"><table align=3D"center" border=3D"0" cellpadding=3D"0" ce=
+llspacing=3D"0" width=3D"100%" role=3D"presentation" data-block-id=3D"79">=
+<tbody><tr class=3D"mceRow"><td style=3D"background-color:#ffffff;backgrou=
+nd-position:center;background-repeat:no-repeat;background-size:cover;paddi=
+ng-top:0px;padding-bottom:0px" valign=3D"top"><table border=3D"0" cellpadd=
+ing=3D"0" cellspacing=3D"24" width=3D"100%" role=3D"presentation"><tbody><=
+tr><td valign=3D"top" class=3D"mceColumn" id=3D"mceColumnId--8" data-block=
+-id=3D"-8" colspan=3D"12" width=3D"100%"><table border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" width=3D"100%" role=3D"presentation"><tbody><tr><=
+td style=3D"border:0;border-radius:0" valign=3D"top" class=3D"mceSocialFol=
+lowBlockContainer" id=3D"b-7"><table align=3D"center" border=3D"0" cellpad=
+ding=3D"0" cellspacing=3D"0" role=3D"presentation" class=3D"mceSocialFollo=
+wBlock" data-block-id=3D"-7"><tbody><tr><td valign=3D"middle" align=3D"cen=
+ter"><!--[if mso]><table align=3D"left" border=3D"0" cellspacing=3D "0" c=
+ellpadding=3D"0"><tr><![endif]--><!--[if mso]><td align=3D"center" valig=
+n=3D"top"><![endif]--><table align=3D"left" border=3D"0" cellpadding=3D"0=
+" cellspacing=3D"0" style=3D"display:inline;float:left" role=3D"presentati=
+on"><tbody><tr><td style=3D"padding-top:3px;padding-bottom:3px;padding-lef=
+t:12px;padding-right:12px" valign=3D"top" class=3D"mceSocialFollowIcon" al=
+ign=3D"center" width=3D"24"><a href=3D"https://nyc.us17.list-manage.com/tr=
+ack/click?u=3Dd256d6f7580e2728cbb6ef5d6&id=3Dd16f81f581&e=3D175a020859" t=
+arget=3D"_blank" rel=3D"noreferrer"><img class=3D"mceSocialFollowImage" wi=
+dth=3D"24" height=3D"24" alt=3D"Facebook icon" src=3D"https://cdn-images.m=
+ailchimp.com/icons/social-block-v3/block-icons-v3/facebook-filled-dark-40.=
+png" /></a></td></tr></tbody></table><!--[if mso]></td><![endif]--><!--[=
+if mso]><td align=3D"center" valign=3D"top"><![endif]--><table align=3D"=
+left" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" style=3D"display:in=
+line;float:left" role=3D"presentation"><tbody><tr><td style=3D"padding-top=
+:3px;padding-bottom:3px;padding-left:12px;padding-right:12px" valign=3D"to=
+p" class=3D"mceSocialFollowIcon" align=3D"center" width=3D"24"><a href=3D"=
+https://nyc.us17.list-manage.com/track/click?u=3Dd256d6f7580e2728cbb6ef5d6=
+&id=3Da05e5b787a&e=3D175a020859" target=3D"_blank" rel=3D"noreferrer"><im=
+g class=3D"mceSocialFollowImage" width=3D"24" height=3D"24" alt=3D"Instagr=
+am icon" src=3D"https://cdn-images.mailchimp.com/icons/social-block-v3/blo=
+ck-icons-v3/instagram-filled-dark-40.png" /></a></td></tr></tbody></table>=
+<!--[if mso]></td><![endif]--><!--[if mso]><td align=3D"center" valign=
+=3D"top"><![endif]--><table align=3D"left" border=3D"0" cellpadding=3D"0"=
+ cellspacing=3D"0" style=3D"display:inline;float:left" role=3D"presentatio=
+n"><tbody><tr><td style=3D"padding-top:3px;padding-bottom:3px;padding-left=
+:12px;padding-right:12px" valign=3D"top" class=3D"mceSocialFollowIcon" ali=
+gn=3D"center" width=3D"24"><a href=3D"https://nyc.us17.list-manage.com/tra=
+ck/click?u=3Dd256d6f7580e2728cbb6ef5d6&id=3D57070b0a1f&e=3D175a020859" ta=
+rget=3D"_blank" rel=3D"noreferrer"><img class=3D"mceSocialFollowImage" wid=
+th=3D"24" height=3D"24" alt=3D"Website icon" src=3D"https://cdn-images.mai=
+lchimp.com/icons/social-block-v3/block-icons-v3/website-filled-dark-40.png=
+" /></a></td></tr></tbody></table><!--[if mso]></td><![endif]--><!--[if=
+ mso]><td align=3D"center" valign=3D"top"><![endif]--><table align=3D"lef=
+t" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" style=3D"display:inlin=
+e;float:left" role=3D"presentation"><tbody><tr><td style=3D"padding-top:3p=
+x;padding-bottom:3px;padding-left:12px;padding-right:12px" valign=3D"top"=
+ class=3D"mceSocialFollowIcon" align=3D"center" width=3D"24"><a href=3D"ht=
+tps://nyc.us17.list-manage.com/track/click?u=3Dd256d6f7580e2728cbb6ef5d6&i=
+d=3D4885daf242&e=3D175a020859" target=3D"_blank" rel=3D"noreferrer"><img=
+ class=3D"mceSocialFollowImage" width=3D"24" height=3D"24" alt=3D"X icon"=
+ src=3D"https://cdn-images.mailchimp.com/icons/social-block-v3/block-icons=
+-v3/twitter-filled-dark-40.png" /></a></td></tr></tbody></table><!--[if m=
+so]></td><![endif]--><!--[if mso]><td align=3D"center" valign=3D"top"><!=
+[endif]--><table align=3D"left" border=3D"0" cellpadding=3D"0" cellspacin=
+g=3D"0" style=3D"display:inline;float:left" role=3D"presentation"><tbody><=
+tr><td style=3D"padding-top:3px;padding-bottom:3px;padding-left:12px;paddi=
+ng-right:12px" valign=3D"top" class=3D"mceSocialFollowIcon" align=3D"cente=
+r" width=3D"24"><a href=3D"https://nyc.us17.list-manage.com/track/click?u=
+=3Dd256d6f7580e2728cbb6ef5d6&id=3D46b0f7606e&e=3D175a020859" target=3D"_b=
+lank" rel=3D"noreferrer"><img class=3D"mceSocialFollowImage" width=3D"24"=
+ height=3D"24" alt=3D"LinkedIn icon" src=3D"https://cdn-images.mailchimp.c=
+om/icons/social-block-v3/block-icons-v3/linkedin-filled-dark-40.png" /></a=
+></td></tr></tbody></table><!--[if mso]></td><![endif]--><!--[if mso]><=
+/tr></table><![endif]--></td></tr></tbody></table></td></tr></tbody></tab=
+le></td></tr></tbody></table></td></tr></tbody></table></td></tr></tbody><=
+/table></td></tr></tbody></table></td></tr></tbody></table></td></tr></tbo=
+dy></table><!--[if (gte mso 9)|(IE)]></td></tr></table><![endif]--></td>=
+</tr></tbody></table>
+</td>
+</tr>
+</tbody></table>
+</center>
+</body></html>
+--_----------=_MCPart_893065947--
