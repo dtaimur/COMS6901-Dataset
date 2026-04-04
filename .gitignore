@@ -1,8 +1,8 @@
-# Ignore all data files
 data/
 
-# Ignore spam email dumps
 data/spam_zips/
 data/spam_emails/
 
 spam_emails/
+*.eml 
+*.zip
