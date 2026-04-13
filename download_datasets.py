@@ -38,6 +38,18 @@ def download_github_file(url, filename):
     with open(filepath, "wb") as f:
         f.write(response.content)
 
+
+def download_github_repo(url, dir_name):
+    print(f"Cloning {url}...")
+    
+    output_dir = os.path.join(RAW_DIR, dir_name)
+    
+    subprocess.run(
+        ["git", "clone", "--depth=1", url, output_dir],
+        check=True
+    )
+
+
 def download_zenodo_dataset(url, filename):
 
     print(f"Downloading {filename} from Zenodo...")
@@ -49,6 +61,27 @@ def download_zenodo_dataset(url, filename):
 
     with open(filepath, "wb") as f:
         f.write(response.content)
+
+def download_nazario_monkey_dataset(files, output_subdir):
+    base_url = "https://monkey.org/~jose/phishing/"
+    dir_name = os.path.join(RAW_DIR, output_subdir)
+    os.makedirs(dir_name, exist_ok=True)
+
+    for filename in files:
+        url = base_url + filename
+        filepath = os.path.join(dir_name, filename)
+
+        if os.path.exists(filepath):
+            print(f"Skipping {filename}, already exists.")
+            continue
+
+        print(f"Downloading {filename}...")
+        response = requests.get(url, stream=True)
+        response.raise_for_status()
+
+        with open(filepath, "wb") as f:
+            for chunk in response.iter_content(chunk_size=8192):
+                f.write(chunk)
 
 
 def rename_file(original, new_name):
@@ -65,18 +98,18 @@ def rename_file(original, new_name):
 
 if __name__ == "__main__":
 
-    download_kaggle_dataset(
-        "rohansood98/phishing-email-dataset-nazario-5-and-trec07"
-    )
+    # download_kaggle_dataset(
+    #     "rohansood98/phishing-email-dataset-nazario-5-and-trec07"
+    # )
 
     rename_file(
         "Nazario_5.csv",
         "nazario.csv"
     )
 
-    download_kaggle_dataset(
-        "advaithsrao/enron-fraud-email-dataset"
-    )
+    # download_kaggle_dataset(
+    #     "advaithsrao/enron-fraud-email-dataset"
+    # )
 
     rename_file(
         "email_text.csv",
@@ -92,6 +125,12 @@ if __name__ == "__main__":
         "github_phishing_emails.json"
     )
 
+    download_github_repo(
+        "https://github.com/rf-peixoto/phishing_pot.git",
+        "phishing_pot"
+    )
+
+
     zenodo_url = (
         "https://zenodo.org/records/18471483/files/meajor_cleaned_preprocessed.csv"
     )
@@ -101,6 +140,20 @@ if __name__ == "__main__":
         "meajor.csv"
     )
 
+    NAZARIO_FILES = [
+        "phishing-2020",
+        "phishing-2021",
+        "phishing-2022",
+        "phishing-2023",
+        "phishing-2024",
+        "phishing-2025",
+    ]
+
+    download_nazario_monkey_dataset(
+        files=NAZARIO_FILES,
+        output_subdir="nazario_spf"
+    )
+
     extra_file = os.path.join(RAW_DIR, "email_text.csv")
 
     if os.path.exists(extra_file):
@@ -108,3 +161,6 @@ if __name__ == "__main__":
 
 
     print("\nAll datasets downloaded successfully.")
+
+    # TODO: write additional processing step for .eml / .mbox and extracting relevant fields
+    # TODO: add spf to finalized headers

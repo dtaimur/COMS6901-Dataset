@@ -13,9 +13,14 @@ def extract_year(date_val):
     if pd.isna(date_val) or date_val == "":
         return 0
     try:
-        return pd.to_datetime(str(date_val), utc=True).year
+        return pd.to_datetime(str(date_val), utc=False).year
     except:
-        return 0
+        try:
+            # strip timezone
+            cleaned = re.sub(r'\s+[A-Z]{2,4}$', '', str(date_val).strip())
+            return pd.to_datetime(cleaned).year
+        except:
+            return 0
 
 def extract_domain(email):
     if pd.isna(email) or email == "":
@@ -139,6 +144,23 @@ def clean_email_address(addr):
         return ""
     return str(addr).strip().replace('"','').replace("'","").replace("<","").replace(">","").strip()
 
+def normalize_spf(val):
+    if pd.isna(val) or val == "":
+        return "none"
+    val = str(val).lower()
+    if "pass" in val:
+        return "pass"
+    elif "fail" in val and "soft" in val:
+        return "softfail"
+    elif "fail" in val:
+        return "fail"
+    elif "neutral" in val:
+        return "neutral"
+    elif "none" in val:
+        return "none"
+    elif "permerror" in val or "temperror" in val:
+        return "error"
+    return "unknown"
 
 def normalize():
     print("Loading dataset...")
@@ -174,6 +196,13 @@ def normalize():
     df = merge_columns(df, "urls", "URL(s)")
     df = merge_columns(df, "year", "Year")
     df = merge_columns(df, "num_urls", "url_count")
+    df = merge_columns(df, "sender", "from")
+    df = merge_columns(df, "receiver", "to")
+
+    if "received_spf" in df.columns:
+        df["spf_result"] = df["received_spf"].apply(normalize_spf)
+    else:
+        df["spf_result"] = "none"
     df = merge_columns(df, "content_types", "content_type")
     df = merge_columns(df, "receiver", "to")
     df = merge_columns(df, "sender", "from")
@@ -306,6 +335,7 @@ def normalize():
         "attachment_count", "has_attachments",
         "content_types", "language",
         "human evaluated emotion", "llm detected emotion", "motivation", 
+        "urgency_level", "spf_result"
         "urgency_level",
         "headers"
     ]
