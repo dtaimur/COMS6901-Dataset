@@ -3,6 +3,7 @@
 import pandas as pd
 import json
 import os
+import re
 import mailbox
 import email
 
@@ -36,6 +37,7 @@ def extract_spf_fallback(msg):
 def get_body(msg):
     try:
         if msg.is_multipart():
+            html_fallback = None
             for part in msg.walk():
                 if part.get_content_type() == "text/plain":
                     payload = part.get_payload(decode=True)
@@ -43,6 +45,15 @@ def get_body(msg):
                         for encoding in ("utf-8", "latin-1", "windows-1252"):
                             try:
                                 return payload.decode(encoding)
+                            except UnicodeDecodeError:
+                                continue
+                elif part.get_content_type() == "text/html" and html_fallback is None:
+                    payload = part.get_payload(decode=True)
+                    if payload:
+                        for encoding in ("utf-8", "latin-1", "windows-1252"):
+                            try:
+                                html_fallback = payload.decode(encoding)
+                                break
                             except UnicodeDecodeError:
                                 continue
         else:
@@ -151,16 +162,21 @@ def combine():
 
     print("Loading datasets")
 
-    enron = load_csv("enron_data_fraud_labeled.csv", "enron")
-    nazario = load_csv("nazario.csv", "nazario")
+    # enron = load_csv("enron_data_fraud_labeled.csv", "enron")
+    # nazario = load_csv("nazario.csv", "nazario")
     github = load_json("github_phishing_emails.json", "github")
     meajor = load_csv("meajor.csv", "meajor")
-    phishing_pot = load_eml_files("phising_pot/email", "phishing_pot", "phishing")
-    nazario_monkey = load_mbox("nazario_mbox", "nazario_monkey", "phishing")
+    phishing_pot = load_eml_files("phishing_pot/email", "phishing_pot", "phishing")
+    nazario_monkey = load_mbox("nazario_spf", "nazario_monkey", "phishing")
 
 
+    # combined = pd.concat(
+    #     [enron, nazario, github, meajor, phishing_pot, nazario_monkey],
+    #     ignore_index=True,
+    #     sort=False
+    # )
     combined = pd.concat(
-        [enron, nazario, github, meajor, phishing_pot, nazario_monkey],
+        [github, meajor, phishing_pot, nazario_monkey],
         ignore_index=True,
         sort=False
     )

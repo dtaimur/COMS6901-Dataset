@@ -76,11 +76,12 @@ def download_nazario_monkey_dataset(files, output_subdir):
             continue
 
         print(f"Downloading {filename}...")
-        response = requests.get(url)
+        response = requests.get(url, stream=True)
         response.raise_for_status()
 
         with open(filepath, "wb") as f:
-            f.write(response.content)
+            for chunk in response.iter_content(chunk_size=8192):
+                f.write(chunk)
 
 
 def rename_file(original, new_name):
@@ -97,18 +98,18 @@ def rename_file(original, new_name):
 
 if __name__ == "__main__":
 
-    download_kaggle_dataset(
-        "rohansood98/phishing-email-dataset-nazario-5-and-trec07"
-    )
+    # download_kaggle_dataset(
+    #     "rohansood98/phishing-email-dataset-nazario-5-and-trec07"
+    # )
 
     rename_file(
         "Nazario_5.csv",
         "nazario.csv"
     )
 
-    download_kaggle_dataset(
-        "advaithsrao/enron-fraud-email-dataset"
-    )
+    # download_kaggle_dataset(
+    #     "advaithsrao/enron-fraud-email-dataset"
+    # )
 
     rename_file(
         "email_text.csv",
