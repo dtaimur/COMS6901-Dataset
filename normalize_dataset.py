@@ -166,18 +166,13 @@ def normalize():
     print("Loading dataset...")
     df = pd.read_csv(INPUT_FILE, low_memory=False)
 
+    # Clean column names
+    df.columns = df.columns.str.strip()
+
     for col in ["label", "type"]:
         if col not in df.columns:
             df[col] = None
         df[col] = df[col].astype("object")
-
-    if "source" in df.columns:
-        df.loc[(df["source"] == "scraped_spam") & (df["label"].isna()), "label"] = "spam"
-        df.loc[(df["source"] == "scraped_spam") & (df["type"].isna()), "type"] = "spam"
-
-
-    # Clean column names
-    df.columns = df.columns.str.strip()
 
     # Merge duplicate columns 
     def merge_columns(df, primary, secondary):
@@ -198,16 +193,14 @@ def normalize():
     df = merge_columns(df, "num_urls", "url_count")
     df = merge_columns(df, "sender", "from")
     df = merge_columns(df, "receiver", "to")
+    df = merge_columns(df, "content_types", "content_type")
+    df = merge_columns(df, "body", "message")
+    df = merge_columns(df, "body", "text")
 
     if "received_spf" in df.columns:
         df["spf_result"] = df["received_spf"].apply(normalize_spf)
     else:
         df["spf_result"] = "none"
-    df = merge_columns(df, "content_types", "content_type")
-    df = merge_columns(df, "receiver", "to")
-    df = merge_columns(df, "sender", "from")
-    df = merge_columns(df, "body", "message")
-    df = merge_columns(df, "body", "text")
 
     # Create unified email_text column
     if "body" in df.columns and "message" in df.columns:
@@ -335,8 +328,7 @@ def normalize():
         "attachment_count", "has_attachments",
         "content_types", "language",
         "human evaluated emotion", "llm detected emotion", "motivation", 
-        "urgency_level", "spf_result"
-        "urgency_level",
+        "urgency_level", "spf_result",
         "headers"
     ]
     final_columns = [c for c in final_columns if c in df.columns]

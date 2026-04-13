@@ -57,6 +57,7 @@ def get_body(msg):
                                 break
                             except UnicodeDecodeError:
                                 continue
+            return html_fallback
         else:
             payload = msg.get_payload(decode=True)
             if payload:
@@ -84,6 +85,7 @@ def extract_record(msg, source, label, source_file=None):
         "reply_to": get_header(msg, "Reply-To"),
         "received_spf": get_header(msg, "Received-SPF", "X-Received-SPF", "X-SPF") or extract_spf_fallback(msg),
         "authentication_results": get_header(msg, "Authentication-Results", "X-Authentication-Results"),
+        "headers": str(dict(msg.items())),
         "body": get_body(msg),
     }
 
@@ -158,39 +160,6 @@ def load_json(file, source):
 
     return df
 
-def parse_eml_file(file_bytes):
-    msg = email.message_from_bytes(file_bytes)
-
-    def get_body(msg):
-        if msg.is_multipart():
-            for part in msg.walk():
-                if part.get_content_type() == "text/plain":
-                    try:
-                        return part.get_payload(decode=True).decode(errors="ignore")
-                    except:
-                        continue
-        else:
-            try:
-                return msg.get_payload(decode=True).decode(errors="ignore")
-            except:
-                return ""
-        return ""
-
-    headers = dict(msg.items())
-
-    return {
-        "subject": msg.get("Subject", ""),
-        "sender": msg.get("From", ""),
-        "receiver": msg.get("To", ""),
-        "date": msg.get("Date", ""),
-        "body": get_body(msg),
-
-        "headers": str(headers),
-
-        "content_type": msg.get_content_type(),
-        "mime_version": msg.get("Mime-Version", "")
-    }
-
 def load_eml_zips(source_name="scraped_spam"):
     spam_zip_dir = os.path.join(RAW_DIR, "spam_zips")
 
@@ -215,10 +184,10 @@ def load_eml_zips(source_name="scraped_spam"):
 
                 try:
                     with z.open(file) as f:
-                        parsed = parse_eml_file(f.read())
-                        parsed["source"] = source_name
-                        parsed["user"] = zip_file.replace(".zip", "")
-                        all_rows.append(parsed)
+                        msg = email.message_from_bytes(f.read())
+                        record = extract_record(msg, source_name, "spam", file)
+                        record["user"] = zip_file.replace(".zip", "")
+                        all_rows.append(record)
                 except Exception as e:
                     print(f"Error parsing {file}: {e}")
 
@@ -241,20 +210,13 @@ def combine():
     nazario_monkey = load_mbox("nazario_spf", "nazario_monkey", "phishing")
     scraped = load_eml_zips()
 
-    datasets = [enron, nazario, github, meajor]
+    # datasets = [enron, nazario, github, meajor, phishing_pot, nazario_monkey]
 
+    datasets = [github, meajor, phishing_pot, nazario_monkey]
     if not scraped.empty:
         datasets.append(scraped)
 
-
-    # combined = pd.concat(
-    #     [enron, nazario, github, meajor, phishing_pot, nazario_monkey],
-    #     ignore_index=True,
-    #     sort=False
-    # )
-    combined = pd.concat(
-        [github, meajor, phishing_pot, nazario_monkey],
-        datasets,
+    combined = pd.concat(datasets,
         ignore_index=True,
         sort=False
     )
