@@ -5,6 +5,21 @@ This repository contains scripts for downloading, combining, and normalizing ema
 -  [Enron Fraud Email Dataset](https://www.kaggle.com/datasets/advaithsrao/enron-fraud-email-dataset)
 -  [Nazario-5/TREC-07](https://www.kaggle.com/datasets/rohansood98/phishing-email-dataset-nazario-5-and-trec07)
 
+# Instructions for email scraping 
+1. Go to gmail account settings → see all settings → Forwarding and POP/IMAP
+    - Click on Auto-Expunge on - Immediately update the server. (default) and save changes 
+2. Open google account → manage your google account → security & sign in 
+    - Turn on two factor authentication
+3. Go to the following link: Create and manage your app passwords 
+    - Create a new app password (remember this because it will be used later)
+4. Run the following command in terminal python scrape_email.py
+5. Enter the required input 
+    - Email address 
+    - App password (from step 3)
+    - IMAP server (imap.gmail.com for gmail)
+6. Output should be a zip file 
+
+
 # Running Project
  To create the dateset run the run_project.sh script. It will output a normalized_dataset.csv located in the data/processed folder.
 

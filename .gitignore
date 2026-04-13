@@ -1,1 +1,8 @@
 data/
+
+data/spam_zips/
+data/spam_emails/
+
+spam_emails/
+*.eml 
+*.zip

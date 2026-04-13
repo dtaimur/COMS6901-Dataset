@@ -166,6 +166,16 @@ def normalize():
     print("Loading dataset...")
     df = pd.read_csv(INPUT_FILE, low_memory=False)
 
+    for col in ["label", "type"]:
+        if col not in df.columns:
+            df[col] = None
+        df[col] = df[col].astype("object")
+
+    if "source" in df.columns:
+        df.loc[(df["source"] == "scraped_spam") & (df["label"].isna()), "label"] = "spam"
+        df.loc[(df["source"] == "scraped_spam") & (df["type"].isna()), "type"] = "spam"
+
+
     # Clean column names
     df.columns = df.columns.str.strip()
 
@@ -193,6 +203,11 @@ def normalize():
         df["spf_result"] = df["received_spf"].apply(normalize_spf)
     else:
         df["spf_result"] = "none"
+    df = merge_columns(df, "content_types", "content_type")
+    df = merge_columns(df, "receiver", "to")
+    df = merge_columns(df, "sender", "from")
+    df = merge_columns(df, "body", "message")
+    df = merge_columns(df, "body", "text")
 
     # Create unified email_text column
     if "body" in df.columns and "message" in df.columns:
@@ -266,7 +281,7 @@ def normalize():
     df["email_length"] = df["email_text"].astype(str).apply(len)
     df["num_exclamation_marks"] = df["email_text"].astype(str).str.count("!")
     df["num_links_in_body"] = df["email_text"].astype(str).str.count("http")
-    df["is_html_email"] = df["email_text"].astype(str).str.contains("<html|<body|<a", case=False).astype(int)
+    df["is_html_email"] = (df["email_text"].astype(str).str.contains("<html|<body|<a", case=False) | df["content_types"].astype(str).str.contains("html", case=False)).astype(int)
 
     # Compute urgency
     df["urgency_level"] = df.apply(lambda row: compute_urgency(row["email_text"], row.get("subject", "")), axis=1)
@@ -277,6 +292,14 @@ def normalize():
         results = df.loc[mask, "file"].apply(extract_attachment_features)
         df.loc[mask, "attachment_count"] = results.apply(lambda x: x[0])
         df.loc[mask, "has_attachments"] = results.apply(lambda x: float(x[1]))
+
+    # Header-based (only fill missing)
+    if "headers" in df.columns:
+        header_attach = df["headers"].str.contains("filename=", case=False, na=False)
+        header_count = df["headers"].str.count("filename=")
+
+        df["has_attachments"] = df["has_attachments"].combine_first(header_attach.astype(float))
+        df["attachment_count"] = df["attachment_count"].combine_first(header_count)
 
     # Fill annotation columns
     for col in ["human evaluated emotion", "llm detected emotion", "motivation"]:
@@ -313,6 +336,8 @@ def normalize():
         "content_types", "language",
         "human evaluated emotion", "llm detected emotion", "motivation", 
         "urgency_level", "spf_result"
+        "urgency_level",
+        "headers"
     ]
     final_columns = [c for c in final_columns if c in df.columns]
     df = df[final_columns]
@@ -329,7 +354,7 @@ def normalize():
 
     df.to_csv(OUTPUT_FILE, index=False)
     print("Saved normalized dataset:", OUTPUT_FILE)
-   # print(df.groupby("source")["normalized_label"].value_counts())
+    print(df.groupby("source")["normalized_label"].value_counts())
 
 if __name__ == "__main__":
     normalize()
