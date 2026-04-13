@@ -45,7 +45,7 @@ def download_github_repo(url, dir_name):
     output_dir = os.path.join(RAW_DIR, dir_name)
     
     subprocess.run(
-        ["git", "clone", "--depth=1", url, dir_name],
+        ["git", "clone", "--depth=1", url, output_dir],
         check=True
     )
 
@@ -76,11 +76,11 @@ def download_nazario_monkey_dataset(files, output_subdir):
             continue
 
         print(f"Downloading {filename}...")
-        response = requests.get(url, stream=True)
+        response = requests.get(url)
         response.raise_for_status()
 
-    with open(filepath, "wb") as f:
-        f.write(response.content)
+        with open(filepath, "wb") as f:
+            f.write(response.content)
 
 
 def rename_file(original, new_name):
