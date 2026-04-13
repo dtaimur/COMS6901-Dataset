@@ -1,4 +1,4 @@
-## Just combines all datasets no normalizing done yet
+## Just combines all datasets no normalizing done yet. Some pre-processing on SPF extraction and spam anonymization.
 
 import pandas as pd
 import json
@@ -7,6 +7,7 @@ import re
 import mailbox
 import zipfile
 import email
+import hashlib
 
 RAW_DIR = "data/raw"
 PROCESSED_DIR = "data/processed"
@@ -88,6 +89,26 @@ def extract_record(msg, source, label, source_file=None):
         "headers": str(dict(msg.items())),
         "body": get_body(msg),
     }
+
+def anonymize_email(addr):
+    if pd.isna(addr) or addr == "":
+        return ""
+    addr = str(addr)
+    # extract email if in "Name <email@domain.com>" format
+    match = re.search(r'<([^>]+)>', addr)
+    address = match.group(1) if match else addr.strip()
+    # hash the local part, keep domain
+    if "@" in address:
+        local, domain = address.split("@", 1)
+        hashed = hashlib.sha256(local.encode()).hexdigest()[:10]
+        return f"{hashed}@{domain.lower()}"
+    return hashlib.sha256(address.encode()).hexdigest()[:10]
+
+def anonymize_scraped(df):
+    df = df.copy()
+    df["from"] = df["from"].apply(anonymize_email)
+    df["to"] = df["to"].apply(anonymize_email)
+    return df
 
 
 def load_eml_files(subdir, source, label):
@@ -202,18 +223,19 @@ def combine():
 
     print("Loading datasets")
 
-    # enron = load_csv("enron_data_fraud_labeled.csv", "enron")
-    # nazario = load_csv("nazario.csv", "nazario")
+    enron = load_csv("enron_data_fraud_labeled.csv", "enron")
+    nazario = load_csv("nazario.csv", "nazario")
     github = load_json("github_phishing_emails.json", "github")
     meajor = load_csv("meajor.csv", "meajor")
     phishing_pot = load_eml_files("phishing_pot/email", "phishing_pot", "phishing")
     nazario_monkey = load_mbox("nazario_spf", "nazario_monkey", "phishing")
     scraped = load_eml_zips()
 
-    # datasets = [enron, nazario, github, meajor, phishing_pot, nazario_monkey]
+    datasets = [enron, nazario, github, meajor, phishing_pot, nazario_monkey]
 
-    datasets = [github, meajor, phishing_pot, nazario_monkey]
+    # datasets = [github, meajor, phishing_pot, nazario_monkey]
     if not scraped.empty:
+        scraped = anonymize_scraped(scraped)
         datasets.append(scraped)
 
     combined = pd.concat(datasets,

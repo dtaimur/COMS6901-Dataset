@@ -13,14 +13,10 @@ def extract_year(date_val):
     if pd.isna(date_val) or date_val == "":
         return 0
     try:
-        return pd.to_datetime(str(date_val), utc=False).year
+        cleaned = re.sub(r'\s+[A-Z]{2,4}$', '', str(date_val).strip())
+        return pd.to_datetime(cleaned).year
     except:
-        try:
-            # strip timezone
-            cleaned = re.sub(r'\s+[A-Z]{2,4}$', '', str(date_val).strip())
-            return pd.to_datetime(cleaned).year
-        except:
-            return 0
+        return 0
 
 def extract_domain(email):
     if pd.isna(email) or email == "":
