@@ -14,6 +14,105 @@ PROCESSED_DIR = "data/processed"
 
 os.makedirs(PROCESSED_DIR, exist_ok=True)
 
+PLACEHOLDERS = {
+    "email": "example@gmail.com",
+    "phone": "202-555-0123",
+    "ssn": "123-45-6789",
+    "credit_card": "4111-1111-1111-1111",
+    "address": "123 Main St, Springfield, USA",
+    "name": "John Doe",
+    "url": "https://example.com",
+    "signature": "Best regards,\nJohn Doe\nExample Corporation"
+}
+
+def anonymize_text(text):
+    if pd.isna(text) or text is None:
+        return ""
+
+    text = str(text)
+
+    # Email addresses
+    text = re.sub(
+        r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b',
+        PLACEHOLDERS["email"],
+        text
+    )
+
+    # Phone numbers
+    text = re.sub(
+        r'(\+?\d{1,2}[\s\-\.]?)?(\(?\d{3}\)?[\s\-\.]?\d{3}[\s\-\.]?\d{4})',
+        PLACEHOLDERS["phone"],
+        text
+    )
+
+    # Social Security Numbers
+    text = re.sub(
+        r'\b\d{3}-\d{2}-\d{4}\b',
+        PLACEHOLDERS["ssn"],
+        text
+    )
+
+    # Credit card numbers
+    text = re.sub(
+        r'\b(?:\d[ -]*?){13,16}\b',
+        PLACEHOLDERS["credit_card"],
+        text
+    )
+
+    # Physical addresses
+    text = re.sub(
+        r'\b\d{1,5}\s+[A-Za-z0-9\s,]+\s(?:Street|St|Avenue|Ave|Road|Rd|Boulevard|Blvd|Lane|Ln|Drive|Dr|Court|Ct)\b',
+        PLACEHOLDERS["address"],
+        text,
+        flags=re.IGNORECASE
+    )
+
+    # URLs
+    text = re.sub(
+        r'https?://[^\s]+',
+        PLACEHOLDERS["url"],
+        text
+    )
+
+    # Greetings (e.g., "Dear John,")
+    text = re.sub(
+        r'\b(Dear|Hello|Hi|Greetings)\s+[A-Z][a-z]+\b',
+        r'\1 ' + PLACEHOLDERS["name"],
+        text
+    )
+
+    # Email signatures
+    text = re.sub(
+        r'(Best regards|Sincerely|Regards|Kind regards|Thanks)[\s\S]{0,200}',
+        PLACEHOLDERS["signature"],
+        text,
+        flags=re.IGNORECASE
+    )
+
+    return text
+
+
+def anonymize_headers(headers):
+    if pd.isna(headers):
+        return ""
+    return anonymize_text(headers)
+
+
+def anonymize_dataset(df):
+    df = df.copy()
+
+    text_columns = [
+        "from", "to", "subject", "reply_to",
+        "return_path", "headers", "body",
+        "authentication_results"
+    ]
+
+    for col in text_columns:
+        if col in df.columns:
+            df[col] = df[col].astype(str).apply(anonymize_text)
+
+    return df
+
 def get_header(msg, *keys):
     for key in keys:
         try:
@@ -236,6 +335,7 @@ def combine():
     # datasets = [github, meajor, phishing_pot, nazario_monkey]
     if not scraped.empty:
         scraped = anonymize_scraped(scraped)
+        scraped = anonymize_dataset(scraped)
         datasets.append(scraped)
 
     combined = pd.concat(datasets,
