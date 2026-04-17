@@ -98,18 +98,18 @@ def rename_file(original, new_name):
 
 if __name__ == "__main__":
 
-    # download_kaggle_dataset(
-    #     "rohansood98/phishing-email-dataset-nazario-5-and-trec07"
-    # )
+    download_kaggle_dataset(
+         "rohansood98/phishing-email-dataset-nazario-5-and-trec07"
+     )
 
     rename_file(
         "Nazario_5.csv",
         "nazario.csv"
     )
 
-    # download_kaggle_dataset(
-    #     "advaithsrao/enron-fraud-email-dataset"
-    # )
+    download_kaggle_dataset(
+         "advaithsrao/enron-fraud-email-dataset"
+     )
 
     rename_file(
         "email_text.csv",

@@ -192,6 +192,7 @@ def normalize():
     df = merge_columns(df, "content_types", "content_type")
     df = merge_columns(df, "body", "message")
     df = merge_columns(df, "body", "text")
+    df = merge_columns(df, "date", "Date")
 
     if "received_spf" in df.columns:
         df["spf_result"] = df["received_spf"].apply(normalize_spf)
