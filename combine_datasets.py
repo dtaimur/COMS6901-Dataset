@@ -328,11 +328,12 @@ def combine():
     meajor = load_csv("meajor.csv", "meajor")
     phishing_pot = load_eml_files("phishing_pot/email", "phishing_pot", "phishing")
     nazario_monkey = load_mbox("nazario_spf", "nazario_monkey", "phishing")
+    rpuv_ham = load_eml_files("realprogrammersusevim_ham/dataset/1", "rpuv_email_dataset", "ham")
     scraped = load_eml_zips()
 
-    datasets = [enron, nazario, github, meajor, phishing_pot, nazario_monkey]
+    datasets = [enron, nazario, github, meajor, phishing_pot, nazario_monkey, rpuv_ham]
 
-    # datasets = [github, meajor, phishing_pot, nazario_monkey]
+    # datasets = [github, meajor, phishing_pot, nazario_monkey, rpuv_ham]
     if not scraped.empty:
         scraped = anonymize_scraped(scraped)
         scraped = anonymize_dataset(scraped)

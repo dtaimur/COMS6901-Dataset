@@ -83,6 +83,26 @@ def download_nazario_monkey_dataset(files, output_subdir):
             for chunk in response.iter_content(chunk_size=8192):
                 f.write(chunk)
 
+def download_github_sparse(url, sparse_path, dir_name):
+    """Clone only a specific subdirectory from a GitHub repo via sparse checkout."""
+
+    output_dir = os.path.join(RAW_DIR, dir_name)
+    os.makedirs(output_dir, exist_ok=True)
+
+    subprocess.run(["git", "init", output_dir], check=True)
+    subprocess.run(["git", "-C", output_dir, "remote", "add", "origin", url], check=True)
+    subprocess.run(["git", "-C", output_dir, "config", "core.sparseCheckout", "true"], check=True)
+
+    sparse_file = os.path.join(output_dir, ".git", "info", "sparse-checkout")
+    with open(sparse_file, "w") as f:
+        f.write(sparse_path.rstrip("/") + "/\n")
+
+    subprocess.run(
+        ["git", "-C", output_dir, "pull", "--depth=1", "origin", "main"],
+        check=True
+    )
+
+    print(f"Sparse checkout of '{sparse_path}' complete → {output_dir}")
 
 def rename_file(original, new_name):
 
@@ -154,6 +174,13 @@ if __name__ == "__main__":
         output_subdir="nazario_spf"
     )
 
+    # HAM download
+    download_github_sparse(
+        url="https://github.com/realprogrammersusevim/email-dataset.git",
+        sparse_path="dataset/1",
+        dir_name="realprogrammersusevim_ham"
+    )
+
     extra_file = os.path.join(RAW_DIR, "email_text.csv")
 
     if os.path.exists(extra_file):
@@ -161,6 +188,3 @@ if __name__ == "__main__":
 
 
     print("\nAll datasets downloaded successfully.")
-
-    # TODO: write additional processing step for .eml / .mbox and extracting relevant fields
-    # TODO: add spf to finalized headers
