@@ -158,6 +158,22 @@ def normalize_spf(val):
         return "error"
     return "unknown"
 
+def strip_html(text):
+    if pd.isna(text):
+        return ""
+
+    text = str(text)
+
+    text = re.sub(r'<(script|style).*?>.*?</\1>', '', text, flags=re.DOTALL | re.IGNORECASE)
+
+    text = re.sub(r'<a [^>]*>(.*?)</a>', r'\1', text, flags=re.DOTALL | re.IGNORECASE)
+
+    text = re.sub(r'<[^>]+>', ' ', text)
+
+    text = text.replace("&nbsp;", " ").replace("&amp;", "&")
+
+    return text
+
 def normalize():
     print("Loading dataset...")
     df = pd.read_csv(INPUT_FILE, low_memory=False)
@@ -208,6 +224,8 @@ def normalize():
         df["email_text"] = df["message"]
     else:
         df["email_text"] = ""   
+    df["email_text"] = df["email_text"].apply(strip_html)
+    df["subject"] = df["subject"].apply(strip_html)
     df["email_text"] = df["email_text"].apply(normalize_email_text)
 
     # Lowercase column names, drop remaining duplicates
