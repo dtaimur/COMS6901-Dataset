@@ -4,6 +4,9 @@ This repository contains scripts for downloading, combining, and normalizing ema
 -  [Meajor Corpus](https://zenodo.org/records/18471483?)
 -  [Enron Fraud Email Dataset](https://www.kaggle.com/datasets/advaithsrao/enron-fraud-email-dataset)
 -  [Nazario-5/TREC-07](https://www.kaggle.com/datasets/rohansood98/phishing-email-dataset-nazario-5-and-trec07)
+-  [realprogrammersusevim](https://github.com/realprogrammersusevim/email-dataset.git)
+-  [phishing_pot](https://github.com/rf-peixoto/phishing_pot.git)
+-  [Nazario 2020-2025](https://monkey.org/~jose/phishing/)
 
 # Instructions for email scraping 
 1. Go to gmail account settings → see all settings → Forwarding and POP/IMAP
@@ -18,7 +21,6 @@ This repository contains scripts for downloading, combining, and normalizing ema
     - App password (from step 3)
     - IMAP server (imap.gmail.com for gmail)
 6. Output should be a zip file 
-
 
 # Running Project
  To create the dateset run the run_project.sh script. It will output a normalized_dataset.csv located in the data/processed folder.
