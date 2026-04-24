@@ -317,6 +317,16 @@ def load_eml_zips(source_name="scraped_spam"):
 
     return df
 
+def load_anonymized_spam():
+    path = "spam_emails/anonymized_spam.csv"
+    if not os.path.exists(path):
+        print("No anonymized spam dataset found.")
+        return pd.DataFrame()
+
+    df = pd.read_csv(path)
+    df["source"] = "scraped_spam"
+    return df
+
 
 def combine():
 
@@ -329,14 +339,13 @@ def combine():
     phishing_pot = load_eml_files("phishing_pot/email", "phishing_pot", "phishing")
     nazario_monkey = load_mbox("nazario_spf", "nazario_monkey", "phishing")
     rpuv_ham = load_eml_files("realprogrammersusevim_ham/dataset/1", "rpuv_email_dataset", "ham")
-    scraped = load_eml_zips()
+    scraped = load_anonymized_spam()
 
     datasets = [enron, nazario, github, meajor, phishing_pot, nazario_monkey, rpuv_ham]
 
     # datasets = [github, meajor, phishing_pot, nazario_monkey, rpuv_ham]
+     
     if not scraped.empty:
-        scraped = anonymize_scraped(scraped)
-        scraped = anonymize_dataset(scraped)
         datasets.append(scraped)
 
     combined = pd.concat(datasets,
