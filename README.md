@@ -57,4 +57,6 @@ It ouputs a combined_raw_dataset.csv and normalized_dataset.csv; the latter has 
 - "llm detected emotion",
 - "motivation"
 - "urgency"
+- "spf_result"
+- "headers"
 
