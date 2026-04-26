@@ -3,6 +3,8 @@ import os
 import zipfile
 import email
 import re
+import spacy
+from email.header import decode_header
 
 RAW_DIR = "data/raw/spam_zips"
 OUTPUT_DIR = "spam_emails"
@@ -10,6 +12,14 @@ OUTPUT_FILE = os.path.join(OUTPUT_DIR, "anonymized_spam.csv")
 
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
+# ---------------------------
+# LOAD MODEL
+# ---------------------------
+nlp = spacy.load("en_core_web_sm", disable=["parser", "tagger"])
+
+# ---------------------------
+# PLACEHOLDERS
+# ---------------------------
 PLACEHOLDERS = {
     "email": "example@gmail.com",
     "phone": "202-555-0123",
@@ -17,17 +27,135 @@ PLACEHOLDERS = {
     "credit_card": "4111-1111-1111-1111",
     "address": "123 Main St, Springfield, USA",
     "name": "John Doe",
-    "url": "https://example.com",
-    "signature": "Best regards,\nJohn Doe\nExample Corporation"
+    "org": "Example Organization",
+    "url": "https://example.com"
 }
 
+# ---------------------------
+# SAFE WORDS
+# ---------------------------
+SAFE_WORDS = {
+    "Today", "University", "Monday", "Tuesday", "Wednesday",
+    "Thursday", "Friday", "Saturday", "Sunday",
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+}
 
-def anonymize_text(text):
-    if pd.isna(text) or text is None:
+# ---------------------------
+# LOAD WHITELIST
+# ---------------------------
+def load_private_names(filepath="data/private_names.txt"):
+    names = set()
+
+    if os.path.exists(filepath):
+        with open(filepath, "r", encoding="utf-8") as f:
+            for line in f:
+                name = normalize_text(line).lower()
+                if name:
+                    names.add(name)
+
+    return names
+
+
+PRIVATE_NAMES = load_private_names()
+
+# ---------------------------
+# NORMALIZATION
+# ---------------------------
+def normalize_text(text):
+    if not text:
         return ""
 
     text = str(text)
 
+    # fix unicode + whitespace issues
+    text = text.replace("\r", " ")
+    text = text.replace("\n", " ")
+    text = text.replace("\t", " ")
+    text = text.replace("\u00a0", " ")  # non-breaking space
+    text = text.replace("’", "'")
+
+    text = re.sub(r'\s+', ' ', text)
+
+    return text.strip()
+
+# ---------------------------
+# EMAIL DISPLAY NAME STRIPPER
+# ---------------------------
+def strip_email_display_names(text):
+    if not text:
+        return ""
+
+    # "Name <email@domain.com>" → "email@domain.com"
+    return re.sub(r'\"?[^<"]+\"?\s*<([^>]+)>', r'\1', text)
+
+# ---------------------------
+# WHITELIST REMOVAL (FINAL OVERRIDE)
+# ---------------------------
+def remove_private_names(text):
+    text = normalize_text(text)
+
+    for name in PRIVATE_NAMES:
+        pattern = re.escape(name).replace(r'\ ', r'\s+')
+        text = re.sub(pattern, PLACEHOLDERS["name"], text, flags=re.IGNORECASE)
+
+    return text
+
+# ---------------------------
+# EMAIL DECODING
+# ---------------------------
+def decode_email_text(text):
+    if not text:
+        return ""
+
+    decoded_parts = decode_header(text)
+    out = ""
+
+    for part, encoding in decoded_parts:
+        if isinstance(part, bytes):
+            out += part.decode(encoding or "utf-8", errors="ignore")
+        else:
+            out += part
+
+    return out
+
+# ---------------------------
+# NER ANONYMIZATION
+# ---------------------------
+def anonymize_entities(text):
+    doc = nlp(text)
+
+    for ent in doc.ents:
+        if ent.label_ == "PERSON":
+            text = text.replace(ent.text, PLACEHOLDERS["name"])
+        elif ent.label_ == "ORG":
+            text = text.replace(ent.text, PLACEHOLDERS["org"])
+
+    return text
+
+# ---------------------------
+# REGEX FALLBACK (DISABLED SAFELY)
+# ---------------------------
+def anonymize_names_regex(text):
+    return text  # disabled to prevent false positives
+
+# ---------------------------
+# MAIN PIPELINE
+# ---------------------------
+def anonymize_text(text):
+    if pd.isna(text) or text is None:
+        return ""
+
+    # 1. decode
+    text = decode_email_text(text)
+
+    # 2. strip email display names early
+    text = strip_email_display_names(text)
+
+    # 3. normalize
+    text = normalize_text(text)
+
+    # 4. structured PII removal
     text = re.sub(r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b',
                   PLACEHOLDERS["email"], text)
 
@@ -43,15 +171,59 @@ def anonymize_text(text):
     text = re.sub(r'https?://[^\s]+',
                   PLACEHOLDERS["url"], text)
 
-    text = re.sub(r'\b(Dear|Hello|Hi)\s+[A-Z][a-z]+\b',
-                  r'\1 ' + PLACEHOLDERS["name"], text)
+    # 5. greetings
+    text = re.sub(r'\b(dear|hello|hi|hey)\b[\s,:\-]*([A-Za-z][a-z]+)\b',r'\1 ' + PLACEHOLDERS["name"],text,
+    flags=re.IGNORECASE)
 
-    text = re.sub(r'(Best regards|Sincerely|Regards|Thanks|Best)[\s\S]{0,200}',
-                  PLACEHOLDERS["signature"], text, flags=re.IGNORECASE)
+    # 6. NER pass
+    text = anonymize_entities(text)
+
+    # 7. whitelist FINAL OVERRIDE (critical)
+    text = remove_private_names(text)
+
+    text = cleanup_orphan_tokens(text)
 
     return text
 
+def cleanup_orphan_tokens(text):
+    # remove leftover single lowercase tokens that are likely fragments
+    text = re.sub(r'\b(an)\b', '', text)
 
+    # collapse extra spaces again
+    text = re.sub(r'\s+', ' ', text).strip()
+
+    return text
+
+# ---------------------------
+# HEADERS
+# ---------------------------
+def anonymize_headers(headers):
+    if pd.isna(headers) or headers is None:
+        return ""
+
+    text = decode_email_text(str(headers))
+    text = strip_email_display_names(text)
+    text = normalize_text(text)
+
+    # remove whitelist FIRST in headers too (structure heavy)
+    text = remove_private_names(text)
+
+    text = re.sub(r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b',
+                  PLACEHOLDERS["email"], text)
+
+    text = re.sub(r'\b\d{1,3}(?:\.\d{1,3}){3}\b', "0.0.0.0", text)
+
+    text = re.sub(r'\b([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}\b', "example.com", text)
+
+    text = re.sub(r'<[^>]+>', "<message-id@example.com>", text)
+
+    text = anonymize_entities(text)
+
+    return text
+
+# ---------------------------
+# BODY
+# ---------------------------
 def get_body(msg):
     try:
         if msg.is_multipart():
@@ -68,7 +240,9 @@ def get_body(msg):
         pass
     return ""
 
-
+# ---------------------------
+# RECORD EXTRACTION
+# ---------------------------
 def extract_record(msg, source_file):
     return {
         "source": "scraped_spam",
@@ -78,11 +252,13 @@ def extract_record(msg, source_file):
         "subject": anonymize_text(msg.get("Subject", "")),
         "date": msg.get("Date", ""),
         "body": anonymize_text(get_body(msg)),
-        "headers": anonymize_text(str(dict(msg.items()))),
+        "headers": anonymize_headers(str(dict(msg.items()))),
         "source_file": source_file
     }
 
-
+# ---------------------------
+# MAIN LOOP
+# ---------------------------
 def process_spam_zips():
     all_rows = []
 
@@ -109,7 +285,6 @@ def process_spam_zips():
 
     print(f"Saved anonymized dataset: {OUTPUT_FILE}")
     print(f"Total emails: {len(df)}")
-
 
 if __name__ == "__main__":
     process_spam_zips()

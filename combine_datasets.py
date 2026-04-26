@@ -327,6 +327,26 @@ def load_anonymized_spam():
     df["source"] = "scraped_spam"
     return df
 
+def load_manual_emails(subdir, source, label):
+    input_dir = os.path.join(subdir)
+    records = []
+    failed = 0
+
+    for filename in os.listdir(input_dir):
+        if not filename.endswith(".eml"):
+            continue
+        filepath = os.path.join(input_dir, filename)
+        try:
+            with open(filepath, "rb") as f:
+                msg = email.message_from_binary_file(f)
+            records.append(extract_record(msg, source, label, filename))
+        except Exception as e:
+            failed += 1
+            print(f"  Warning: failed to parse {filename}: {e}")
+
+    print(f"Loaded {len(records)} emails from {subdir} ({failed} failed)")
+    return pd.DataFrame(records)
+
 
 def combine():
 
@@ -340,12 +360,16 @@ def combine():
     nazario_monkey = load_mbox("nazario_spf", "nazario_monkey", "phishing")
     rpuv_ham = load_eml_files("realprogrammersusevim_ham/dataset/1", "rpuv_email_dataset", "ham")
     scraped = load_anonymized_spam()
+    manual = load_manual_emails("manual_emails", "Columbia", "legitimate")
 
     datasets = [enron, nazario, github, meajor, phishing_pot, nazario_monkey, rpuv_ham]
 
     # datasets = [github, meajor, phishing_pot, nazario_monkey, rpuv_ham]
      
     if not scraped.empty:
+        datasets.append(scraped)
+    
+    if not manual.empty:
         datasets.append(scraped)
 
     combined = pd.concat(datasets,
