@@ -1,0 +1,429 @@
+Delivered-To: drt2145@lionmailmx.cc.columbia.edu
+Received: by 2002:a05:6919:ac05:b0:440:5268:b81c with SMTP id bw5csp1997809ysc;
+        Mon, 20 Apr 2026 14:04:53 -0700 (PDT)
+X-Forwarded-Encrypted: i=3; AFNElJ/az1dHxvlkc0EhBlKwcYUqb1tGiMikTyzezgG5b1Z/urJA5N9I/DmdgrF9Ut1c8W6tQhB+RSQ2@lionmailmx.cc.columbia.edu
+X-Received: by 2002:a05:690c:8d04:b0:7ba:ef98:970a with SMTP id 00721157ae682-7baef98a792mr40845137b3.9.1776719093617;
+        Mon, 20 Apr 2026 14:04:53 -0700 (PDT)
+ARC-Seal: i=2; a=rsa-sha256; t=1776719093; cv=fail;
+        d=google.com; s=arc-20240605;
+        b=b/UhgyaOlB3eRATU+NsKnReET/heRWKJlVmN8WoJeeC55Sxd3hxV88CkexF9+jm8Pb
+         BDFa1CJ9g0csxYxqOgSfi0+vtsWZxPVx+7ztRib8RC4KVKaWDilHFtoDFobxp9KnkeUw
+         jisZA7BWpy6bs02ATGY4jUSiR3yxJYQaUea0LjHb64kM16DfN79UfFrm7bs5Gp/0fC8Z
+         tpu38xS7vFxE6oRWNbyRV1bfTZ5wVBEGSN7x3765eZet9T0fZjJmlj+Po2/xPi+zdM0H
+         X3In2jVBKdt+YM4Ijae9VNdvnRx/YBGO4czBRi83HdENKOi94mYsKx+l7kvIu1WFsz+g
+         N2MA==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :dkim-signature;
+        bh=ppMyhd20ffRIt8JF2QLAxyrwLOWIDu6tnMWcZq6dpQg=;
+        fh=+D4yIDm+r89gQ1aCPnFCYmexElFcAtcZjRPrIHULgBA=;
+        b=CKAJla2WTukegIFrTVQGrr462FcqtVP1SJxn7IR2/p1HSHTogMmyiSiIfRnSVXFwlv
+         tStqEnllX4AriF+P3ZHyfRHobkXIzAo8O9bOTDFuAkGvOXJm/ZMf324eNnAI99Dm/MqE
+         HJv/yXub8zKiVeey0PXTzputV9jJhFCUkfIeYO6D8Zo6cyEl2xWMVcSagbB+0UQ+XWJ1
+         73vgyLOEO7w9wp1cBjri/Zls6sFlL7egebmwxv7ZIkx9wJvLq22XiQ8n4RmRQk0C+ZKS
+         X8sR9Bcl/czaGBZApxPdJ55O/EYJYcjKVycrbujPOfHcF/nzrab0eiqvjVzee8zep9dS
+         2raA==;
+        dara=google.com
+ARC-Authentication-Results: i=2; mx.google.com;
+       dkim=neutral (body hash did not verify) header.i=@caa.columbia.edu header.s=google header.b=jZ53VDhp;
+       arc=fail (body hash mismatch);
+       spf=pass (google.com: domain of gormazabal77@gmail.com designates 74.125.82.47 as permitted sender) smtp.mailfrom=gormazabal77@gmail.com;
+       dara=neutral header.i=@lionmailmx.cc.columbia.edu
+Return-Path: <gormazabal77@gmail.com>
+Received: from mx0b-00364e01.pphosted.com (mx0b-00364e01.pphosted.com. [148.163.139.74])
+        by mx.google.com with ESMTPS id 00721157ae682-7baf1618746si30277617b3.135.2026.04.20.14.04.53
+        for <drt2145@lionmailmx.cc.columbia.edu>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 20 Apr 2026 14:04:53 -0700 (PDT)
+Received-SPF: pass (google.com: domain of gormazabal77@gmail.com designates 74.125.82.47 as permitted sender) client-ip=74.125.82.47;
+Authentication-Results: mx.google.com;
+       dkim=neutral (body hash did not verify) header.i=@caa.columbia.edu header.s=google header.b=jZ53VDhp;
+       arc=fail (body hash mismatch);
+       spf=pass (google.com: domain of gormazabal77@gmail.com designates 74.125.82.47 as permitted sender) smtp.mailfrom=gormazabal77@gmail.com;
+       dara=neutral header.i=@lionmailmx.cc.columbia.edu
+Received: from pps.filterd (m0167076.ppops.net [127.0.0.1])
+	by mx0b-00364e01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 63KKu6AZ490553
+	for <drt2145@columbia.edu>; Mon, 20 Apr 2026 17:04:53 -0400
+Authentication-Results: ppops.net;
+	spf=pass smtp.mailfrom=gormazabal77@gmail.com;
+	dkim=pass header.s=google header.d=caa.columbia.edu;
+	dmarc=pass header.from=caa.columbia.edu
+Received: from mail-dl1-f47.google.com (mail-dl1-f47.google.com [74.125.82.47])
+	by mx0b-00364e01.pphosted.com (PPS) with ESMTPS id 4dmqcdtg5b-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <drt2145@columbia.edu>; Mon, 20 Apr 2026 17:04:52 -0400 (EDT)
+Received: by mail-dl1-f47.google.com with SMTP id a92af1059eb24-12c7212836bso9267013c88.0
+        for <drt2145@columbia.edu>; Mon, 20 Apr 2026 14:04:52 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1776719091; cv=none;
+        d=google.com; s=arc-20240605;
+        b=Koj5PBVT465m4IdPNyaMhbdJI72hRsrVoyxe8xgGnErLYFyFD+Am/KPP+LlBDPLzTd
+         5tLVZWnHBa4+y8BsHRxdvEMe23kY563a915SWzS3NjH9bTyUTMTS0tg6YaWposPOpw1h
+         /SwpAptbzw9uG/yl+RAQWH3KKZTj1nU6soBkEGR0JC9gmCNA2IzU48+TF91Mtee705qR
+         4gyPbA5QGp9t7hpTdLPpe1AE6h+O+1FRc4iW6N6Bfr3CYdVJoXwzSyBOZZGKZLw0ovrg
+         8nJRSiiAfNtT1HPS/QINAolkpAUMUvIIu6tDtIOZXqGjOoAt7H/Dff4rZ0CtGeegDxBJ
+         TNgQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :dkim-signature;
+        bh=CPOufQzQhwmBVYuHMRm/X9ts/hBSC9AJozOwXBfIaik=;
+        fh=+D4yIDm+r89gQ1aCPnFCYmexElFcAtcZjRPrIHULgBA=;
+        b=MWztzjEx47zIt2CAFn+2hghvnHDRVVDSriRFGRJq7SCzegbWObgR0E5GjNqlLdYLdS
+         cnB/4YvzIeFnmmiFjdLZp93Qruh2aV8TdpZqQGOBwXonEHOlU0gFRYJ9b39FuDxODOMr
+         K3HdQRnkI5GkI/FPb/FKYsgJ7hlSxkvgRVBTp/5wvrZ9/yz82jDGjcwUFYGdEjhrHnPp
+         dsXi9dp36C82l+n0iDKuIqe12w2/F4l0tzZGhAn2CkORMl4t+Zrzu5yKwAuaIUMJNVsr
+         QWFj4MS1bWTBXyEvHMTR/TooKnhdZ0yEMgaqUOM5nWZesoXJ59pweVg5+INSU/aIBJ4C
+         D50w==;
+        darn=columbia.edu
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=caa.columbia.edu; s=google; t=1776719091; x=1777323891; darn=columbia.edu;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=CPOufQzQhwmBVYuHMRm/X9ts/hBSC9AJozOwXBfIaik=;
+        b=jZ53VDhpzHiVEF+B3PJRvutIr9LAi7dKLQYgkQ17ow3P3uRHg6tvNmeg9q1Wn61AY3
+         QOOWbBHIvyCg1vriPL2aZ44U5oHEC6WlewNRzyFKZnD+g9c3uf/SWlK2KrjnovCXaDlK
+         UpMIfuftx5W7zEJp/yvRpgo6K5pdMG3e5pmFU=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1776719091; x=1777323891;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=CPOufQzQhwmBVYuHMRm/X9ts/hBSC9AJozOwXBfIaik=;
+        b=Tnk4IgZvcIRt+e3t0Y/uEe6Hjjs1n5+3yHZm8X4q1qXtNnk8bHUl6N9T0RMjieju+e
+         TvEzJ+JRpjvlAQQj0Nuf97MeRK7Of+KsG72O3OKeGNLLVA94RwGkotnDTfGZOqMurVao
+         71yJW5a0o/CEhpAtgwy7hORpxBqKgVHAkVk7TcD0t+LTSaKoU+eYxzneftomq+aK7RY6
+         np4EraRxlo9owkc+xoaX/0Lsfmms+iKaQuh+9WInZvXEtgYhtvMiN/YEVAObHmf8xKrH
+         OV2ovn/293i6zuN8L8hjV+BAipsuLVBlgfjcGNv85mMF+X9JU0Q8K7iJlCWo0MjKpAvF
+         5KUA==
+X-Gm-Message-State: AOJu0YyJlpJua581ncPkK4/MW2UqSVywyv1F1j+dq/3noNZbYYkd8vc/
+	nCTCu1yv2DK+FfjRle+WJ7kvsi9Gxh0lfuIMZsiqyEQ8ZVxUDbVBPdLV3fKnix0fN8hLgDXvukl
+	0p3ztJm2xDt5X4CWkICdfV8bekaz8pVn6BQ==
+X-Gm-Gg: AeBDieuYxhYNSCRkQIavbftfC/pEcs16LbkQaExFDFprbG6BDQuvrAh7BvH6j9RvPU6
+	EKTxGUZh6k3Yy9SZA7A3Fovt4R7wcDnNS16uIGpLTaPVAwd9Z63gW5TKHnWGVb0BDgCF4nT3AAK
+	/0icXlLtziz7SUqxmEpZh3Hrp612l9jva/WFt5BIV4+n12w3ev6dycKAE/FUDTvlxZV7Ea+XXsc
+	UxqlA4VBLjAaiP5M/MTImKR/WNBh3OROLuBj5rVa9tfDCQaqqO4FEDO1C40cuuLMsdx4HFTLjhO
+	mNpma5VZi0h4W5M6wyw=
+X-Received: by 2002:a05:7300:8607:b0:2c0:c5e4:605f with SMTP id
+ 5a478bee46e88-2e478c20545mr8911389eec.24.1776719091234; Mon, 20 Apr 2026
+ 14:04:51 -0700 (PDT)
+MIME-Version: 1.0
+References: <CAGGftou0rbtEgtVqzi4qihOD9d9NFjz6RHWZA8nnG3Q9r8zKGA@mail.gmail.com>
+ <CAD+kYqSjG5aGgzq=NSX5rhbX5MahJesBnr2L+kSMdLuOuSss_g@mail.gmail.com> <CACgrgBaqdcPm+DcpB=kX-WCAm6sh+poeJeUc-5dnWhGKJNctxg@mail.gmail.com>
+In-Reply-To: <CACgrgBaqdcPm+DcpB=kX-WCAm6sh+poeJeUc-5dnWhGKJNctxg@mail.gmail.com>
+From: Gaston Ormazabal <gso7@caa.columbia.edu>
+Date: Mon, 20 Apr 2026 17:04:40 -0400
+X-Gm-Features: AQROBzDLw0xCogIQ6oJ5QqI3FgppWlvhYK5ghlX9Ib9leC7lFExzHJTwCnh6Kdw
+Message-ID: <CAD+kYqSOpvc7FvfYtJC0Tkqd+h33VwhVODaCROvLMdhW1F522A@mail.gmail.com>
+Subject: =?UTF-8?Q?Fwd=3A_Complete_the_Columbia_Commute_and_Travel_Survey?=
+	=?UTF-8?Q?_=E2=80=93_win_=2430_Bookstore_gift_card?=
+To: Daniyah Ramay Taimur <drt2145@columbia.edu>,
+        Christine X Dong <cxd2001@columbia.edu>
+Content-Type: multipart/alternative; boundary="0000000000004c7b79064feaa671"
+X-Proofpoint-ORIG-GUID: X4hKwij3Co9h-GrCOMgvf-tXpis5Em8P
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNDIwMDIwNiBTYWx0ZWRfX8YEoKZFL5ktX
+ pgSZ1hPbbz06Y5OdNTAvI8c4lc2ysIkUzyjPZxondRxZwannQ2JKFPQq2DZGiZVAmZC0HDtgp0d
+ wSEmevzlj8ifibjrSLkXmLSnVRqqIYuQYmkRi7Q1FkKejGKgbBqqHYd8OHxifmONEL3fAmG9yJl
+ pge5s2aiOBzvhndZ/UEhJRsxF/rzpnngEFPxjYwD+4vSeQZMXmhbVCWpYqWEgrBwVg9kLRsQU2p
+ 6X1HmAzHsdw9BzaRy5CswbjHYTWE9zI51PPjD7E8N6bU2sIQAiJU4QyrTGL0AH5utx7FAF5ilSG
+ FkLowh7eHtHTi4Xo9yym0l03b+r1yHNDAi9KhW//72Hh/zhWPGy50gYwPypHMQtMYRWCGBsE8aL
+ 42xbmjB34eEFoi5itzsCwLZnUSuT15D7UAcuG3bmt9twdmzFOwj4eh3cRhcoiwc9A1ZVUPlmLBG
+ VLoduz54tmV5FnTTnKiMzytIjddxQbVktabFg43e/cfEM8gdzjWpWuWwnvsRx
+X-CLX-Shades: MLX
+X-Proofpoint-GUID: X4hKwij3Co9h-GrCOMgvf-tXpis5Em8P
+X-CLX-Response: 1TFkXGx0SEQpMehcaEQpZRBd6XXhbHHNLSU5/RxEKWFgXaBoafx9tem5uSQE
+ RCnhOF21wZ14ZaBxmcmABEQp5TBdvRXxFZ1NFaG9ARBEKQ0gXBx0cEQpDWRcHGR4aEQpDSRcaBB
+ oaGhEKWU0XZ2ZyEQpZSRcacRoQGncGGx8ScRkdEBp3BhgaBhoRClleF2xseREKSUYXSUVGX0dIQ
+ 0tfRENcdUJFWV5PThEKSUcXeE9NEQpDThdyHkJhXUNAGWlFE0IHbVhpZWdNXEwHXnJaQ1kfb0cS
+ ehEKWFwXHwQaBB4YGgUbGgQbGxoEGxkeBBkeEBseGh8aEQpeWRdCYm5HexEKTVwXHh0cEQpMWhd
+ obWtNaxEKTEYXb2tjbGtrEQpCTxdoc1MYHWBaW21lHBEKQ1oXHR4EGxgfBBIYBB4dEQpCXhcbEQ
+ pEXhcYEQpCXBcbEQpCSxdjUFNte0VjGhlLGxEKQkkXbXBnXhloHGZyYAERCkJFF2YFW1lOYRpPG
+ nNkEQpCThdtcGdeGWgcZnJgAREKQkwXaBoafx9tem5uSQERCkJsF2F6XQF5RX4TBW1kEQpCQBdl
+ a19CH0doAWVjSxEKQlgXY3MfbmRDfxpjfVwRClpYFx8RCnlDF2tmZGdpGUcfGGtoEQpZSxcbHhI
+ TExEKcGcXaGdpYBtnbBtnY0sQHRIRCnBoF2lDcmVoeB1vWXpiEBkaEQpwaBdoZmtyTHMcGE1HZh
+ AZGhEKcGgXbWByAUJNX0lgWnMQGRoRCnBoF2IdcBIYc10YUmkdEBkaEQpwaBdjXElbGWZnbGlEW
+ hAZGhEKcGgXZUl/e2REHkUBX28QGRoRCnBoF2EZY1BAHxweXh9PEBkaEQpwaBdlSEtBbm5OTkxn
+ GxAZGhEKcGcXZgV+X0lOUh5McloQGRoRCnBnF2BBUF5ecltcTXIYEBkaEQpwZxdsGEVtBWl9QXp
+ bRRAeEhEKcH0Xb2BcZAVnaGwBUkkQBx4aEQpwZxdmWmYSTUZSGEJTYxAaEQpwfxdhZm9bGmdkQk
+ gdWxAbGBsRCnBfF2NiElBIY3gffEJ9EBsaHxEKcGwXb15neRtGQR4dfnsQGRoRCnBMF29dchJuS
+ VIfeUtjEBkaEQptfhcaEQpYTRdLESA=
+X-Authority-Analysis: v=2.4 cv=c8+bhx9l c=1 sm=1 tr=0 ts=69e694f4 cx=c_pps
+ a=ena5PlUD0aIF9WTlIvHgXA==:117 a=yk4IgWMvBcD5RL2Z:21 a=A5OVakUREuEA:10
+ a=5KLPUuaC_9wA:10 a=Y25RAXhlwIgA:10 a=JyWEw40TUO5AK6tc77iI:22
+ a=Da8U98TiO7q1upZEImrf:22 a=Qm0qsxP7aFY2tkT6R2MF:22 a=hWG4LpSCAAAA:8
+ a=Y_aAsDGCbXT2NWnA4cUA:9 a=QEXdDO2ut3YA:10 a=SVg1aZlUK-kdxEkq4qgA:9
+ a=2q4O/K3rjNU7EHYdBHB6dYyilSc=:19 a=TdRELJB0cRhQjM7-:21 a=lqcHg5cX4UMA:10
+ a=uq7D9deYNAqhyvBkL-Rl:22
+X-Proofpoint-Banner-Trigger: inbound
+X-Proofpoint-Virus-Version: vendor=nai engine=6800 definitions=11762
+ signatures=596818
+X-Proofpoint-DMARC: pass
+X-Proofpoint-Spam-Details: rule=inbound_notspam policy=inbound score=0
+ phishscore=0 adultscore=0 impostorscore=0 priorityscore=0 spamscore=0
+ clxscore=178 lowpriorityscore=0 malwarescore=0 bulkscore=0 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=internal adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2604070000 definitions=main-2604200206
+ domainage_hfrom=14899
+
+--0000000000004c7b79064feaa671
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+---------- Forwarded message ---------
+From: Henning Schulzrinne <hgs@cs.columbia.edu>
+Date: Mon, Apr 20, 2026, 10:42=E2=80=AFAM
+Subject: Re: Complete the Columbia Commute and Travel Survey =E2=80=93 win =
+$30
+Bookstore gift card
+To: Gaston Ormazabal <gso7@caa.columbia.edu>
+
+
+Yes. The only signs of "ham" are indeed the email address and maybe the URL
+(Qualtrics aligns with "survey"). Almost the same message could be phishing
+if the URL was pointing to a fake CU SSO page.
+
+On Mon, Apr 20, 2026 at 10:30=E2=80=AFAM Gaston Ormazabal <gso7@caa.columbi=
+a.edu>
+wrote:
+
+> doesn't this look awfully like the Harvard Paper?! =F0=9F=98=81 yet it's =
+probably
+> real since the email address seems real. ---------- Forwarded message
+> --------- From: Columbia University Office of Sustainability
+> <strategic-comm@ columbia. edu>
+> ZjQcmQRYFpfptBannerStart
+>
+> ZjQcmQRYFpfptBannerEnd
+> doesn't this look awfully like the Harvard Paper?! =F0=9F=98=81
+> yet it's probably real since the email address seems real.
+>
+> ---------- Forwarded message ---------
+> From: Columbia University Office of Sustainability <
+> strategic-comm@columbia.edu>
+> Date: Mon, Apr 20, 2026 at 10:27=E2=80=AFAM=F0=9F=98=81
+> Subject: Complete the Columbia Commute and Travel Survey =E2=80=93 win $3=
+0
+> Bookstore gift card
+> To: <COLUMBIAUNIVERSITY@lists.columbia.edu>
+>
+>
+> Dear members of the Columbia community,
+>
+> The Office of Sustainability surveys the Columbia community every two
+> years to understand their commute patterns. Whether you live nearby or
+> commute to campus, this survey is essential in helping us calculate
+> greenhouse gas emissions and meet Columbia=E2=80=99s transportation needs
+> effectively and sustainably.
+>
+> The survey includes questions about how you travel to and from Columbia,
+> as well as between Columbia=E2=80=99s campuses if applicable. It should o=
+nly take
+> about 2 to 4 minutes to complete, and you can choose to keep your respons=
+es
+> confidential.
+>
+> Columbia affiliates who complete the survey can choose to include their
+> UNI if they want to enter a drawing to win a $30 Columbia Bookstore gift
+> card.
+>
+> We ask that you complete the survey by *Friday, April 24, 2026*.
+>
+> *Take the survey
+> <https://urldefense.com/v3/__https://columbiaservices.qualtrics.com/jfe/f=
+orm/SV_9EviSM9nj1nr9UG__;!!BDUfV1Et5lrpZQ!Vjlw6j_rL70OaPI8ghBzxPvou7pNGhis9=
+z4Nx5gUUmr46rIbUOIa6eA73thfz3nIN2ft9XBdofRboQ5fH2lph3356dltPce0hRMl9zr23XMY=
+3g$>*
+>
+> Thank you in advance for helping to improve our campus transportation
+> services and create a more sustainable Columbia.
+>
+> Columbia University Office of Sustainability
+>
+
+--0000000000004c7b79064feaa671
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<head><!-- BaNnErBlUrFlE-HeAdEr-start -->
+<style>
+  #pfptBanner8abwwj9 { all: revert !important; display: block !important;
+    visibility: visible !important; opacity: 1 !important;
+    background-color: #d0d8dc !important;
+    max-width: none !important; max-height: none !important }
+  .pfptPrimaryButton8abwwj9:hover, .pfptPrimaryButton8abwwj9:focus {
+    background-color: #b4c1c7 !important; }
+  .pfptPrimaryButton8abwwj9:active {
+    background-color: #90a4ae !important; }
+  html:root, html:root>body { all: revert !important; display: block !impor=
+tant;
+    visibility: visible !important; opacity: 1 !important; }
+</style>
+
+<!-- BaNnErBlUrFlE-HeAdEr-end -->
+</head><!-- BaNnErBlUrFlE-BoDy-start -->
+<!-- Preheader Text : BEGIN -->
+<div style=3D"display:none !important;display:none;visibility:hidden;mso-hi=
+de:all;font-size:1px;color:#ffffff;line-height:1px;max-height:0px;opacity:0=
+;overflow:hidden;">
+---------- Forwarded message --------- From: Henning Schulzrinne &lt;hgs@=
+=E2=80=8Acs.=E2=80=8Acolumbia.=E2=80=8Aedu&gt; Date: Mon, Apr 20, 2026, 10:=
+=E2=80=8A42 AM Subject: Re: Complete the Columbia Commute and Travel Survey=
+ =E2=80=93 win $30 Bookstore gift card To: Gaston Ormazabal &lt;gso7@=E2=80=
+=8Acaa.=E2=80=8Acolumbia.=E2=80=8Aedu&gt;</div>
+<!-- Preheader Text : END -->
+
+<!-- Email Banner : BEGIN -->
+<div style=3D"display:none !important;display:none;visibility:hidden;mso-hi=
+de:all;font-size:1px;color:#ffffff;line-height:1px;max-height:0px;opacity:0=
+;overflow:hidden;">ZjQcmQRYFpfptBannerStart</div>
+
+<!--[if ((ie)|(mso))]>
+  <table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" st=
+yle=3D"padding: 0px 0px 10px 0px; direction: ltr" lang=3D"en"><tr><td>
+    <table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"paddin=
+g: 0px 8px 6px 8px; width: 100%; border-radius:4px; border-top:4px solid #9=
+0a4ae;background-color:#d0d8dc;"><tr><td valign=3D"top">
+      <table align=3D"left" border=3D"0" cellspacing=3D"0" cellpadding=3D"0=
+" style=3D"padding: 0px 8px 4px 8px; font-size: 12px; line-height: 16px">
+	<tr><td style=3D"color:#000000; font-family: 'Arial', sans-serif; font-wei=
+ght:bold; font-size:14px; line-height: 20px; direction: ltr">
+	  This Message Is From an External Sender
+	</td></tr>
+	<tr><td style=3D"color:#000000; font-weight:normal; font-family: 'Arial', =
+sans-serif; font-size:12px; direction: ltr">
+          This message came from outside your organization.
+	</td></tr>
+
+      </table>
+
+    </td></tr></table>
+  </td></tr></table>
+<![endif]-->
+
+<![if !((ie)|(mso))]>
+  <div dir=3D"ltr" lang=3D"en" id=3D"pfptBanner8abwwj9" style=3D"all: rever=
+t !important; display:block !important; text-align: left !important; margin=
+: 0 0 10px 0 !important; padding:7px 16px 8px 16px !important; border-radiu=
+s: 4px !important; min-width: 200px !important; background-color: #d0d8dc !=
+important; background-color: #d0d8dc; border-top: 4px solid #90a4ae !import=
+ant; border-top: 4px solid #90a4ae;">
+    <div id=3D"pfptBanner8abwwj9" style=3D"all: unset !important; float:lef=
+t !important; display:block !important; margin: 1px 0 1px 0 !important; max=
+-width: 600px !important;">
+      <div id=3D"pfptBanner8abwwj9" style=3D"all: unset !important; display=
+:block !important; visibility: visible !important; background-color: #d0d8d=
+c !important; color:#000000 !important; color:#000000; font-family: 'Arial'=
+, sans-serif !important; font-family: 'Arial', sans-serif; font-weight:bold=
+ !important; font-weight:bold; font-size:14px !important; line-height:1.29 =
+!important; line-height:1.29">
+	This Message Is From an External Sender
+      </div>
+      <div id=3D"pfptBanner8abwwj9" style=3D"all: unset !important; display=
+:block !important; visibility: visible !important; background-color: #d0d8d=
+c !important; color:#000000 !important; color:#000000; font-weight:normal; =
+font-family: 'Arial', sans-serif !important; font-family: 'Arial', sans-ser=
+if; font-size:12px !important; line-height:1.5 !important; line-height:1.5;=
+ margin-top:2px !important;">
+This message came from outside your organization.
+      </div>
+
+    </div>
+
+    <div style=3D"clear: both !important; display: block !important; visibi=
+lity: hidden !important; line-height: 0 !important; font-size: 0.01px !impo=
+rtant; height: 0px">&nbsp;</div>
+  </div>
+<![endif]>
+
+<div style=3D"display:none !important;display:none;visibility:hidden;mso-hi=
+de:all;font-size:1px;color:#ffffff;line-height:1px;max-height:0px;opacity:0=
+;overflow:hidden;">ZjQcmQRYFpfptBannerEnd</div>
+<!-- Email Banner : END -->
+
+<!-- BaNnErBlUrFlE-BoDy-end -->
+<div dir=3D"auto"></div><br><div class=3D"gmail_quote gmail_quote_container=
+"><div dir=3D"ltr" class=3D"gmail_attr">---------- Forwarded message ------=
+---<br>From: <strong class=3D"gmail_sendername" dir=3D"auto">Henning Schulz=
+rinne</strong> <span dir=3D"auto">&lt;<a href=3D"mailto:hgs@cs.columbia.edu=
+">hgs@cs.columbia.edu</a>&gt;</span><br>Date: Mon, Apr 20, 2026, 10:42=E2=
+=80=AFAM<br>Subject: Re: Complete the Columbia Commute and Travel Survey =
+=E2=80=93 win $30 Bookstore gift card<br>To: Gaston Ormazabal &lt;<a href=
+=3D"mailto:gso7@caa.columbia.edu">gso7@caa.columbia.edu</a>&gt;<br></div><b=
+r><br><div dir=3D"ltr"><div>Yes. The only signs of &quot;ham&quot; are inde=
+ed the email address and maybe the URL (Qualtrics aligns with &quot;survey&=
+quot;). Almost the same message could be phishing if the URL was pointing t=
+o a fake CU SSO page.</div><br><div class=3D"gmail_quote"><div dir=3D"ltr" =
+class=3D"gmail_attr">On Mon, Apr 20, 2026 at 10:30=E2=80=AFAM Gaston Ormaza=
+bal &lt;<a href=3D"mailto:gso7@caa.columbia.edu" target=3D"_blank" rel=3D"n=
+oreferrer">gso7@caa.columbia.edu</a>&gt; wrote:<br></div><blockquote class=
+=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
+b(204,204,204);padding-left:1ex"><div>
+
+
+
+
+
+<div style=3D"font-size:1px;color:rgb(255,255,255);line-height:1px;max-heig=
+ht:0px;opacity:0;overflow:hidden;display:none">
+doesn&#39;t this look awfully like the Harvard Paper?! =F0=9F=98=81 yet it&=
+#39;s probably real since the email address seems real. ---------- Forwarde=
+d message --------- From: Columbia University Office of Sustainability &lt;=
+strategic-comm@=E2=80=8Acolumbia.=E2=80=8Aedu&gt;</div>
+
+
+
+<div style=3D"font-size:1px;color:rgb(255,255,255);line-height:1px;max-heig=
+ht:0px;opacity:0;overflow:hidden;display:none">ZjQcmQRYFpfptBannerStart</di=
+v>
+
+
+
+<u></u>
+  <div dir=3D"ltr" lang=3D"en" id=3D"m_3786154998123496534m_709533854802607=
+0300pfptBanner3t5aa04" style=3D"display:block;text-align:left;margin:0px 0p=
+x 10px;padding:7px 16px 8px;border-radius:4px;min-width:200px;background-co=
+lor:rgb(208,216,220);border-top:4px solid rgb(144,164,174)"><div style=3D"h=
+eight:0px;clear:both;display:block;line-height:0;font-size:0.01px">=C2=A0</=
+div>
+  </div>
+<u></u>
+
+<div style=3D"font-size:1px;color:rgb(255,255,255);line-height:1px;max-heig=
+ht:0px;opacity:0;overflow:hidden;display:none">ZjQcmQRYFpfptBannerEnd</div>
+
+
+
+<div dir=3D"ltr">doesn&#39;t this look awfully like the Harvard Paper?!=C2=
+=A0=F0=9F=98=81<div>yet it&#39;s probably real since the email address seem=
+s real.=C2=A0<br><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"g=
+mail_attr">---------- Forwarded message ---------<br>From: <strong class=3D=
+"gmail_sendername" dir=3D"auto">Columbia University Office of Sustainabilit=
+y</strong> <span dir=3D"auto">&lt;<a href=3D"mailto:strategic-comm@columbia=
+.edu" target=3D"_blank" rel=3D"noreferrer">strategic-comm@columbia.edu</a>&=
+gt;</span><br>Date: Mon, Apr 20, 2026 at 10:27=E2=80=AFAM=F0=9F=98=81<br>Su=
+bject: Complete the Columbia Commute and Travel Survey =E2=80=93 win $30 Bo=
+okstore gift card<br>To:  &lt;<a href=3D"mailto:COLUMBIAUNIVERSITY@lists.co=
+lumbia.edu" target=3D"_blank" rel=3D"noreferrer">COLUMBIAUNIVERSITY@lists.c=
+olumbia.edu</a>&gt;<br></div><br><br><div dir=3D"ltr">Dear members of the C=
+olumbia community, <br><br>The Office of Sustainability surveys the Columbi=
+a community every two years to understand their commute patterns. Whether y=
+ou live nearby or commute to campus, this survey is essential in helping us=
+ calculate greenhouse gas emissions and meet Columbia=E2=80=99s transportat=
+ion needs effectively and sustainably. <br><br>The survey includes question=
+s about how you travel to and from Columbia, as well as between Columbia=E2=
+=80=99s campuses if applicable. It should only take about 2 to 4 minutes to=
+ complete, and you can choose to keep your responses confidential. <br><br>=
+Columbia affiliates who complete the survey can choose to include their UNI=
+ if they want to enter a drawing to win a $30 Columbia Bookstore gift card.=
+ <br><br>We ask that you complete the survey by <b>Friday, April 24, 2026</=
+b>. <br><br><b><a href=3D"https://urldefense.com/v3/__https://columbiaservi=
+ces.qualtrics.com/jfe/form/SV_9EviSM9nj1nr9UG__;!!BDUfV1Et5lrpZQ!Vjlw6j_rL7=
+0OaPI8ghBzxPvou7pNGhis9z4Nx5gUUmr46rIbUOIa6eA73thfz3nIN2ft9XBdofRboQ5fH2lph=
+3356dltPce0hRMl9zr23XMY3g$" target=3D"_blank" rel=3D"noreferrer">Take the s=
+urvey</a></b><br><br>Thank you in advance for helping to improve our campus=
+ transportation services and create a more sustainable Columbia. <br><br>Co=
+lumbia University Office of Sustainability</div>
+</div></div></div>
+</div></blockquote></div></div>
+</div>
+
+--0000000000004c7b79064feaa671--
