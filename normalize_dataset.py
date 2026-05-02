@@ -166,8 +166,7 @@ def strip_html(text):
 
     text = re.sub(r'<(script|style).*?>.*?</\1>', '', text, flags=re.DOTALL | re.IGNORECASE)
 
-    text = re.sub(r'<a [^>]*>(.*?)</a>', r'\1', text, flags=re.DOTALL | re.IGNORECASE)
-
+    text = re.sub(r'<a\s+[^>]*href\s*=\s*["\']([^"\']*)["\'][^>]*>(.*?)</a>', r'\2 \1', text, flags=re.DOTALL | re.IGNORECASE,)
     text = re.sub(r'<[^>]+>', ' ', text)
 
     text = text.replace("&nbsp;", " ").replace("&amp;", "&")
