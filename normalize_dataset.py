@@ -356,7 +356,14 @@ def normalize():
 
    # print("\nLEGITIMATE EMAIL EXAMPLE:\n", legit_example.to_string(index=False))
    # print("\nPHISHING EMAIL EXAMPLE:\n", phishing_example.to_string(index=False))
-   # print("Final dataset size:", len(df))
+    label_counts = df["normalized_label"].value_counts()
+    print("\n=== Dataset Summary ===")
+    print(f"Total emails:      {len(df)}")
+    print(f"Phishing emails:   {label_counts.get('phishing', 0)}")
+    print(f"Spam emails:       {label_counts.get('spam', 0)}")
+    print(f"Legitimate emails: {label_counts.get('legitimate', 0)}")
+    print("======================\n")
+
 
     df.to_csv(OUTPUT_FILE, index=False)
     print("Saved normalized dataset:", OUTPUT_FILE)
